@@ -1,0 +1,26 @@
+<div class="app-card-component">
+  <div class="card-container">
+    <mat-card class="app-card">
+
+      <mat-card-header class="app-card-header app-card-title" *ngIf="headerTitle">
+        <div *ngIf="headerIcon; else noIcon">
+          <a href="{{ iconLink }}" target="_blank" class="icon-link">
+            <mat-icon class="app-card-header-icon" *ngIf="headerIcon">{{ headerIcon }}</mat-icon>
+          </a>
+          {{ headerTitle }}
+        </div>
+        <ng-template #noIcon>
+          <span class="no-icon-template">{{ headerTitle }}</span>
+        </ng-template>
+
+      </mat-card-header>
+
+      <mat-card-content class="mat-card-content" [ngClass]="contentCss">
+        <div class="card-content">
+          <ng-content></ng-content>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

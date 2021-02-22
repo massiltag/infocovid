@@ -1,0 +1,24 @@
+<h1>
+    <span>{{ prepend }}</span>
+    <span *ngFor="let folder of folders">
+
+    <span *ngIf="getIndexOf(folder) !== folders.length - 1; else last"
+          (click)="onClick(folder)">
+      <span style="cursor: pointer;">
+        <u>{{ folder.name }}</u>
+      </span>
+      <span> / </span>
+    </span>
+
+    <ng-template #last>
+      <span style="cursor: pointer;">
+        <u>{{ folder.name }}</u>
+      </span>
+    </ng-template>
+
+  </span>
+
+    <span>
+    <ng-content></ng-content>
+  </span>
+</h1>

@@ -1,0 +1,8 @@
+<div class="spinner-wrapper" *ngIf="input; else noInput">
+  <span>Chargement {{ input }}</span>
+  <mat-spinner class="spinner" [diameter]="20"></mat-spinner>
+</div>
+
+<ng-template #noInput>
+  <mat-spinner class="spinner" [diameter]="30"></mat-spinner>
+</ng-template>

@@ -1,0 +1,6 @@
+<div class="login-container" [ngStyle]="authService.hideWhenLogged()">
+  <app-card class="login-card" [headerTitle]="'Connexion'" [headerIcon]="'login'">
+    <app-login-form (loginEvent)="login($event)" [spinnerEnabled]="requesting"></app-login-form>
+  </app-card>
+
+</div>

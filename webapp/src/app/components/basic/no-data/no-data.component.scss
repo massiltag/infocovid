@@ -1,0 +1,27 @@
+.no-data-container {
+  height: 61vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-data-icon {
+  height: 10vh;
+  width: 7vw;
+  font-size: 6vw;
+}
+
+.no-data-title {
+  font-size: 3.5vmin;
+  font-weight: 300;
+  color: gray;
+  letter-spacing: 0.25px;
+}
+
+.no-data-text {
+  font-size: 1.5vmin;
+  font-weight: 400;
+  color: gray;
+  width: 30%;
+  text-align: center;
+  line-height: 2.5vmin;
+}

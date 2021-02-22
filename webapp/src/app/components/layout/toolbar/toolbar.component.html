@@ -1,0 +1,7 @@
+<div class="toolbar-container">
+  <mat-toolbar color="primary" class="toolbar" fxLayoutAlign="space-between center" fxLayout="row" fxLayoutAlign="start center">
+    <mat-icon *ngIf="icon" (click)="onButtonClick()" class="toolbar-left-icon">{{ icon }}</mat-icon>
+    <span class="toolbar-text">{{ title }}</span>
+    <img class="logo" src="assets/images/angular-white.png" alt="Logo">
+  </mat-toolbar>
+</div>

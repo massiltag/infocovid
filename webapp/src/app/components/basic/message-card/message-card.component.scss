@@ -1,0 +1,54 @@
+.message-card {
+  height: 60vh;
+
+  .message-container {
+    height: min-content;
+    justify-content: center!important;
+    align-items: center;
+
+    .message-content {
+      display: block;
+      margin: auto auto;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 100%;
+
+      .message-icon {
+        height: 100%;
+        width: 100%;
+        font-size: 120px;
+        display: block;
+        text-align: center;
+      }
+
+      .message-title {
+        font-size: 30px;
+        font-weight: 300;
+        color: gray;
+        letter-spacing: 0.25px;
+        text-align: center;
+        display: block;
+        margin: 25px auto auto;
+      }
+
+      .message-text {
+        font-size: 1.3em;
+        font-weight: 400;
+        color: gray;
+        width: 100%;
+        text-align: center;
+        line-height: 2.5vmin;
+        display: block;
+        margin: 12px auto auto;
+      }
+    }
+
+  }
+
+
+
+
+
+}

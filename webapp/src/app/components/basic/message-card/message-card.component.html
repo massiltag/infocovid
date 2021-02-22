@@ -1,0 +1,15 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<mat-card class="message-card">
+  <div class="message-container" fxLayout="row" fxLayoutAlign="center">
+    <div class="message-content">
+      <mat-icon class="message-icon" [color]="'white'">
+        {{ icon }}
+      </mat-icon>
+      <span class="message-title">{{ title }}</span>
+      <span class="message-text">
+        <ng-content></ng-content>
+      </span>
+    </div>
+
+  </div>
+</mat-card>

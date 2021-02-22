@@ -2,7 +2,7 @@
 
 ### What's here ? ###
 
-This is our development project. Supervised by Maxime Lhoumeau in Paris I Panthéon Sorbonne University.
+This is our development project. Supervised by Maxime Lhoumeau in Paris I PanthÃ©on Sorbonne University.
 
 ### Authors ###
 * Nelly UNG

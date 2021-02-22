@@ -1,0 +1,20 @@
+.mat-checkbox-component {
+  ::ng-deep {
+    .mat-checkbox-layout {
+      margin: 3px 0 0;
+
+      .mat-checkbox-inner-container {
+        margin: 0 3px 0 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+
+        .mat-checkbox-frame {
+          border-radius: 5px;
+        }
+      }
+
+    }
+  }
+
+}

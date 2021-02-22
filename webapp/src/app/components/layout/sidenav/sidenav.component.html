@@ -1,0 +1,19 @@
+<mat-sidenav-container [hasBackdrop]="false" [autosize]="false">
+  <mat-sidenav class="sidenav" mode="side" opened="{{ auth.isAuthenticated() && opened }}">
+
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="routePath.HOME" [routerLinkActive]="['active']">
+        <mat-icon class="icon">folder</mat-icon> Accueil
+      </a>
+      <!--a mat-list-item [routerLink]="routePath.COMMITS" [routerLinkActive]="['active']" [ngStyle]="auth.displayWhenLogged()">
+        <mat-icon class="icon">code</mat-icon> Option 2
+      </a-->
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: calc(100vh - 60px); /* TOOLBAR = 60px */">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

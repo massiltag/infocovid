@@ -1,0 +1,34 @@
+.multiple {
+  .mat-datepicker-toggle {
+    position: absolute;
+    right: 0;
+    top: 5%;
+
+    &.start {
+      left: 35%;
+    }
+
+    .mat-icon {
+      line-height: 2rem;
+      font-size: 1.75rem;
+    }
+  }
+}
+
+.mat-form-field-infix {
+  border-top: 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+::ng-deep {
+  .mat-icon-button {
+    margin-top: -7px!important;
+  }
+  *:focus {
+    outline: none!important;
+  }
+}
+

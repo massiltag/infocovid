@@ -1,0 +1,12 @@
+<div class="layout-content">
+  <app-toolbar [title]="'InfoCovid Project'"
+               [icon]="'menu'"
+               (buttonClicked)="auth.isAuthenticated() ? sidenav.toggle() : undefined">
+  </app-toolbar>
+
+  <app-sidenav #sidenav [opened]="true">
+    <div class="router-outlet">
+      <ng-content></ng-content>
+    </div>
+  </app-sidenav>
+</div>

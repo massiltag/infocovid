@@ -1,0 +1,12 @@
+.label {
+  background-color: grey;
+  border-radius: 15px;
+  width: 5rem;
+
+  .text {
+    display: block;
+    text-align: center;
+    font-family: monospace;
+    font-weight: bolder;
+  }
+}
