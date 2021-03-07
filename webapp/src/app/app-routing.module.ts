@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './components/main/main.component';
 import {RoutePathEnum} from './enums/route-path.enum';
-import { VaccinComponent } from './vaccin/vaccin.component';
+import { VaccinComponent } from './components/vaccin/vaccin.component';
 
 const routes: Routes = [
   {

@@ -49,7 +49,7 @@ import {SoonComponent} from './components/basic/soon/soon.component';
 import {Properties} from './enums/properties';
 import {BreadcrumbComponent} from './components/basic/breadcrumb/breadcrumb.component';
 import {AutocompleteOffDirective} from './util/directives/autocomplete-off.directive';
-import { VaccinComponent } from './vaccin/vaccin.component';
+import { VaccinComponent } from './components/vaccin/vaccin.component';
 
 @NgModule({
   declarations: [
