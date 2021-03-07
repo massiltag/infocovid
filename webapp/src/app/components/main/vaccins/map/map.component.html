@@ -1,0 +1,10 @@
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<!--agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map-->
+
+<!--div #map style="width:100%;height:500px"></div-->
+
+
+<p-gmap [options]="options" [overlays]="overlays" [style]="{'height':'75vh'}"></p-gmap>

@@ -1,0 +1,56 @@
+<div class="main-container">
+    <h1>Vaccinations</h1>
+    <mat-grid-list cols="3" rowHeight="42vh">
+        <mat-grid-tile [colspan]="2">
+            <app-card
+                    class="grid-card-fill"
+                    [headerTitle]="'En quelques chiffres'"
+                    [headerIcon]="'query_stats'"
+            >
+                <div class="vertical-center" fxLayout="row" fxLayoutAlign="space-around center">
+                    <app-key-number [number]="'10'" [unity]="'k'" [description]="'Nombre de personnes vaccinées'"></app-key-number>
+                    <app-key-number [number]="'2'" [unity]="'k'" [description]="'Nombre de personnes en réanimation'"></app-key-number>
+                    <app-key-number [number]="'99'" [unity]="'k'" [description]="'Nombre total de cas'"></app-key-number>
+                    <app-key-number [number]="'7'" [unity]="'k'" [description]="'Nombre de lits occupés en réanimation'"></app-key-number>
+                </div>
+            </app-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile [rowspan]="2">
+            <app-card
+                    class="grid-card-fill"
+                    [headerTitle]="'Carte des centres de vaccination'"
+                    [headerIcon]="'map'"
+            >
+                <app-map></app-map>
+            </app-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-card
+                    class="grid-card-fill"
+                    [headerTitle]="'Évolution des vaccinations'"
+                    [headerIcon]="'show_chart'"
+            >
+                <div style="height: 35vh" #containerRef>
+                    <app-chart [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"></app-chart>
+                </div>
+            </app-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-card
+                    class="grid-card-fill"
+                    [headerTitle]="'Types de vaccins'"
+                    [headerIcon]="'local_hospital'"
+            >
+                <ul style="text-align: justify">
+                    <li><b>Pfizer</b><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</li>
+                    <li><b>AstraZeneca</b><br>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sodales ut etiam sit amet nisl. Sed egestas egestas fringilla phasellus. Eget velit aliquet sagittis id consectetur purus ut.</li>
+                    <li><b>Moderna</b><br>Quam viverra orci sagittis eu volutpat odio. Semper auctor neque vitae tempus quam pellentesque nec nam aliquam. Suspendisse faucibus interdum posuere lorem ipsum. Sit amet mauris commodo quis imperdiet massa.</li>
+                </ul>
+            </app-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</div>

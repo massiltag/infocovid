@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './components/main/main.component';
 import {RoutePathEnum} from './enums/route-path.enum';
-import { VaccinComponent } from './components/vaccin/vaccin.component';
+import { VaccinsComponent } from './components/main/vaccins/vaccins.component';
 
 const routes: Routes = [
   {
@@ -17,11 +17,11 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: RoutePathEnum.VACCIN
+    redirectTo: RoutePathEnum.VACCINS
   },
   {
-    path: RoutePathEnum.VACCIN,
-    component: VaccinComponent
+    path: RoutePathEnum.VACCINS,
+    component: VaccinsComponent
   },
 ];
 

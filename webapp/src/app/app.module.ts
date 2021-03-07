@@ -49,9 +49,15 @@ import {SoonComponent} from './components/basic/soon/soon.component';
 import {Properties} from './enums/properties';
 import {BreadcrumbComponent} from './components/basic/breadcrumb/breadcrumb.component';
 import {AutocompleteOffDirective} from './util/directives/autocomplete-off.directive';
-import { VaccinComponent } from './components/vaccin/vaccin.component';
-import { MapComponent } from './components/vaccin/map/map.component';
+import { VaccinsComponent } from './components/main/vaccins/vaccins.component';
+import { MapComponent } from './components/main/vaccins/map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { KeyNumberComponent } from './components/main/vaccins/key-number/key-number.component';
+import {GMapModule} from 'primeng/gmap';
+import {GoogleMapsModule} from '@angular/google-maps';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { ChartComponent } from './components/main/vaccins/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -78,8 +84,10 @@ import { AgmCoreModule } from '@agm/core';
     SoonComponent,
     BreadcrumbComponent,
     AutocompleteOffDirective,
-    VaccinComponent,
+    VaccinsComponent,
     MapComponent,
+    KeyNumberComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,8 +117,12 @@ import { AgmCoreModule } from '@agm/core';
     AgGridModule.withComponents([]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDfi9bu09Hd65LUIImakKYy4XIYE3a1w90'
-    })
-    ],
+    }),
+    GoogleMapsModule,
+    MatGridListModule,
+    GMapModule,
+    NgxChartsModule
+  ],
   providers: [
     {
       provide: DateAdapter,
