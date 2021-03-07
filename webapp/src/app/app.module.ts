@@ -50,6 +50,8 @@ import {Properties} from './enums/properties';
 import {BreadcrumbComponent} from './components/basic/breadcrumb/breadcrumb.component';
 import {AutocompleteOffDirective} from './util/directives/autocomplete-off.directive';
 import { VaccinComponent } from './components/vaccin/vaccin.component';
+import { MapComponent } from './components/vaccin/map/map.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { VaccinComponent } from './components/vaccin/vaccin.component';
     BreadcrumbComponent,
     AutocompleteOffDirective,
     VaccinComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,10 @@ import { VaccinComponent } from './components/vaccin/vaccin.component';
     ClipboardModule,
     MatSnackBarModule,
     AgGridModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDfi9bu09Hd65LUIImakKYy4XIYE3a1w90'
+    })
     ],
   providers: [
     {

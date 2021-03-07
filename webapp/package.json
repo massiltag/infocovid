@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "~10.1.2",
     "@angular/cdk": "^10.2.7",
     "@angular/common": "~10.1.2",
@@ -19,6 +20,7 @@
     "@angular/core": "~10.1.2",
     "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "~10.1.2",
+    "@angular/google-maps": "^11.2.3",
     "@angular/material": "^10.2.5",
     "@angular/material-moment-adapter": "^11.0.0",
     "@angular/platform-browser": "~10.1.2",
@@ -42,6 +44,7 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.19.8",
+    "@types/googlemaps": "3.39.12",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
