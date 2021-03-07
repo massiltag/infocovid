@@ -20,6 +20,16 @@
     }
   }
 
+  .map-card {
+    ::ng-deep {
+      .mat-card-content {
+        height: 100%;
+        .card-content { height: 95% }
+      }
+
+    }
+  }
+
   .vertical-center {
     display: flex;
     justify-content: center;

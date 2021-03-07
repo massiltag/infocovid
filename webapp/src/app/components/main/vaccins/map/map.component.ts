@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import * as L from 'leaflet';
 
@@ -11,14 +11,11 @@ import * as L from 'leaflet';
 export class MapComponent implements OnInit {
   markerClusterGroup: L.MarkerClusterGroup;
 
-
   constructor() { }
 
-
-
-  ngOnInit() {
+  ngOnInit(): void {
     // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom.
-    const myMap = L.map('map').setView([46.8, 3], 5);
+    const myMap = L.map('map').setView([46.8, 3], 6);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'myMap'
@@ -29,15 +26,9 @@ export class MapComponent implements OnInit {
     });
 
 
-    let firstLayer = L.marker([48.856614, 2.3522219],
-      { icon: myIcon }).bindPopup('centre de vaccination').addTo(myMap);
-    let secondLayer = L.marker([50, 2.3522219],
-      { icon: myIcon }).bindPopup('centre de vaccination').addTo(myMap);
-
-
+    L.marker([48.856614, 2.3522219], { icon: myIcon }).bindPopup('centre de vaccination').addTo(myMap);
+    L.marker([50, 2.3522219], { icon: myIcon }).bindPopup('centre de vaccination').addTo(myMap);
   }
-
-
 }
 
 
