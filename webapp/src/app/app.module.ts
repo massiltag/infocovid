@@ -51,13 +51,12 @@ import {BreadcrumbComponent} from './components/basic/breadcrumb/breadcrumb.comp
 import {AutocompleteOffDirective} from './util/directives/autocomplete-off.directive';
 import { VaccinsComponent } from './components/main/vaccins/vaccins.component';
 import { MapComponent } from './components/main/vaccins/map/map.component';
-import { AgmCoreModule } from '@agm/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { KeyNumberComponent } from './components/main/vaccins/key-number/key-number.component';
 import {GMapModule} from 'primeng/gmap';
-import {GoogleMapsModule} from '@angular/google-maps';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ChartComponent } from './components/main/vaccins/chart/chart.component';
+import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 
 @NgModule({
   declarations: [
@@ -115,13 +114,11 @@ import { ChartComponent } from './components/main/vaccins/chart/chart.component'
     MatSnackBarModule,
     AgGridModule,
     AgGridModule.withComponents([]),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDfi9bu09Hd65LUIImakKYy4XIYE3a1w90'
-    }),
-    GoogleMapsModule,
     MatGridListModule,
     GMapModule,
-    NgxChartsModule
+    NgxChartsModule,
+    LeafletMarkerClusterModule
+    
   ],
   providers: [
     {

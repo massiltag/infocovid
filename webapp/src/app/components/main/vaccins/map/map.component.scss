@@ -1,11 +1,4 @@
-agm-map {
-  height: 400px;
-}
-
-::ng-deep {
-  p-gmap {
-    div:first-child {
-      border-radius: 10px;
-    }
-  }
+#map {
+    height: 500px;
+    width: 500px
 }

@@ -1,4 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import * as L from 'leaflet';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -6,29 +9,36 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class MapComponent implements OnInit {
-  options: any;
-  overlays: any[];
+  markerClusterGroup: L.MarkerClusterGroup;
 
-  lat = 46.662253328373495;
-  lng = 2.4410404427084402;
-  constructor() {
-    this.options = {
-      center: {lat: this.lat, lng: this.lng},
-      zoom: 5.9
-    };
 
-    this.overlays = [
-      new google.maps.Marker({position: {lat: 48.81027, lng: 2.35366}, title: 'CHU Kremlin-Bicêtre'}),
-      new google.maps.Marker({position: {lat: 48.83685, lng: 2.36555}, title: 'Pitié Salpétrière'}),
-      new google.maps.Marker({position: {lat: 45.70177, lng: 4.80643}, title: 'Hôpital Lyon Sud'}),
-      new google.maps.Marker({position: {lat: 45.78489, lng: 3.10988}, title: 'CHU Clermont-Ferrand'}),
-      new google.maps.Marker({position: {lat: 44.82741, lng: -0.60834}, title: 'Hôpital Pellegrin Bordeaux'}),
-      new google.maps.Marker({position: {lat: 43.27520, lng: 5.39300}, title: 'Hôpital Saint Joseph Marseille'}),
-      new google.maps.Marker({position: {lat: 49.11430, lng: 6.18020}, title: 'Hôpital Sainte Blandine Metz'}),
-    ];
+  constructor() { }
+
+
+
+  ngOnInit() {
+    // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom.
+    const myMap = L.map('map').setView([46.8, 3], 5);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: 'myMap'
+    }).addTo(myMap);
+
+    const myIcon = L.icon({
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
+    });
+
+
+    let firstLayer = L.marker([48.856614, 2.3522219],
+      { icon: myIcon }).bindPopup('centre de vaccination').addTo(myMap);
+    let secondLayer = L.marker([50, 2.3522219],
+      { icon: myIcon }).bindPopup('centre de vaccination').addTo(myMap);
+
+
   }
 
-  ngOnInit(): void {
-  }
 
 }
+
+
+
