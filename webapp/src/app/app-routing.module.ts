@@ -2,17 +2,17 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './components/main/main.component';
 import {RoutePathEnum} from './enums/route-path.enum';
-import { VaccinsComponent } from './components/main/vaccins/vaccins.component';
+import {DashboardComponent} from './components/main/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: RoutePathEnum.HOME
+    redirectTo: RoutePathEnum.DASHBOARD
   },
   {
-    path: RoutePathEnum.HOME,
-    component: MainComponent
+    path: RoutePathEnum.DASHBOARD,
+    component: DashboardComponent
   },
   {
     path: '',
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: RoutePathEnum.VACCINS,
-    component: VaccinsComponent
+    component: MainComponent
   },
 ];
 

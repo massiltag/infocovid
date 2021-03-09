@@ -4,10 +4,10 @@ import {DataService} from '../../../services/data.service';
 
 @Component({
   selector: 'app-vaccin',
-  templateUrl: './vaccins.component.html',
-  styleUrls: ['./vaccins.component.scss']
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class VaccinsComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   liveData: LiveData;
 

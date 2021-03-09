@@ -1,5 +1,5 @@
 <div class="main-container">
-    <h1>Vaccinations</h1>
+    <h1>Dashboard</h1>
     <mat-grid-list cols="3" rowHeight="42vh">
         <mat-grid-tile [colspan]="2">
             <app-card
@@ -31,7 +31,7 @@
         <mat-grid-tile [rowspan]="2">
             <app-card
                     class="grid-card-fill map-card"
-                    [headerTitle]="'Carte des centres de vaccination'"
+                    [headerTitle]="'Carte des cas par département'"
                     [headerIcon]="'map'"
             >
                 <app-map></app-map>
@@ -41,7 +41,7 @@
         <mat-grid-tile>
             <app-card
                     class="grid-card-fill"
-                    [headerTitle]="'Évolution des vaccinations'"
+                    [headerTitle]="'Évolution des cas'"
                     [headerIcon]="'show_chart'"
             >
                 <div style="height: 35vh" #containerRef>
@@ -53,7 +53,7 @@
         <mat-grid-tile>
             <app-card
                     class="grid-card-fill"
-                    [headerTitle]="'Types de vaccins'"
+                    [headerTitle]="'Info truc-muche'"
                     [headerIcon]="'local_hospital'"
             >
                 <ul style="text-align: justify">

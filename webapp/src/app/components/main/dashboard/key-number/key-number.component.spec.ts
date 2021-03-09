@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { KeyNumberComponent } from './key-number.component';
+import {KeyNumberComponent} from './key-number.component';
 
 describe('KeyNumberComponent', () => {
   let component: KeyNumberComponent;

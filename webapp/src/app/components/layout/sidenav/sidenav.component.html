@@ -2,10 +2,10 @@
   <mat-sidenav class="sidenav" mode="side" opened="{{ auth.isAuthenticated() && opened }}">
 
     <mat-nav-list>
-      <a mat-list-item [routerLink]="routePath.HOME" [routerLinkActive]="['active']">
-        <mat-icon class="icon">home</mat-icon> Accueil
+      <a mat-list-item [routerLink]="routePath.DASHBOARD" [routerLinkActive]="['active']">
+        <mat-icon class="icon">dashboard</mat-icon> Dashboard
       </a>
-      <a mat-list-item [routerLink]="routePath.VACCINS" [routerLinkActive]="['active']">
+      <a mat-list-item disabled [routerLink]="routePath.VACCINS" [routerLinkActive]="['active']">
         <mat-icon class="icon">medical_services</mat-icon> Vaccinations
       </a>
       <!--a mat-list-item [routerLink]="routePath.COMMITS" [routerLinkActive]="['active']" [ngStyle]="auth.displayWhenLogged()">

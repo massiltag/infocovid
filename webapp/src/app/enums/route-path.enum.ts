@@ -1,5 +1,5 @@
 export enum RoutePathEnum {
-  HOME = 'home',
+  DASHBOARD = 'home',
   VACCINS = 'vaccins',
 }
 

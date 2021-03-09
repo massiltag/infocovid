@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { single } from './data';
+import {single} from './data';
 
 @Component({
   selector: 'app-chart',

@@ -43,4 +43,9 @@
   .mat-focus-indicator {
     //border-radius: 0px 20px 20px 0px;
   }
+
+  .mat-list-item-disabled {
+    background: unset!important;
+    color: gray!important;
+  }
 }

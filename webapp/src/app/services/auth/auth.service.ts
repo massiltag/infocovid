@@ -57,7 +57,7 @@ export class AuthService {
     this.authenticated = false;
     // this.cookies.delete(Properties.TOKEN_COOKIE);
     // this.cookies.delete(Properties.USERNAME_COOKIE);
-    this.router.navigate([RoutePathEnum.HOME]);
+    this.router.navigate([RoutePathEnum.DASHBOARD]);
   }
 
   // Use with NgStyle

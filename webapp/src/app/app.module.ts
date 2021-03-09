@@ -49,14 +49,14 @@ import {SoonComponent} from './components/basic/soon/soon.component';
 import {Properties} from './enums/properties';
 import {BreadcrumbComponent} from './components/basic/breadcrumb/breadcrumb.component';
 import {AutocompleteOffDirective} from './util/directives/autocomplete-off.directive';
-import { VaccinsComponent } from './components/main/vaccins/vaccins.component';
-import { MapComponent } from './components/main/vaccins/map/map.component';
+import {DashboardComponent} from './components/main/dashboard/dashboard.component';
+import {MapComponent} from './components/main/dashboard/map/map.component';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { KeyNumberComponent } from './components/main/vaccins/key-number/key-number.component';
+import {KeyNumberComponent} from './components/main/dashboard/key-number/key-number.component';
 import {GMapModule} from 'primeng/gmap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import { ChartComponent } from './components/main/vaccins/chart/chart.component';
-import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
+import {ChartComponent} from './components/main/dashboard/chart/chart.component';
+import {LeafletMarkerClusterModule} from '@asymmetrik/ngx-leaflet-markercluster';
 
 @NgModule({
   declarations: [
@@ -83,7 +83,7 @@ import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluste
     SoonComponent,
     BreadcrumbComponent,
     AutocompleteOffDirective,
-    VaccinsComponent,
+    DashboardComponent,
     MapComponent,
     KeyNumberComponent,
     ChartComponent,

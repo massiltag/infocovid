@@ -1,16 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {ApiLinksEnum} from '../enums/api-links.enum';
-import {CookieService} from 'ngx-cookie-service';
 import {LiveData} from '../models/live-data.model';
+import {ApiLinksEnum} from '../enums/api-links.enum';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private http: HttpClient,
-              private cookies: CookieService) { }
+
+  constructor(private http: HttpClient) { }
 
   // GET
   getLiveData(): Observable<LiveData> {
@@ -24,6 +23,5 @@ export class DataService {
 
     return this.http.get<LiveData>(url, {headers, params});
   }
-
 
 }
