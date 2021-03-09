@@ -8,10 +8,22 @@
                     [headerIcon]="'query_stats'"
             >
                 <div class="vertical-center" fxLayout="row" fxLayoutAlign="space-around center">
-                    <app-key-number [number]="'10'" [unity]="'k'" [description]="'Nombre de personnes vaccinées'"></app-key-number>
-                    <app-key-number [number]="'2'" [unity]="'k'" [description]="'Nombre de personnes en réanimation'"></app-key-number>
-                    <app-key-number [number]="'99'" [unity]="'k'" [description]="'Nombre total de cas'"></app-key-number>
-                    <app-key-number [number]="'7'" [unity]="'k'" [description]="'Nombre de lits occupés en réanimation'"></app-key-number>
+                    <app-key-number [number]="cleanForView(liveData.hospitalises)"
+                                    [unity]="getUnity(liveData.hospitalises)"
+                                    [description]="'Hospitalisations'">
+                    </app-key-number>
+                    <app-key-number [number]="cleanForView(liveData.reanimation)"
+                                    [unity]="getUnity(liveData.reanimation)"
+                                    [description]="'Réanimations'">
+                    </app-key-number>
+                    <app-key-number [number]="cleanForView(liveData.nouvellesHospitalisations)"
+                                    [unity]="getUnity(liveData.nouvellesHospitalisations)"
+                                    [description]="'Nouvelles hospitalisations'">
+                    </app-key-number>
+                    <app-key-number [number]="cleanForView(liveData.nouvellesReanimations)"
+                                    [unity]="getUnity(liveData.nouvellesReanimations)"
+                                    [description]="'Nouvelles réanimations'">
+                    </app-key-number>
                 </div>
             </app-card>
         </mat-grid-tile>

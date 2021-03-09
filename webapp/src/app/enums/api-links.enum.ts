@@ -1,5 +1,5 @@
 export enum ApiLinksEnum {
-  SAMPLE_LINK = 'https://sample.link/$1'
+  LIVE_DATA = 'http://localhost:8080/api/getLiveData'
 }
 
 // tslint:disable-next-line:no-namespace

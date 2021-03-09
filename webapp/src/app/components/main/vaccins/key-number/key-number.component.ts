@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./key-number.component.scss']
 })
 export class KeyNumberComponent implements OnInit {
-  @Input() number: string;
+  @Input() number: any;
   @Input() unity = '';
   @Input() description: string;
 
