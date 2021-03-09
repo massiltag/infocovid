@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="!searching; else spinner">
     <h1>Dashboard</h1>
     <mat-grid-list cols="3" rowHeight="42vh">
         <mat-grid-tile [colspan]="2">
@@ -64,5 +64,8 @@
             </app-card>
         </mat-grid-tile>
     </mat-grid-list>
-
 </div>
+
+<ng-template #spinner>
+    <app-progress-spinner></app-progress-spinner>
+</ng-template>

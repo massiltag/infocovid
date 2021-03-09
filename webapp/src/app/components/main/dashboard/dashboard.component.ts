@@ -11,10 +11,14 @@ export class DashboardComponent implements OnInit {
 
   liveData: LiveData;
 
+  searching: boolean;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.searching = true;
     this.dataService.getLiveData().subscribe(d => {
+      this.searching = false;
       this.liveData = d;
     });
   }
