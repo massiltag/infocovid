@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from './components/main/main.component';
 import {RoutePathEnum} from './enums/route-path.enum';
 import {DashboardComponent} from './components/main/dashboard/dashboard.component';
+import {NewsComponent} from './components/main/news/news.component';
 
 const routes: Routes = [
   {
@@ -15,13 +15,8 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: RoutePathEnum.VACCINS
-  },
-  {
-    path: RoutePathEnum.VACCINS,
-    component: MainComponent
+    path: RoutePathEnum.ACTU,
+    component: NewsComponent
   },
 ];
 

@@ -2,7 +2,7 @@ package com.pantheonsorbonne.infocovid.remote;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.pantheonsorbonne.infocovid.domain.dto.ApiResponseDTO;
+import com.pantheonsorbonne.infocovid.domain.dto.NewsDTO;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,39 +15,50 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
-public class APIClient {
+public class NewsClient {
 
     private final RestTemplate restTemplate;
 
-    private static String LIVE_DATA = "https://coronavirusapi-france.now.sh/FranceLiveGlobalData";
+    private static String NEWS_URL = "http://api.mediastack.com/v1/news";
 
     @Autowired
-    public APIClient(RestTemplate restTemplate) {
+    public NewsClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public ApiResponseDTO getLiveData() {
+    public List<NewsDTO> getNews() {
         // Build URL
-        String httpUrl = LIVE_DATA;
+        String httpUrl = NEWS_URL;
 
         // Build URI
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(httpUrl);
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(httpUrl)
+                .queryParam("access_key", "4b2ad922cce30ad1c91a2a5309894029")
+                .queryParam("keywords", "covid")
+                .queryParam("countries", "fr")
+                .queryParam("limit", "100");
         HttpHeaders headers = new HttpHeaders();
 
-        HttpEntity<LiveDataWrapper> httpEntity = new HttpEntity<>(new LiveDataWrapper(), headers);
-        ResponseEntity<LiveDataWrapper> responseEntity = restTemplate.exchange(
+        HttpEntity<NewsWrapper> httpEntity = new HttpEntity<>(new NewsWrapper(), headers);
+        ResponseEntity<NewsWrapper> responseEntity = restTemplate.exchange(
                 uriComponentsBuilder.build(false).toUriString(),
                 HttpMethod.GET,
                 httpEntity,
                 new ParameterizedTypeReference<>() {}
         );
-        return Optional.ofNullable(responseEntity.getBody().getLiveData().get(0))
-                .orElse(ApiResponseDTO.builder().build());
+        List<NewsDTO> result = Optional.ofNullable(responseEntity.getBody().getData())
+                .orElse(new ArrayList<>());
+
+        return result.stream()
+                .filter(o -> o.getImage() != null)
+                .distinct()
+                .collect(Collectors.toList());
     }
 
 
@@ -57,11 +68,10 @@ public class APIClient {
             getterVisibility = JsonAutoDetect.Visibility.NONE,
             setterVisibility = JsonAutoDetect.Visibility.NONE
     )
-    private static class LiveDataWrapper {
+    private static class NewsWrapper {
 
-        @JsonProperty("FranceGlobalLiveData")
-        private List<ApiResponseDTO> liveData;
+        @JsonProperty("data")
+        private List<NewsDTO> data;
 
     }
-
 }

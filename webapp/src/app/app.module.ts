@@ -57,6 +57,8 @@ import {GMapModule} from 'primeng/gmap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {ChartComponent} from './components/main/dashboard/chart/chart.component';
 import {LeafletMarkerClusterModule} from '@asymmetrik/ngx-leaflet-markercluster';
+import {NewsComponent} from './components/main/news/news.component';
+import {NewsCardComponent} from './components/main/news/news-card/news-card.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import {LeafletMarkerClusterModule} from '@asymmetrik/ngx-leaflet-markercluster'
     MapComponent,
     KeyNumberComponent,
     ChartComponent,
+    NewsComponent,
+    NewsCardComponent,
   ],
   imports: [
     BrowserModule,
