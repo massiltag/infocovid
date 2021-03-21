@@ -12,10 +12,13 @@ export class NewsComponent implements OnInit {
   searching: boolean;
   news: News[];
 
+  breakpoint: number;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.searching = true;
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
     this.dataService.getNews().subscribe(n => {
       this.news = n;
       this.searching = false;
@@ -23,4 +26,8 @@ export class NewsComponent implements OnInit {
     });
   }
 
+  isoToFrenchDate(s: string): string {
+    const d = new Date(s);
+    return d.toLocaleDateString('fr');
+  }
 }

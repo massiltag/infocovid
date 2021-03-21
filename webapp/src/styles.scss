@@ -14,10 +14,10 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$webapp-primary: mat-palette($mat-indigo, A200, A100, A400);
-$webapp-accent: mat-palette($mat-indigo, A200, A100, A400);
+$webapp-primary: mat-palette($mat-purple, 900, 600, 900);
+$webapp-accent: mat-palette($mat-light-blue, A200, A100, A400);
 
-$webapp-yellow: mat-palette($mat-indigo, A200, A100, A400);
+$webapp-yellow: mat-palette($mat-indigo, A400, A200, A700);
 
 // The warn palette is optional (defaults to red).
 $webapp-warn: mat-palette($mat-red);
@@ -57,6 +57,11 @@ html, body{
   color:$grey;
   scroll-behavior: smooth;
   height: 100%;
+}
+
+.big-title {
+  color: whitesmoke;
+  font-weight: bolder;
 }
 
 body {

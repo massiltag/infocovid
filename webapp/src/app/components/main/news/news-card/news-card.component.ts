@@ -10,6 +10,7 @@ export class NewsCardComponent implements OnInit {
   @Input() subtitle: string;
   @Input() imgLink: string;
   @Input() content: string;
+  @Input() url: string;
 
   constructor() { }
 

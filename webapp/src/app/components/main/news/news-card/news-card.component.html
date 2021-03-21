@@ -1,17 +1,19 @@
 <mat-card class="info-card">
     <mat-card-header>
         <!--div mat-card-avatar class="card-header-image"></div-->
-        <mat-card-title>{{ title }}</mat-card-title>
+        <mat-card-title><a class="no-link" href="{{ url }}">{{ title }}</a></mat-card-title>
         <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
     </mat-card-header>
-    <img width="430" height="180" mat-card-image src="{{ imgLink }}" alt="Image">
+    <a href="{{ url }}"><img width="430" height="180" mat-card-image src="{{ imgLink }}" alt="Image"></a>
     <mat-card-content>
-        <p>
-            {{ content }}
-        </p>
+        <div style="white-space: pre-line;">
+            <p class="p-overflow-hidden">
+                {{ content }}
+            </p>
+        </div>
     </mat-card-content>
-    <mat-card-actions>
+    <!--mat-card-actions>
         <button mat-button>J'aime</button>
         <button mat-button>Partager</button>
-    </mat-card-actions>
+    </mat-card-actions-->
 </mat-card>
