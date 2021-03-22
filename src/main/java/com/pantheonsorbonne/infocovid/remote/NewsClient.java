@@ -2,7 +2,9 @@ package com.pantheonsorbonne.infocovid.remote;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.pantheonsorbonne.infocovid.domain.dto.NewsDTO;
+import com.pantheonsorbonne.infocovid.domain.dto.news.NewsDTO;
+import com.pantheonsorbonne.infocovid.domain.dto.news.SmartableNewsDTO;
+import com.pantheonsorbonne.infocovid.domain.mappers.NewsMapper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * <p>
+ *     Client qui permet de récupérer les actualités depuis les sources ;
+ * </p>
+ */
 @Slf4j
 @Component
 public class NewsClient {
 
     private final RestTemplate restTemplate;
-
-    private static String NEWS_URL = "http://api.mediastack.com/v1/news";
 
     @Autowired
     public NewsClient(RestTemplate restTemplate) {
@@ -34,30 +39,64 @@ public class NewsClient {
     }
 
     public List<NewsDTO> getNews() {
+        List<NewsDTO> result = getMediastackNews();
+        result.addAll(getSmartableNews());
+        return result.stream()
+                .filter(o -> o.getImage() != null)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    private List<NewsDTO> getMediastackNews() {
         // Build URL
-        String httpUrl = NEWS_URL;
+        String mediastackUrl = "http://api.mediastack.com/v1/news";
 
         // Build URI
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(httpUrl)
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(mediastackUrl)
                 .queryParam("access_key", "4b2ad922cce30ad1c91a2a5309894029")
                 .queryParam("keywords", "covid")
                 .queryParam("countries", "fr")
                 .queryParam("limit", "100");
         HttpHeaders headers = new HttpHeaders();
 
-        HttpEntity<NewsWrapper> httpEntity = new HttpEntity<>(new NewsWrapper(), headers);
-        ResponseEntity<NewsWrapper> responseEntity = restTemplate.exchange(
+        HttpEntity<MediastackNewsWrapper> httpEntity = new HttpEntity<>(new MediastackNewsWrapper(), headers);
+        ResponseEntity<MediastackNewsWrapper> responseEntity = restTemplate.exchange(
                 uriComponentsBuilder.build(false).toUriString(),
                 HttpMethod.GET,
                 httpEntity,
                 new ParameterizedTypeReference<>() {}
         );
-        List<NewsDTO> result = Optional.ofNullable(responseEntity.getBody().getData())
+
+        return Optional.ofNullable(responseEntity.getBody().getData())
+                .orElse(new ArrayList<>());
+    }
+
+    private List<NewsDTO> getSmartableNews() {
+        // Build URL
+        String smartableUrl = "https://coronavirus-smartable.p.rapidapi.com/news/v1/FR/";
+
+        // Build URI
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(smartableUrl);
+
+        // Add headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("x-rapidapi-host", "coronavirus-smartable.p.rapidapi.com");
+        headers.set("x-rapidapi-key", "c904f954c0msh94562e99092c0d0p186eeajsnec8afa8843ea");
+        headers.set("useQueryString", "true");
+
+        HttpEntity<SmartableNewsWrapper> httpEntity = new HttpEntity<>(new SmartableNewsWrapper(), headers);
+        ResponseEntity<SmartableNewsWrapper> responseEntity = restTemplate.exchange(
+                uriComponentsBuilder.build(false).toUriString(),
+                HttpMethod.GET,
+                httpEntity,
+                new ParameterizedTypeReference<>() {}
+        );
+
+        List<SmartableNewsDTO> result = Optional.ofNullable(responseEntity.getBody().getData())
                 .orElse(new ArrayList<>());
 
         return result.stream()
-                .filter(o -> o.getImage() != null)
-                .distinct()
+                .map(NewsMapper::smartableNewsToNewsDTO)
                 .collect(Collectors.toList());
     }
 
@@ -68,10 +107,23 @@ public class NewsClient {
             getterVisibility = JsonAutoDetect.Visibility.NONE,
             setterVisibility = JsonAutoDetect.Visibility.NONE
     )
-    private static class NewsWrapper {
+    private static class MediastackNewsWrapper {
 
         @JsonProperty("data")
         private List<NewsDTO> data;
+
+    }
+
+    @Data
+    @JsonAutoDetect(
+            fieldVisibility = JsonAutoDetect.Visibility.ANY,
+            getterVisibility = JsonAutoDetect.Visibility.NONE,
+            setterVisibility = JsonAutoDetect.Visibility.NONE
+    )
+    private static class SmartableNewsWrapper {
+
+        @JsonProperty("news")
+        private List<SmartableNewsDTO> data;
 
     }
 }

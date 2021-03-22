@@ -1,10 +1,10 @@
 package com.pantheonsorbonne.infocovid.controllers;
 
 import com.pantheonsorbonne.infocovid.domain.dto.ApiResponseDTO;
-import com.pantheonsorbonne.infocovid.domain.dto.NewsDTO;
+import com.pantheonsorbonne.infocovid.domain.dto.news.NewsDTO;
 import com.pantheonsorbonne.infocovid.remote.APIClient;
 import com.pantheonsorbonne.infocovid.remote.NewsClient;
-import com.pantheonsorbonne.infocovid.services.TestService;
+import com.pantheonsorbonne.infocovid.services.NewsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +24,9 @@ public class BaseController {
 
     private final APIClient apiClient;
 
-    private final NewsClient newsClient;
+    private final NewsService newsService;
 
-    private final TestService testService;
+    private final NewsClient newsClient;
 
     @GetMapping(BASE_URL + "/getLiveData")
     public ResponseEntity<ApiResponseDTO> getDataTest() {
@@ -34,14 +34,13 @@ public class BaseController {
     }
 
     @GetMapping(BASE_URL + "/getNews")
-    public ResponseEntity<List<NewsDTO>> getNewsTest() {
-        return ResponseEntity.ok(this.newsClient.getNews());
+    public ResponseEntity<List<NewsDTO>> getNews() {
+        return ResponseEntity.ok(newsService.getNews());
     }
 
     @GetMapping(BASE_URL + "/test")
-    public ResponseEntity<String> test() {
-        testService.save();
-        return ResponseEntity.ok("yes");
+    public ResponseEntity<List<NewsDTO>> test() {
+        return ResponseEntity.ok(newsClient.getNews());
     }
 
 }

@@ -1,4 +1,4 @@
-package com.pantheonsorbonne.infocovid.domain.dto;
+package com.pantheonsorbonne.infocovid.domain.dto.news;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,9 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
+/**
+ * <p>
+ *     DTO qui sert de structure "par défaut" des actualités dans notre application.
+ *     Tous les autres DTO d'actualités devront être mappés vers ce type.
+ * </p>
+ */
+
+@Document(collection = "news")
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,9 +30,7 @@ import java.util.Objects;
 )
 public class NewsDTO {
 
-    @JsonProperty("author")
-    public String author;
-    
+    @Id
     @JsonProperty("title")
     public String title;
 
