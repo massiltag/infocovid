@@ -42,7 +42,7 @@ export class MapVaccinComponent implements OnInit {
             '<div>' +
             '<h3>' + nom + '</h3>'
             '</div>';
-        var marker = L.marker([latitude, longitude]);
+        var marker = L.marker([latitude, longitude], { icon: myIcon });
         //marker.bindPopup(content).addTo(myMap);
         marker.bindPopup(content);
         clusterGroup.addLayer(marker);
