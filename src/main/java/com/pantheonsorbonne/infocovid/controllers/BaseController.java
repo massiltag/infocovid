@@ -5,8 +5,6 @@ import com.pantheonsorbonne.infocovid.domain.dto.NewsDTO;
 import com.pantheonsorbonne.infocovid.remote.APIClient;
 import com.pantheonsorbonne.infocovid.remote.NewsClient;
 import com.pantheonsorbonne.infocovid.services.TestService;
-import com.pantheonsorbonne.infocovid.services.VaccinService;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +25,8 @@ public class BaseController {
     private final APIClient apiClient;
 
     private final NewsClient newsClient;
-    
-    private final VaccinService vaccinService;
 
     private final TestService testService;
-    
 
     @GetMapping(BASE_URL + "/getLiveData")
     public ResponseEntity<ApiResponseDTO> getDataTest() {
@@ -49,10 +44,4 @@ public class BaseController {
         return ResponseEntity.ok("yes");
     }
 
-
-    @GetMapping(BASE_URL + "/vaccin")
-    public ResponseEntity<String> vaccin() {
-        vaccinService.save();
-        return ResponseEntity.ok("yes vaccin");
-    }
 }

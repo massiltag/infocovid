@@ -15,7 +15,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom.
-    const myMap = L.map('map').setView([46.8, 3], 6);
+    const myMap = L.map('map').setView([46.8, 3], 5);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'myMap'
