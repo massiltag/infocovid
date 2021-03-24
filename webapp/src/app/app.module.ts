@@ -60,6 +60,7 @@ import {LeafletMarkerClusterModule} from '@asymmetrik/ngx-leaflet-markercluster'
 import {NewsComponent} from './components/main/news/news.component';
 import {NewsCardComponent} from './components/main/news/news-card/news-card.component';
 import {VaccinsComponent} from './components/main/vaccins/vaccins.component';
+import {MapVaccinComponent} from './components/main/vaccins/map-vaccin/map-vaccin.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {VaccinsComponent} from './components/main/vaccins/vaccins.component';
     NewsComponent,
     NewsCardComponent,
     VaccinsComponent,
+    MapVaccinComponent
   ],
   imports: [
     BrowserModule,

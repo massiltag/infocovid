@@ -1,9 +1,11 @@
 package com.pantheonsorbonne.infocovid.controllers;
 
 import com.pantheonsorbonne.infocovid.domain.dto.ApiResponseDTO;
+import com.pantheonsorbonne.infocovid.domain.dto.CentreVaccinationDTO;
 import com.pantheonsorbonne.infocovid.domain.dto.NewsDTO;
 import com.pantheonsorbonne.infocovid.remote.APIClient;
 import com.pantheonsorbonne.infocovid.remote.NewsClient;
+import com.pantheonsorbonne.infocovid.services.CentreVacService;
 import com.pantheonsorbonne.infocovid.services.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,8 @@ public class BaseController {
 
     private final TestService testService;
 
+    private final CentreVacService centreVacService;
+
     @GetMapping(BASE_URL + "/getLiveData")
     public ResponseEntity<ApiResponseDTO> getDataTest() {
         return ResponseEntity.ok(this.apiClient.getLiveData());
@@ -42,6 +46,11 @@ public class BaseController {
     public ResponseEntity<String> test() {
         testService.save();
         return ResponseEntity.ok("yes");
+    }
+
+    @GetMapping(BASE_URL + "/test2")
+    public ResponseEntity<List<CentreVaccinationDTO>> test2() {
+        return ResponseEntity.ok(centreVacService.getAllByAddressLike("paris"));
     }
 
 }
