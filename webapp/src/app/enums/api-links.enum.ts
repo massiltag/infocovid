@@ -1,6 +1,8 @@
 export enum ApiLinksEnum {
   LIVE_DATA = 'http://localhost:8080/api/getLiveData',
-  NEWS = 'http://localhost:8080/api/getNews'
+  NEWS = 'http://localhost:8080/api/news/general',
+  NEWS_VACC = 'http://localhost:8080/api/news/vaccins',
+  VAC_CENTRES = 'http://localhost:8080/api/vaccins/centres'
 }
 
 // tslint:disable-next-line:no-namespace

@@ -38,8 +38,8 @@ public class NewsClient {
         this.restTemplate = restTemplate;
     }
 
-    public List<NewsDTO> getNews() {
-        List<NewsDTO> result = getMediastackNews();
+    public List<NewsDTO> getGeneralNews() {
+        List<NewsDTO> result = getMediastackNews("covid");
         result.addAll(getSmartableNews());
         return result.stream()
                 .filter(o -> o.getImage() != null)
@@ -47,14 +47,22 @@ public class NewsClient {
                 .collect(Collectors.toList());
     }
 
-    private List<NewsDTO> getMediastackNews() {
+    public List<NewsDTO> getVaccineNews() {
+        return getMediastackNews("vaccin")
+                .stream()
+                .filter(o -> o.getImage() != null)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public List<NewsDTO> getMediastackNews(String keyword) {
         // Build URL
         String mediastackUrl = "http://api.mediastack.com/v1/news";
 
         // Build URI
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(mediastackUrl)
                 .queryParam("access_key", "4b2ad922cce30ad1c91a2a5309894029")
-                .queryParam("keywords", "covid")
+                .queryParam("keywords", keyword)
                 .queryParam("countries", "fr")
                 .queryParam("limit", "100");
         HttpHeaders headers = new HttpHeaders();

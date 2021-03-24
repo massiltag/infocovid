@@ -1,7 +1,9 @@
 @import 'src/styles.scss';
 
 .app-card-component {
+  height: 100%!important;
   .card-container {
+    height: 100%!important;
     padding-bottom: 1vh;
 
     .app-card {

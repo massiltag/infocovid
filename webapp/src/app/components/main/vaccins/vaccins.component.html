@@ -1,31 +1,38 @@
 <div class="main-container">
-    <h1 class="big-title">Vaccinations</h1>
+    <h1 class="big-title">Vaccination</h1>
 
     <div class="flex-container"
          fxLayout="row"
          fxLayout.xs="column"
          fxLayoutAlign="start center"
-         fxLayoutGap="5px">
+         fxLayoutGap="10px">
 
-        <div fxFlex="50"
+        <div fxFlex="70"
              fxFlex.xs="100"
-             fxFlex.sm="100">
+             fxFlex.sm="100"
+             fxFlexAlign="stretch">
             <app-card
                     class="grid-card-fill map-card"
-                    [headerTitle]="'Carte des cas par département'"
+                    [headerTitle]="'Carte des centres de vaccination'"
                     [headerIcon]="'map'">
                 <app-map-vaccin></app-map-vaccin>
             </app-card>
         </div>
 
-        <div fxFlex="50"
+        <div class="info-card-container"
+             fxFlex="30"
              fxFlex.xs="100"
-             fxFlex.sm="100">
+             fxFlex.sm="100"
+             fxFlexAlign="stretch">
             <app-card
                     class="grid-card-fill map-card"
-                    [headerTitle]="'Carte des cas par département'"
-                    [headerIcon]="'map'">
-                <p>test</p>
+                    [headerTitle]="'Informations relatives à la vaccination'"
+                    [headerIcon]="'info'">
+
+                <div *ngIf="!searching; else spinner">
+                    <app-vaccin-news *ngFor="let article of news" [article]="article"></app-vaccin-news>
+                </div>
+
             </app-card>
         </div>
 

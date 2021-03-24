@@ -19,7 +19,7 @@ export class NewsComponent implements OnInit {
   ngOnInit(): void {
     this.searching = true;
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
-    this.dataService.getNews().subscribe(n => {
+    this.dataService.getGeneralNews().subscribe(n => {
       this.news = n;
       this.searching = false;
       console.log(n);

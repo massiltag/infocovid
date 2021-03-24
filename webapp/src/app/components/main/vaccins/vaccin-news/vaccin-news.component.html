@@ -1,0 +1,13 @@
+<div class="vac-article" fxLayout="row" fxLayoutAlign="start center">
+    <img class="img" src="{{ article.image }}" alt="img" fxFlex="20">
+    <div fxFlex="2"></div>
+    <div fxFlex="78">
+        <a href="{{ article.url }}">
+            <h3 class="title">{{ article.title }}</h3>
+            <p>
+                <span style="color: gray; display: block">{{ article.source }}, le {{ article.published_at }}.</span>
+                {{ article.description }}
+            </p>
+        </a>
+    </div>
+</div>

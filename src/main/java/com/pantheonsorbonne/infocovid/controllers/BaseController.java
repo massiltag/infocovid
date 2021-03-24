@@ -1,9 +1,10 @@
 package com.pantheonsorbonne.infocovid.controllers;
 
 import com.pantheonsorbonne.infocovid.domain.dto.ApiResponseDTO;
+import com.pantheonsorbonne.infocovid.domain.dto.CentreVaccinationDTO;
 import com.pantheonsorbonne.infocovid.domain.dto.news.NewsDTO;
 import com.pantheonsorbonne.infocovid.remote.APIClient;
-import com.pantheonsorbonne.infocovid.remote.NewsClient;
+import com.pantheonsorbonne.infocovid.services.CentreVacService;
 import com.pantheonsorbonne.infocovid.services.NewsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,21 +27,28 @@ public class BaseController {
 
     private final NewsService newsService;
 
-    private final NewsClient newsClient;
+    private final CentreVacService centreVacService;
 
     @GetMapping(BASE_URL + "/getLiveData")
-    public ResponseEntity<ApiResponseDTO> getDataTest() {
+    public ResponseEntity<ApiResponseDTO> getData() {
         return ResponseEntity.ok(this.apiClient.getLiveData());
     }
 
-    @GetMapping(BASE_URL + "/getNews")
+    @GetMapping(BASE_URL + "/news/general")
     public ResponseEntity<List<NewsDTO>> getNews() {
         return ResponseEntity.ok(newsService.getNews());
     }
 
-    @GetMapping(BASE_URL + "/test")
-    public ResponseEntity<List<NewsDTO>> test() {
-        return ResponseEntity.ok(newsClient.getNews());
+    @GetMapping(BASE_URL + "/news/vaccins")
+    public ResponseEntity<List<NewsDTO>> getVaccineNews() {
+        return ResponseEntity.ok(newsService.getVaccineNews());
     }
+
+    @GetMapping(BASE_URL + "/vaccins/centres")
+    public ResponseEntity<List<CentreVaccinationDTO>> getCentres() {
+        return ResponseEntity.ok(centreVacService.getAllCentres());
+    }
+
+
 
 }

@@ -32,22 +32,22 @@ public class NewsDTO {
 
     @Id
     @JsonProperty("title")
-    public String title;
+    private String title;
 
     @JsonProperty("description")
-    public String description;
+    private String description;
 
     @JsonProperty("url")
-    public String url;
+    private String url;
 
     @JsonProperty("source")
-    public String source;
+    private String source;
 
     @JsonProperty("image")
-    public String image;
+    private String image;
 
     @JsonProperty("published_at")
-    public String published_at;
+    private String published_at;
 
     @Override
     public boolean equals(Object o) {

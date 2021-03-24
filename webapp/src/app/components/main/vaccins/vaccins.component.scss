@@ -5,6 +5,20 @@
   width: 100%;
   padding: 20px;
 
+  .flex-container {
+    height: calc(100% - 50px);
+    max-height: 100%;
+  }
+
+  .info-card-container {
+    div {
+      overflow: scroll;
+      overflow-x: hidden;
+      height: 100%!important;
+      max-height: 100%;
+    }
+  }
+
   .grid-card-fill {
     padding: 0 10px 0 0;
   }

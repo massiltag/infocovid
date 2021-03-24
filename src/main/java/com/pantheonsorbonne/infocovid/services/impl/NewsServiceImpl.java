@@ -32,7 +32,8 @@ public class NewsServiceImpl implements NewsService {
     @Override
     @Scheduled(cron = "0 0 20 * * *")
     public void getAndSaveArticles() {
-        List<NewsDTO> news = newsClient.getNews();
+        List<NewsDTO> news = newsClient.getGeneralNews();
+        news.addAll(newsClient.getVaccineNews());
         news.forEach( n -> { if (newsRepository.findById(n.getTitle()).isEmpty()) { newsRepository.save(n); } } );
     }
 
@@ -46,6 +47,21 @@ public class NewsServiceImpl implements NewsService {
     public List<NewsDTO> getNews() {
         if (newsRepository.findAll().isEmpty()) { getAndSaveArticles(); }
         return newsRepository.findAll().stream()
+                .sorted((n1, n2) -> compareDates(n1.getPublished_at(), n2.getPublished_at()))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * <p>
+     *     Permet de récupérer les articles en base concernant les vaccins, fait une requête API si base vide.
+     * </p>
+     * @return liste des articles
+     */
+    @Override
+    public List<NewsDTO> getVaccineNews() {
+        if (newsRepository.findAll().isEmpty()) { getAndSaveArticles(); }
+        return newsRepository.findAll().stream()
+                .filter(n -> n.getTitle().toLowerCase().contains("vaccin"))
                 .sorted((n1, n2) -> compareDates(n1.getPublished_at(), n2.getPublished_at()))
                 .collect(Collectors.toList());
     }

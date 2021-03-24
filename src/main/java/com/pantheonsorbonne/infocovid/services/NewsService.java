@@ -10,6 +10,8 @@ public interface NewsService {
 
     List<NewsDTO> getNews();
 
+    List<NewsDTO> getVaccineNews();
+
     void clear();
 
 }
