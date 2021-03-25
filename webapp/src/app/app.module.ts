@@ -62,6 +62,9 @@ import {NewsCardComponent} from './components/main/news/news-card/news-card.comp
 import {VaccinsComponent} from './components/main/vaccins/vaccins.component';
 import {VaccinMapComponent} from './components/main/vaccins/vaccin-map/vaccin-map.component';
 import {VaccinNewsComponent} from './components/main/vaccins/vaccin-news/vaccin-news.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MailDialogComponent} from './components/layout/sidenav/mail-dialog/mail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +99,8 @@ import {VaccinNewsComponent} from './components/main/vaccins/vaccin-news/vaccin-
     NewsCardComponent,
     VaccinsComponent,
     VaccinMapComponent,
-    VaccinNewsComponent
+    VaccinNewsComponent,
+    MailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -127,8 +131,9 @@ import {VaccinNewsComponent} from './components/main/vaccins/vaccin-news/vaccin-
     MatGridListModule,
     GMapModule,
     NgxChartsModule,
-    LeafletMarkerClusterModule
-    
+    LeafletMarkerClusterModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [
     {

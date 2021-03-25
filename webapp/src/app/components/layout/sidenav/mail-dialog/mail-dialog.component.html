@@ -1,0 +1,32 @@
+<h2 class="dialog-title" mat-dialog-title>Abonnement</h2>
+
+<p>Saisissez votre adresse e-mail pour recevoir des alertes.</p>
+
+<form [formGroup]="mailForm"
+      class="mail-form"
+      fxLayout="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="0.8rem">
+
+    <mat-form-field appearance="legacy" [style.width.px]=250 [color]="'accent'"
+    >
+        <mat-label>Courriel</mat-label>
+        <input matInput autocompleteOff
+               id="sprint"
+               type="email"
+               min="0"
+               class="noArrows"
+               formControlName="email"
+               placeholder="Votre adresse mail">
+    </mat-form-field>
+
+    <app-raised-button
+            [color]="'accent'"
+            class="card-button"
+            fxFlexAlign="center"
+            (click)="onButtonClick($event)"
+            [disabled]="!isMailValid()"
+    > S'abonner
+    </app-raised-button>
+
+</form>

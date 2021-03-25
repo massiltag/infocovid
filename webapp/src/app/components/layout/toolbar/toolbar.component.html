@@ -2,6 +2,10 @@
   <mat-toolbar color="primary" class="toolbar" fxLayoutAlign="space-between center" fxLayout="row" fxLayoutAlign="start center">
     <mat-icon *ngIf="icon" (click)="onButtonClick()" class="toolbar-left-icon">{{ icon }}</mat-icon>
     <span class="toolbar-text">{{ title }}</span>
+    <div fxFlex="1 1 0"></div>
+    <button mat-icon-button class="button" (click)="onSubscribe()">
+      <mat-icon>notifications</mat-icon>
+    </button>
     <img class="logo" src="assets/images/scoovidoo-white.png" alt="Logo">
   </mat-toolbar>
 </div>
