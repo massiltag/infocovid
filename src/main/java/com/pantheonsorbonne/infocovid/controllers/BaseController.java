@@ -8,7 +8,7 @@ import com.pantheonsorbonne.infocovid.domain.dto.EmailAddressDTO;
 import com.pantheonsorbonne.infocovid.exceptions.EmailException;
 import com.pantheonsorbonne.infocovid.remote.APIClient;
 import com.pantheonsorbonne.infocovid.services.CentreVacService;
-import com.pantheonsorbonne.infocovid.services.MailService;
+import com.pantheonsorbonne.infocovid.services.EmailService;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class BaseController {
 
     private final CentreVacService centreVacService;
 
-    private final MailService mailService;
+    private final EmailService emailService;
 
     @GetMapping(BASE_URL + "/getLiveData")
     public ResponseEntity<ApiResponseDTO> getData() {
@@ -46,7 +46,7 @@ public class BaseController {
     public ResponseEntity<ResponseMessage> subscribe(@RequestParam String email) {
         log.info("api called with " + email);
         try {
-            mailService.save(EmailAddressDTO.builder().address(email).build());
+            emailService.save(EmailAddressDTO.builder().address(email).build());
             return ResponseEntity.ok(
                     ResponseMessage.builder().message("Vous êtes maintenant abonné.").build()
             );
@@ -60,6 +60,12 @@ public class BaseController {
                     .status(200)
                     .body(ResponseMessage.builder().message("Une erreur s'est produite.").build());
         }
+    }
+
+    @PostMapping(BASE_URL + "/mail")
+    public ResponseEntity<String> subscribe() {
+        emailService.SendDailyReport();
+        return ResponseEntity.ok("");
     }
 
 
