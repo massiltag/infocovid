@@ -1,20 +1,20 @@
 //tslint:disable
 export var single = [
     {
-        "name": "4 Mars",
-        "value": 12000
+        name: "4 Mars",
+        value: 12000
     },
     {
-        "name": "5 Mars",
-        "value": 9000
+        name: "5 Mars",
+        value: 9000
     },
     {
-        "name": "6 Mars",
-        "value": 14000
+        name: "6 Mars",
+        value: 14000
     },
     {
-        "name": "7 Mars",
-        "value": 15000
+        name: "7 Mars",
+        value: 15000
     }
 ];
 

@@ -5,13 +5,14 @@ import {ApiLinksEnum} from '../enums/api-links.enum';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {News} from '../models/news.model';
 import {CentreVaccination} from '../models/centre-vaccination.model';
+import {DatePipe} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public datePipe: DatePipe) { }
 
   // GET
   getLiveData(): Observable<LiveData> {

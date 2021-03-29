@@ -55,7 +55,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {KeyNumberComponent} from './components/main/dashboard/key-number/key-number.component';
 import {GMapModule} from 'primeng/gmap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import {ChartComponent} from './components/main/dashboard/chart/chart.component';
+import {CasChartComponent} from './components/main/dashboard/cas-chart/cas-chart.component';
 import {LeafletMarkerClusterModule} from '@asymmetrik/ngx-leaflet-markercluster';
 import {NewsComponent} from './components/main/news/news.component';
 import {NewsCardComponent} from './components/main/news/news-card/news-card.component';
@@ -66,6 +66,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MailDialogComponent} from './components/layout/sidenav/mail-dialog/mail-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {DeathsChartComponent} from './components/main/dashboard/deaths-chart/deaths-chart.component';
 
 @NgModule({
   declarations: [
@@ -95,13 +96,14 @@ import {MatTabsModule} from '@angular/material/tabs';
     DashboardComponent,
     MapComponent,
     KeyNumberComponent,
-    ChartComponent,
+    CasChartComponent,
     NewsComponent,
     NewsCardComponent,
     VaccinsComponent,
     VaccinMapComponent,
     VaccinNewsComponent,
-    MailDialogComponent
+    MailDialogComponent,
+    DeathsChartComponent
   ],
   imports: [
     BrowserModule,

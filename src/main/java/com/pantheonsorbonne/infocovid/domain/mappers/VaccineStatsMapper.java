@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.pantheonsorbonne.infocovid.util.StringUtil.csvInsertBlanks;
-import static com.pantheonsorbonne.infocovid.util.StringUtil.parseInt;
+import static com.pantheonsorbonne.infocovid.util.StringUtil.*;
 
 @Mapper
 public abstract class VaccineStatsMapper {
@@ -23,7 +22,7 @@ public abstract class VaccineStatsMapper {
             return in.lines().skip(1).map(line -> {
                 String[] x = pattern.split(csvInsertBlanks(line, ";"));
                 return VaccineStats.builder()
-                        .date(x[1])
+                        .date(stringToLocalDate(x[1]))
                         .n_dose1(parseInt(x[2]))
                         .n_dose2(parseInt(x[3]))
                         .n_cum_dose1(parseInt(x[4]))

@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @Document(collection = "indicateursVaccins")
@@ -12,7 +14,7 @@ public class VaccineStats {
     /**
      * Date de l'info vaccin TODO utiliser {@link java.time.LocalDateTime}
      */
-    private String date;
+    private LocalDate date;
 
     /**
      * Nombre de nouvelles vaccinations (dose 1)

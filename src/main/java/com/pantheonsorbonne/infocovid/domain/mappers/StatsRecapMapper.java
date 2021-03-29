@@ -22,12 +22,12 @@ public abstract class StatsRecapMapper {
             return in.lines().skip(1).map(line -> {
                 String[] x = pattern.split(csvInsertBlanks(line, ","));
                 return StatsRecap.builder()
-                        .date(x[0])
+                        .date(stringToLocalDate(x[0]))
                         .dchosp(parseInt(x[8]))
                         .conf(parseInt(x[13]))
                         .conf_j1(parseInt(x[14]))
                         .esms_dc(parseInt(x[16]))
-                        .tx_pos(parseDouble(x[1])*100)
+                        .tx_pos(parseDouble(x[1]))
                         .to(parseDouble(x[3])*100)
                         .build();
             }).collect(Collectors.toList());

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,8 +31,12 @@ public class GouvClient {
 
     private static String VACC_URL = "https://www.data.gouv.fr/fr/datasets/r/efe23314-67c4-45d3-89a2-3faef82fae90";
 
-    public List<StatsRecap> getStatsRecap(String date) {
-        return getStatsRecap().stream().filter(o -> o.getDate().equals(date)).collect(Collectors.toList());
+    public StatsRecap getStatsRecap(LocalDate date) {
+        try {
+            return getStatsRecap().stream().filter(o -> o.getDate().equals(date)).collect(Collectors.toList()).get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return StatsRecap.builder().build();
+        }
     }
 
     public List<StatsRecap> getStatsRecap() {
@@ -55,8 +60,12 @@ public class GouvClient {
         return StatsRecapMapper.csvToList(response);
     }
 
-    public List<VaccineStats> getVaccStats(String date) {
-        return getVaccStats().stream().filter(o -> o.getDate().equals(date)).collect(Collectors.toList());
+    public VaccineStats getVaccStats(LocalDate date) {
+        try {
+            return getVaccStats().stream().filter(o -> o.getDate().equals(date)).collect(Collectors.toList()).get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return VaccineStats.builder().build();
+        }
     }
 
     public List<VaccineStats> getVaccStats() {

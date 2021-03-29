@@ -3,6 +3,8 @@ package com.pantheonsorbonne.infocovid.domain.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 public class StatsRecap {
@@ -10,7 +12,7 @@ public class StatsRecap {
     /**
      * Date de la synthèse TODO utiliser {@link java.time.LocalDateTime}
      */
-    private String date;
+    private LocalDate date;
 
     /**
      * Décès à l'hôpital
