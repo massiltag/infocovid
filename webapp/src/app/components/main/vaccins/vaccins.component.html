@@ -1,46 +1,59 @@
 <div class="main-container">
-    <h1 class="big-title">Vaccination</h1>
+    <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+        <mat-tab label="Informations" class="flex-container">
+            <div class="flex-container"
+                 fxLayout="row"
+                 fxLayout.xs="column"
+                 fxLayoutAlign="start center"
+                 fxLayoutGap="10px">
 
-    <div class="flex-container"
-         fxLayout="row"
-         fxLayout.xs="column"
-         fxLayoutAlign="start center"
-         fxLayoutGap="10px">
-
-        <div fxFlex="70"
-             fxFlex.xs="100"
-             fxFlex.sm="100"
-             fxFlexAlign="stretch">
-            <app-card
-                    class="grid-card-fill map-card"
-                    [headerTitle]="'Carte des centres de vaccination'"
-                    [headerIcon]="'map'">
-                <app-map-vaccin></app-map-vaccin>
-            </app-card>
-        </div>
-
-        <div class="info-card-container"
-             fxFlex="30"
-             fxFlex.xs="100"
-             fxFlex.sm="100"
-             fxFlexAlign="stretch">
-            <app-card
-                    class="grid-card-fill map-card"
-                    [headerTitle]="'Informations relatives à la vaccination'"
-                    [headerIcon]="'info'">
-
-                <div *ngIf="!searching; else spinner">
-                    <app-vaccin-news *ngFor="let article of news" [article]="article"></app-vaccin-news>
+                <div fxFlex="70"
+                     fxFlex.xs="100"
+                     fxFlex.sm="100"
+                     fxFlexAlign="stretch">
+                    <app-card
+                            class="grid-card-fill map-card"
+                            [headerTitle]="'Carte des centres de vaccination'"
+                            [headerIcon]="'map'">
+                        <app-map-vaccin></app-map-vaccin>
+                    </app-card>
                 </div>
+                <div class="info-card-container"
+                     fxFlex="30"
+                     fxFlex.xs="100"
+                     fxFlex.sm="100"
+                     fxFlexAlign="stretch">
+                    <app-card
+                            class="grid-card-fill map-card"
+                            [headerTitle]="'Informations relatives à la vaccination'"
+                            [headerIcon]="'info'">
+                        <div *ngIf="!searching; else spinner">
+                            <app-vaccin-news *ngFor="let article of news" [article]="article"></app-vaccin-news>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Chiffres clés">
+            <div *ngIf="false; else tab2"></div>
+        </mat-tab>
+    </mat-tab-group>
 
-            </app-card>
-        </div>
 
-    </div>
 
 
 
 </div>
+
+
+<ng-template #tab1>
+
+</ng-template>
+
+<ng-template #tab2>
+
+</ng-template>
+
 
 <ng-template #spinner>
     <app-progress-spinner></app-progress-spinner>

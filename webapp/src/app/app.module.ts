@@ -65,6 +65,7 @@ import {VaccinNewsComponent} from './components/main/vaccins/vaccin-news/vaccin-
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MailDialogComponent} from './components/layout/sidenav/mail-dialog/mail-dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -133,7 +134,8 @@ import {MailDialogComponent} from './components/layout/sidenav/mail-dialog/mail-
     NgxChartsModule,
     LeafletMarkerClusterModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   providers: [
     {

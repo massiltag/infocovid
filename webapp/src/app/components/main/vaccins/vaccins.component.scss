@@ -5,8 +5,24 @@
   width: 100%;
   padding: 20px;
 
+  mat-tab-group {
+    ::ng-deep {
+      .mat-tab-body {
+        margin-top: 5px;
+      }
+      .mat-tab-body-content { // USEFUL HIDE SCROLLBAR
+        overflow: scroll;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+      }
+      .mat-tab-body-content::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+      }
+    }
+  }
+
   .flex-container {
-    height: calc(100% - 50px);
+    height: calc(100% - 25px);
     max-height: 100%;
   }
 

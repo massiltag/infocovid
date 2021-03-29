@@ -23,7 +23,6 @@ export class MailDialogComponent implements OnInit {
   }
 
   onButtonClick($event): void {
-    alert('e');
     if (this.isMailValid()) {
       this.mailService.subscribeUser(this.mailForm.controls.email.value).subscribe(r => {
         this.snack.open(r.message,

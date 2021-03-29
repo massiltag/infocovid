@@ -11,7 +11,6 @@ export class MailService {
   constructor(private http: HttpClient) { }
 
   subscribeUser(email: string): Observable<{ message: string }> {
-    alert(email);
     const url = ApiLinksEnum.SUBSCRIBE;
 
     const headers = new HttpHeaders();
