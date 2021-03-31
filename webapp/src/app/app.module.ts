@@ -30,7 +30,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOptionModule} from '@
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MomentDateModule} from '@angular/material-moment-adapter';
-import {DatePipe} from '@angular/common';
+import {DatePipe, registerLocaleData} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {NoDataComponent} from './components/basic/no-data/no-data.component';
 import {ProgressSpinnerComponent} from './components/basic/progress-spinner/progress-spinner.component';
@@ -55,7 +55,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {KeyNumberComponent} from './components/main/dashboard/key-number/key-number.component';
 import {GMapModule} from 'primeng/gmap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import {CasChartComponent} from './components/main/dashboard/cas-chart/cas-chart.component';
+import {CasChartComponent} from './components/main/dashboard/charts/cas-chart/cas-chart.component';
 import {LeafletMarkerClusterModule} from '@asymmetrik/ngx-leaflet-markercluster';
 import {NewsComponent} from './components/main/news/news.component';
 import {NewsCardComponent} from './components/main/news/news-card/news-card.component';
@@ -66,7 +66,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MailDialogComponent} from './components/layout/sidenav/mail-dialog/mail-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import {DeathsChartComponent} from './components/main/dashboard/deaths-chart/deaths-chart.component';
+import {ToChartComponent} from './components/main/dashboard/charts/to-chart/to-chart.component';
+import localeFr from '@angular/common/locales/fr';
+import {HospChartComponent} from './components/main/dashboard/charts/hosp-chart/hosp-chart.component';
+
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -103,7 +107,8 @@ import {DeathsChartComponent} from './components/main/dashboard/deaths-chart/dea
     VaccinMapComponent,
     VaccinNewsComponent,
     MailDialogComponent,
-    DeathsChartComponent
+    ToChartComponent,
+    HospChartComponent
   ],
   imports: [
     BrowserModule,

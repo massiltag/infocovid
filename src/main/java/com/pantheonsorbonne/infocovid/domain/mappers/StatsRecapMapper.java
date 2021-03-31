@@ -28,6 +28,10 @@ public abstract class StatsRecapMapper {
                         .conf_j1(parseInt(x[14]))
                         .esms_dc(parseInt(x[16]))
                         .tx_pos(parseDouble(x[1]))
+                        .tx_incid(parseDouble(x[2]))
+                        .r(parseDouble(x[4]))
+                        .rea(parseInt(x[5]))
+                        .hosp(parseInt(x[6]))
                         .to(parseDouble(x[3])*100)
                         .build();
             }).collect(Collectors.toList());

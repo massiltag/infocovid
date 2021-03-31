@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Metrics} from '../../../../models/metrics.model';
-import {MetricsService} from '../../../../services/metrics.service';
+import {Metrics} from '../../../../../models/metrics.model';
 import * as moment from 'moment';
 
 @Component({
@@ -29,14 +28,10 @@ export class CasChartComponent implements OnInit {
     domain: ['#2f58d6', '#d43151', '#27bc97', '#8966cf', '#3fb4ec', '#e05343']
   };
 
-  constructor(private metricsService: MetricsService) {
-    this.metricsService.getMetricsForRange(new Date(Date.now() - 518400000), new Date(Date.now()))
-        .subscribe(t => {
-          Object.assign(this, {single: this.cleanForChart(t)});
-        });
-  }
+  constructor() {}
 
   ngOnInit(): void {
+    Object.assign(this, {single: this.cleanForChart(this.data)});
   }
 
   onSelect(event): void {

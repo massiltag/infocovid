@@ -31,4 +31,16 @@ public class VaccineStats {
      */
     private int n_cum_dose1;
 
+    @Override
+    public boolean equals(Object o) {
+        try {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            VaccineStats that = (VaccineStats) o;
+            return getN_dose1() == that.getN_dose1() && getN_dose2() == that.getN_dose2() && getN_cum_dose1() == that.getN_cum_dose1() && getDate().isEqual(that.getDate());
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
 }

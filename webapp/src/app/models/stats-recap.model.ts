@@ -14,4 +14,12 @@ export interface StatsRecap {
 
     tx_pos: number;
 
+    tx_incid: number;
+
+    r: number;
+
+    hosp: number;
+
+    rea: number;
+
 }

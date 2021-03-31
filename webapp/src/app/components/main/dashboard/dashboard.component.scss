@@ -22,6 +22,19 @@
     }
   }
 
+  ::ng-deep mat-tab-body {
+    height: 25vh;
+  }
+
+  .graph-card-no-height {
+    ::ng-deep mat-tab-body {
+      height: unset;
+      .mat-tab-body-content {
+        overflow: hidden;
+      }
+    }
+  }
+
   .map-card {
     ::ng-deep {
       .mat-card-content {

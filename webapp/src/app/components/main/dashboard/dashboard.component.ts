@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
 
   today: Metrics;
 
+  twoWeeksAgo: Metrics;
+
   fiveDays: Metrics[];
 
   constructor(private dataService: DataService, private metricsService: MetricsService) { }
@@ -28,20 +30,25 @@ export class DashboardComponent implements OnInit {
       this.liveData = d;
     });
 
-    // this.metricsService.getMetricsForDate(new Date(Date.now() - 86400000))
-    //     .subscribe(m => { // 1 DAY
-    //       this.today = m;
-    //     });
+    this.metricsService.getMetricsForDate(new Date(Date.now() - 86400000))
+        .subscribe(m => { // 1 DAY
+          this.today = m;
+        });
 
-    // this.metricsService.getMetricsForRange(new Date(Date.now() - 518400000), new Date(Date.now() - 86400000))
-    //     .subscribe(t => { // 5 DAYS
-    //       this.fiveDays = t;
-    //     });
+    this.metricsService.getMetricsForDate(new Date(Date.now() - (14 * 24 * 60 * 60 * 1000)))
+        .subscribe(m => { // 1 DAY
+          this.twoWeeksAgo = m;
+        });
+
+    this.metricsService.getMetricsForRange(new Date(Date.now() - (6 * 24 * 60 * 60 * 1000)), new Date(Date.now()))
+        .subscribe(t => { // 5 DAYS
+          this.fiveDays = t;
+        });
 
   }
 
   cleanForView(input: number): string {
-    return (input > 1000) ? (input / 1000).toFixed(1) + '' : input + '';
+    return (input > 1000) ? (input / 1000).toFixed(1) + '' : Math.round(input * 10) / 10 + '';
   }
 
   getUnity(input: number): string {
