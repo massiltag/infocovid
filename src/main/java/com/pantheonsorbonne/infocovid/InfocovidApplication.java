@@ -8,6 +8,10 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
+import com.pantheonsorbonne.infocovid.config.SSLValidation;
+
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 @SpringBootApplication
@@ -21,7 +25,15 @@ public class InfocovidApplication {
 	// Bean for performing REST queries to remote APIs
 	@Bean
 	public RestTemplate restTemplate() {
+		try {
+            SSLValidation.turnOffSslChecking();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
 		return new RestTemplate();
+		
 	}
 
 	// Bean for sending e-mails with GMail
