@@ -1,4 +1,4 @@
-<div class="main-container" *ngIf="!searching; else spinner">
+<div class="main-container" *ngIf="searching === 3; else spinner">
     <h1 class="big-title">Dashboard</h1>
     <mat-grid-list cols="3" rowHeight="42vh">
         <mat-grid-tile [colspan]="2">

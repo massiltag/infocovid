@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class VaccineStats {
 
     /**
-     * Date de l'info vaccin TODO utiliser {@link java.time.LocalDateTime}
+     * Date de l'info vaccin
      */
     private LocalDate date;
 

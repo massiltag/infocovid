@@ -31,11 +31,11 @@ public class MetricsServiceImpl implements MetricsService {
     public Metrics getForDay(LocalDate day) {
         Metrics result = metricsRepository.findFirstByDate(day);
 
-        if (result == null) {
+        if (result == null || result.getRecap().getConf_j1() == 0) {
             result = Metrics.builder()
                     .id(Integer.parseInt(String.valueOf(day.getYear())
-                            .concat(String.valueOf(day.getMonthValue()))
-                            .concat(String.valueOf(day.getDayOfMonth()))))
+                            .concat(day.getMonthValue() < 10 ? "0" + day.getMonthValue() : String.valueOf(day.getMonthValue()))
+                            .concat(day.getDayOfMonth() < 10 ? "0" + day.getDayOfMonth() : String.valueOf(day.getDayOfMonth()))))
                     .date(day)
                     .recap(gouvClient.getStatsRecap(day))
                     .vaccineStats(gouvClient.getVaccStats(day))
@@ -72,6 +72,7 @@ public class MetricsServiceImpl implements MetricsService {
      * </p>
      */
     @Scheduled(cron = "0 0 1 * * *")
+    @Scheduled(cron = "0 0 2 * * *")
     public void updateLast10days() {
         getDateRange(LocalDate.now(), LocalDate.now().minus(10, ChronoUnit.DAYS)).forEach(this::updateDay);
     }

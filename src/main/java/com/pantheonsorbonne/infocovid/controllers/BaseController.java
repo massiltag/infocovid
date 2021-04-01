@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pantheonsorbonne.infocovid.domain.dto.ApiResponseDTO;
 import com.pantheonsorbonne.infocovid.domain.dto.CentreVaccinationDTO;
 import com.pantheonsorbonne.infocovid.domain.dto.EmailAddressDTO;
-import com.pantheonsorbonne.infocovid.domain.model.VaccineStats;
 import com.pantheonsorbonne.infocovid.exceptions.EmailException;
 import com.pantheonsorbonne.infocovid.remote.APIClient;
 import com.pantheonsorbonne.infocovid.remote.GouvClient;
@@ -67,8 +66,9 @@ public class BaseController {
     }
 
     @GetMapping(BASE_URL + "/test")
-    public ResponseEntity<List<VaccineStats>> test() {
-        return ResponseEntity.ok(gouvClient.getVaccStats());
+    public ResponseEntity<String> test() {
+        emailService.SendDailyReport();
+        return ResponseEntity.ok("yih");
     }
 
 

@@ -2,7 +2,7 @@
 // So we have to deal with media queries...
 
 #map {
-    height: 75vh;
+    height: 73vh;
     width: 59vw;
     border-radius: 7px;
     z-index: 0;
@@ -56,25 +56,25 @@
 
 @media (max-height:830px) {
     #map {
-        height: 71vh;
+        height: 69vh;
     }
 }
 
 
 @media (max-height:730px) {
     #map {
-        height: 67vh;
+        height: 66vh;
     }
 }
 
 @media (max-height:630px){
     #map {
-        height: 60vh;
+        height: 58vh;
     }
 }
 
 @media (max-height:520px){
     #map {
-        height: 55vh;
+        height: 53vh;
     }
 }

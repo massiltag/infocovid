@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="searching == 2; else spinner">
     <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
         <mat-tab label="Informations" class="flex-container">
             <div class="flex-container"
@@ -27,7 +27,7 @@
                             class="grid-card-fill map-card"
                             [headerTitle]="'Informations relatives à la vaccination'"
                             [headerIcon]="'info'">
-                        <div *ngIf="!searching; else spinner">
+                        <div *ngIf="!searchingNews; else spinner">
                             <app-vaccin-news *ngFor="let article of news" [article]="article"></app-vaccin-news>
                         </div>
                     </app-card>
@@ -46,12 +46,44 @@
 </div>
 
 
-<ng-template #tab1>
-
-</ng-template>
-
 <ng-template #tab2>
+    <div class="chiffres-cles-container"
+         fxLayout="row wrap"
+         fxLayout.xs="column"
+         fxLayoutAlign="center center"
+         fxLayoutGap="10px">
 
+        <div fxFlex="60"
+             fxFlex.xs="120"
+             fxFlex.sm="48"
+             fxFlex.md="30">
+            <app-card class="chiffre-card"
+                      matTooltip="Informations en date du {{ vstats.date | date: 'dd/MM/yyyy'}}">
+                <app-key-number
+                        [number]="cleanForView(vstats.n_dose1)"
+                        [unity]="getUnity(vstats.n_dose1)"
+                        [description]="'Nombre de vaccinations (dose 1)'">
+                </app-key-number>
+            </app-card>
+            <app-card class="chiffre-card"
+                      matTooltip="Informations en date du {{ vstats.date | date: 'dd/MM/yyyy'}}">
+                <app-key-number
+                        [number]="cleanForView(vstats.n_dose2)"
+                        [unity]="getUnity(vstats.n_dose2)"
+                        [description]="'Nombre de vaccinations (dose 2)'">
+                </app-key-number>
+            </app-card>
+            <app-card class="chiffre-card"
+                      matTooltip="Informations en date du {{ vstats.date | date: 'dd/MM/yyyy'}}">
+                <app-key-number
+                        [number]="cleanForView(vstats.n_cum_dose1)"
+                        [unity]="getUnity(vstats.n_cum_dose1)"
+                        [description]="'Cumul des vaccinations'">
+                </app-key-number>
+            </app-card>
+        </div>
+
+    </div>
 </ng-template>
 
 
