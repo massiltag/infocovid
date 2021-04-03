@@ -87,7 +87,7 @@ public class MethodesMoindresCarres {
 
 		int tauxImmunite = 67000000*60/100;
 
-		for (Double i = (double) 0; i < jourList.size() +14; i++) {
+		for (Double i = (double) jourList.size(); i < jourList.size() +14; i++) {
 			nbVaccinations = a*i+b;
 			donnes.put(i, nbVaccinations);
 			if (nbVaccinations >= tauxImmunite) {
