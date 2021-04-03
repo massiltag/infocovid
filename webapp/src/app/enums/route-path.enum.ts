@@ -1,7 +1,8 @@
 export enum RoutePathEnum {
   DASHBOARD = 'home',
   VACCINS = 'vaccins',
-  ACTU = 'actualites'
+  ACTU = 'actualites',
+  PREDICTIONS = 'predictions'
 }
 
 
