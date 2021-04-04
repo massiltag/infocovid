@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,6 +70,7 @@ public class PrevisionServiceImpl implements PrevisionService {
         mmc = MethodesMoindresCarres
                 .builder()
                 .nbVaccinationsList(nbVaccins)
+                .jourList(new ArrayList<Integer>())
                 .build();
 
         return mmc.previsionImmunite();

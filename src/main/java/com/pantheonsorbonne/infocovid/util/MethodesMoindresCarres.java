@@ -15,7 +15,7 @@ public class MethodesMoindresCarres {
 	private List<Integer> nbVaccinationsList;
 
 
-	private List<Integer> jourList = new ArrayList<Integer>();
+	private List<Integer> jourList;
 	private int a, b;
 	boolean immunite = false;
 
@@ -61,15 +61,13 @@ public class MethodesMoindresCarres {
 	}
 	
 	// calculer a de y=ax+b
-	public Integer calculA() {
+	public void calculA() {
 		this.a = (sumJourVacc()- ((jourList.size())*moyenneJour()*moyenneNBvacc()))/ (sumCarre(jourList)*(jourList.size()));
-		return a;
 	}
 	
 	// calculer b de y=ax+b
-	public Integer calculB() {
+	public void calculB() {
 		this.b = moyenneNBvacc() - a*moyenneJour();
-		return b;
 	}
 	
 	// retourne une prévision du nombre de vaccinations sur 14 jours
@@ -92,10 +90,10 @@ public class MethodesMoindresCarres {
 		
 		// Liste qui récupère le nombre de vaccins prévisionnel pour 14 jours
 		// valeurs à retourner
-		ArrayList<Integer> nbVaccinQuotidien = null;
+		ArrayList<Integer> nbVaccinQuotidien = new ArrayList<Integer>();
 		
 		// Le nombre minimum de vaccinés à atteindre pour l'immunité collective
-		int tauxImmunite = 67000000*60/100;
+		float tauxImmunite = (float) (67000000*0.6);
 		
 		// sert à enregistrer la première valeur seulement du nombre de vaccins quand on atteint l'immunité
 		boolean arretCalcul=false;
@@ -113,7 +111,8 @@ public class MethodesMoindresCarres {
 			jourList.add(n);
 			n++;
 		}
-
+		this.calculA();
+		this.calculB();
 		// Calcul prévisions du nombre de vaccinations sur les prochains 14 jours 
 		// Pour chaque jour :
 		for (int i = jourList.size(); i < jourList.size() +14; i++) {
@@ -126,10 +125,8 @@ public class MethodesMoindresCarres {
 			// le booléen sera à true et on enregistre ce nombre là
 			if (nbVaccinations >= tauxImmunite) {
 				this.immunite = true;
-				if (arretCalcul==false) {
-					arretCalcul=true;
-					nbVaccinAtteint= nbVaccinations;
-				}
+				nbVaccinAtteint= nbVaccinations;
+				break;
 			}
 		}
 		return PrevisionImmunite.builder()
