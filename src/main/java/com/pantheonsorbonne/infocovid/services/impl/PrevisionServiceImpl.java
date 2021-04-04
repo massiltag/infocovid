@@ -63,10 +63,10 @@ public class PrevisionServiceImpl implements PrevisionService {
 
         List<Integer> nbVaccins = metrics
                 .stream()
-                .map(m -> m.getRecap().getEsms_dc() + m.getRecap().getDchosp())
+                .map(m -> m.getVaccineStats().getN_cum_dose1())
                 .collect(Collectors.toList());
 
-        mmc = PrevisionImmunite
+        mmc = MethodesMoindresCarres
                 .builder()
                 .nbVaccinationsList(nbVaccins)
                 .build();

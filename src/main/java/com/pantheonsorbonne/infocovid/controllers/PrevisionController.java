@@ -1,6 +1,7 @@
 package com.pantheonsorbonne.infocovid.controllers;
 
 import com.pantheonsorbonne.infocovid.domain.model.Prevision;
+import com.pantheonsorbonne.infocovid.domain.model.PrevisionImmunite;
 import com.pantheonsorbonne.infocovid.services.PrevisionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ public class PrevisionController {
     }
 
     @GetMapping(BASE_URL + "/previsions/immunite")
-    public ResponseEntity<String> getMMC() {
+    public ResponseEntity<PrevisionImmunite> getMMC() {
         return ResponseEntity.ok(previsionService.getMethodeMoindreCarres());
     }
 
