@@ -15,7 +15,7 @@ public class MethodesMoindresCarres {
 	private List<Integer> nbVaccinationsList;
 
 
-	private List<Integer> jourList;
+	private List<Integer> jourList = new ArrayList<Integer>();
 	private int a, b;
 	boolean immunite = false;
 

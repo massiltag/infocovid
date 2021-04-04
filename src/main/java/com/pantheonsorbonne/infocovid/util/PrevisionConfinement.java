@@ -2,6 +2,7 @@ package com.pantheonsorbonne.infocovid.util;
 import com.pantheonsorbonne.infocovid.domain.model.Prevision;
 import lombok.Builder;
 
+import java.awt.print.Printable;
 import java.util.List;
 
 
@@ -23,26 +24,33 @@ public class PrevisionConfinement {
 		int nbDeCasConcerne = -1;
 
 		for (int i = 1; i < this.nbCas.size(); i++) {
+			
+			
 			// en prenant en compte le nombre de cas et la vitesse de montée chaque jour
-			if (this.nbCas.get(i) >= 25000 && this.nbCas.get(i)-this.nbCas.get(i-1)>= this.nbCas.get(i-1)*1.3) {
+			if (this.nbCas.get(i-1) >= 25000 && this.nbCas.get(i)-this.nbCas.get(i-1)>= this.nbCas.get(i-1)*0.01) {
+				System.out.println("in 1");
 				tauxMonteeCas += 1;
 				if (nbDeCasConcerne == -1) {
 					nbDeCasConcerne = this.nbCas.get(i);
 				}
-			}else if (this.nbDeces.get(i) >= 100 && this.nbDeces.get(i)-this.nbDeces.get(i-1) >= this.nbDeces.get(i-1)*1.3) {
+			}if (this.nbDeces.get(i-1) >= 100 && this.nbDeces.get(i)-this.nbDeces.get(i-1) >= this.nbDeces.get(i-1)*0.009) {
+				System.out.println("in 2");
 				tauxMonteeDeces += 1;
 				if (nbDeCasConcerne == -1) {
 					nbDeCasConcerne = this.nbDeces.get(i);
 				}
-			}else if (this.nbHospitalisations.get(i) >= 1000 && this.nbHospitalisations.get(i)-this.nbHospitalisations.get(i-1) >= this.nbHospitalisations.get(i-1)*1.2) {
+			}if (this.nbHospitalisations.get(i-1) >= 1000 && this.nbHospitalisations.get(i)-this.nbHospitalisations.get(i-1) >= this.nbHospitalisations.get(i-1)*0.006) {
+				System.out.println("in 3");
 				tauxMonteeHospitalisations +=1;
 				if (nbDeCasConcerne == -1) {
 					nbDeCasConcerne = this.nbHospitalisations.get(i);
 				}
 			}
 		}
-		
-		if (tauxMonteeCas >= 5 || tauxMonteeDeces >= 5 || tauxMonteeHospitalisations >= 5) {
+		if(5<=0.4*tauxMonteeCas+0.3*(tauxMonteeDeces+tauxMonteeHospitalisations)) {
+			confinement = true;
+		}
+		/*if (tauxMonteeCas >= 5 || tauxMonteeDeces >= 5 || tauxMonteeHospitalisations >= 5) {
 			confinement = true;
 
 		}else if (tauxMonteeHospitalisations >=3 && tauxMonteeCas >= 3) {
@@ -50,7 +58,7 @@ public class PrevisionConfinement {
 			
 		}else if (tauxMonteeHospitalisations >=3 && tauxMonteeDeces >= 3) {
 			confinement = true;
-		}
+		}*/
 
 		return Prevision.builder()
 				.confinement(confinement)
