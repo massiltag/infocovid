@@ -75,8 +75,9 @@ public class MethodesMoindresCarres {
 		return b;
 	}
 	
-	// retourne le nombre de vaccinations dans les 60 jours / 2 mois
-	/**
+	// retourne une prévision du nombre de vaccinations sur 14 jours
+	/** et ça va changer en fonction du nombre de vaccinations à chaque fois qu'on avance dans le temps
+	 * pour la prévision de l'immunité collective, ya un boolééen qui va servir à dire si on l'a atteint ou pas.
 	 * utilise y = ax+b pour prédire les prochains nombre de vaccinations sur 2 semaines
 	 * @return
 	 */
