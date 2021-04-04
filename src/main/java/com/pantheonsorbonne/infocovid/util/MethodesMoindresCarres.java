@@ -1,8 +1,7 @@
-package com.pantheonsorbonne.infocovid.services;
-import java.time.temporal.TemporalAdjuster;
+package com.pantheonsorbonne.infocovid.util;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 
 public class MethodesMoindresCarres {
