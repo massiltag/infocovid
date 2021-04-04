@@ -39,6 +39,7 @@ export class PredictionsChartComponent implements OnInit {
 
   ngOnInit(): void {
     Object.assign(this, {multi: this.cleanForChart(this.data)});
+    console.log(this.multi);
   }
 
   onSelect(data): void {
@@ -55,10 +56,15 @@ export class PredictionsChartComponent implements OnInit {
 
   cleanForChart(metrics: Metrics[]): any[] {
     const toSeries = []; // Total cumulé des morts
+    const tauxOccup = []; // Nombre de cas total
     metrics.forEach(m => {
       toSeries.push({
         name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
-        value: m.recap.conf_j1
+        value: m.recap.dchosp
+      });
+      tauxOccup.push({
+        name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
+        value: m.recap.rea
       });
     });
 
@@ -66,6 +72,10 @@ export class PredictionsChartComponent implements OnInit {
       {
         name: 'Nb cas',
         series: toSeries
+      },
+      {
+        name: 'Tx occup',
+        series: tauxOccup
       }
     ];
   }

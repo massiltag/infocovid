@@ -9,17 +9,16 @@
             >
                 <div style="height: 75vh" #containerRef>
                 <mat-tab-group mat-align-tabs="start" style="max-height: 95%;">
-                        <mat-tab label="Taux d'occupation">
+                        <mat-tab label="Historique">
                     <app-line-chart 
                             [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" 
                             [data]="fiveDays">
                     </app-line-chart>
-
                     </mat-tab>
                     </mat-tab-group>
                 </div>
             </app-card>
-        </mat-grid-tile>
+        </mat-grid-tile> 
         
        <mat-grid-tile>
             <app-card

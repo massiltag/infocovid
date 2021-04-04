@@ -40,11 +40,14 @@ export class PredictionsComponent implements OnInit {
           this.twoWeeksAgo = m;
         });
 
-    this.metricsService.getMetricsForRange(new Date(Date.now() - (31 * 24 * 60 * 60 * 1000)), new Date(Date.now()))
+    this.metricsService.getMetricsForRange(new Date(Date.now() - (14 * 24 * 60 * 60 * 1000)), new Date(Date.now()))
         .subscribe(t => { // 5 DAYS
           this.searching++;
           this.fiveDays = t;
-          if (this.fiveDays[-1].recap.conf_j1 === 0) { this.fiveDays.pop(); }
+          if (this.fiveDays[-1].recap.conf_j1 === 0) { 
+            console.log("yes");
+            this.fiveDays.pop(); 
+          }
         });
   }
 
