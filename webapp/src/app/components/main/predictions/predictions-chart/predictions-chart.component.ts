@@ -12,6 +12,19 @@ export class PredictionsChartComponent implements OnInit {
   multi: any[];
   @Input() data: any[];
   @Input() view: any[];
+  predictions_confinement: string;
+  // rea predicitons
+  ecart: number = 0; 
+  nb_lit_rea_stable: number = 6000;
+  nb_lit_rea_danger: number = 7000;
+  nb_lit_rea_prevision: number = 0;
+  date_prevision_rea_danger: number = 0;
+
+  //Immunitee collectif
+  prevision_immunitee_collectif: string;
+  nb_population_france: number = 9000000;
+  cum_dose1: number;
+  pourcentage_vaccinee: number;
 
   // option
   legend = true;
@@ -55,23 +68,59 @@ export class PredictionsChartComponent implements OnInit {
   }
 
   cleanForChart(metrics: Metrics[]): any[] {
-    const toSeries = []; // Total cumulé des morts
+    const dchosp = []; // Total cumulé des morts
     const tauxOccup = []; // Nombre de cas total
+    const n_dose1 = [];
     metrics.forEach(m => {
-      toSeries.push({
+      dchosp.push({
         name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
         value: m.recap.dchosp
       });
+      
       tauxOccup.push({
         name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
         value: m.recap.rea
       });
+
+      n_dose1.push({
+        name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
+        value: m.vaccineStats.n_cum_dose1
+      });
     });
+
+    // Rea
+    this.ecart = tauxOccup[tauxOccup.length-2].value - tauxOccup[tauxOccup.length-3].value;
+    console.log("Ecart : "+this.ecart);
+
+    if (tauxOccup[tauxOccup.length-2].value < this.nb_lit_rea_stable && this.ecart < 200) {
+        this.nb_lit_rea_prevision = tauxOccup[tauxOccup.length-2].value;
+        do {
+            this.nb_lit_rea_prevision += this.ecart*1.3;
+            this.date_prevision_rea_danger += 1;
+        } while (this.nb_lit_rea_prevision < this.nb_lit_rea_danger);
+
+        this.predictions_confinement= "Risque de confinement dans "+this.date_prevision_rea_danger+" jour(s) environ.";
+
+    } else if (tauxOccup[tauxOccup.length-2].value > this.nb_lit_rea_danger || this.ecart > 200) {
+        this.predictions_confinement= "Confinement immediat !";
+    } else {
+        this.predictions_confinement= "Situation stable";
+    }
+
+    // immunitee collectif
+    this.cum_dose1 = n_dose1[n_dose1.length-3].value;
+    this.pourcentage_vaccinee = Math.floor((this.cum_dose1*100)/this.nb_population_france);
+    console.log(this.pourcentage_vaccinee);
+    if (this.cum_dose1 > 2*this.nb_population_france/3) {
+        this.prevision_immunitee_collectif = "Immunitee collective atteinte, Environ "+this.pourcentage_vaccinee+"% de la population francaise vaccinee";
+    } else {
+        this.prevision_immunitee_collectif = "Non atteinte, Environ "+this.pourcentage_vaccinee+"% de la population francaise actuellement vaccinee";
+    }
 
     return [
       {
-        name: 'Nb cas',
-        series: toSeries
+        name: 'Deces',
+        series: dchosp
       },
       {
         name: 'Tx occup',

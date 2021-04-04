@@ -8,14 +8,12 @@
                     [headerIcon]="'show_chart'"
             >
                 <div style="height: 75vh" #containerRef>
-                <mat-tab-group mat-align-tabs="start" style="max-height: 95%;">
-                        <mat-tab label="Historique">
+              
                     <app-line-chart 
                             [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" 
                             [data]="fiveDays">
                     </app-line-chart>
-                    </mat-tab>
-                    </mat-tab-group>
+                  
                 </div>
             </app-card>
         </mat-grid-tile> 
@@ -23,9 +21,18 @@
        <mat-grid-tile>
             <app-card
                     class="grid-card-fill map-card"
-                    [headerTitle]="'Hypotheses'"
+                    [headerTitle]="'Informations'"
                     [headerIcon]="'show_chart'"
             >
+                <br>
+                <h2>Quand confiner ? </h2>
+                <p>Contraintes selon les criteres suivants :</p> 
+                <ul> 
+                    <li>1) La saturation des lits de reanimations</li>
+                    <li>2) Un nombre important de deces</li>
+                    <li>3) Un nombre important de cas positive</li>
+                </ul><br><hr>
+
                 <h2>Immunite collectif ? </h2>
                 <!--<p>Informations : La théorie épidémiologique nous enseigne qu’un agent microbien introduit en population s’arrête de circuler 
                 quand la fraction de la population immunisée contre cet agent microbien est supérieure ou égale à : 1-1/R0, 
@@ -33,16 +40,16 @@
                 non immunisée et en l’absence de mesure de contrôle.  En France, où le R0 a été estimé à 3 avant le confinement 
                 (Salje et al., Science, 2020) , cela veut dire qu’il faudrait que 67% de la population française soit immunisée 
                 contre ce nouveau coronavirus pour que le virus cesse de circuler de façon épidémique.</p>-->
-                <p><b>Informations :</b> La theorie epidemiologique nous enseigne qu’un agent microbien introduit en population s’arrete de circuler 
+                <p>Informations :</p>
+                <p>La theorie epidemiologique nous enseigne qu’un agent microbien introduit en population s’arrete de circuler 
                 quand la fraction de la population immunisee contre cet agent microbien est superieure ou egale e : 1-1/R0, 
                 ou R0 est ce fameux nombre de reproduction, soit le nombre de cas secondaires par personne infectee dans une population 
                 non immunisee et en l’absence de mesure de controle.  En France, ou le R0 a ete estime a 3 avant le confinement 
                 (Salje et al., Science, 2020) , cela veut dire qu’<b>il faudrait que 67% de la population francaise soit immunisee</b>
                 contre ce nouveau coronavirus pour que le virus cesse de circuler de facon epidemique.</p>
-                <div #containerRef> Actuellement : {{immunite_collectif}} </div>
-
-                <div #containerRef> Predictions prochain confinement : {{predictions_confinement}} </div>
-
+                
+                <!--<div #containerRef> Immunite collectif : {{tx_progress_immunite_collectif}} </div>
+                <div #containerRef>Niveau risque de confinement : {{confinement_Risque}} </div> -->
             </app-card>
         </mat-grid-tile>
     </mat-grid-list>

@@ -1,21 +1,3 @@
-<!-- <ngx-charts-line-chart
-    [view]="view"
-    [scheme]="colorScheme"
-    [results]="multi"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="showLegend"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-    [timeline]="timeline"
-    (select)="onSelect($event)"
-    (activate)="onActivate($event)"
-    (deactivate)="onDeactivate($event)">
-</ngx-charts-line-chart> -->
-
 <ngx-charts-line-chart
         [view]="view"
         [scheme]="colorScheme"
@@ -30,6 +12,11 @@
         [results]="multi"
         (select)="onSelect($event)"
         (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)"
->
-</ngx-charts-line-chart>
+        (deactivate)="onDeactivate($event)">
+</ngx-charts-line-chart><br>
+
+<div class="container">
+    <div>Etat actuel : {{predictions_confinement}}</div>
+    <br>
+    <div>Immunitee collectif : {{prevision_immunitee_collectif}}</div>
+</div>

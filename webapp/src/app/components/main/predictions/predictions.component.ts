@@ -9,12 +9,14 @@ import {MetricsService} from '../../../services/metrics.service';
   styleUrls: ['./predictions.component.scss']
 })
 export class PredictionsComponent implements OnInit {
-  confinement: string;
-  immunite_collectif: string;
+  confinement_Risque: number = 0;
+  tx_progress_immunite_collectif: number = 0;
   predictions_confinement: string;
+  nb_litDeRea_dispo: number = 5000;
+  croissance_rea: number = 0;
+  nb_hab_France: number = 65000000;
 
   searching: number;
-  
   today: Metrics;
   twoWeeksAgo: Metrics;
   fiveDays: Metrics[];
@@ -28,26 +30,38 @@ export class PredictionsComponent implements OnInit {
         .subscribe(m => { // 1 DAY
           this.searching++;
           this.today = m;
-
-          if (m.recap.conf_j1 > 47000) {
-                this.confinement = "sup";
-          }
         });
 
-    this.metricsService.getMetricsForDate(new Date(Date.now() - (14 * 24 * 60 * 60 * 1000)))
+
+    this.metricsService.getMetricsForDate(new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)))
         .subscribe(m => {
           this.searching++;
           this.twoWeeksAgo = m;
+          this.tx_progress_immunite_collectif = (this.twoWeeksAgo.vaccineStats.n_cum_dose1*100)/this.nb_hab_France;
         });
 
     this.metricsService.getMetricsForRange(new Date(Date.now() - (14 * 24 * 60 * 60 * 1000)), new Date(Date.now()))
         .subscribe(t => { // 5 DAYS
           this.searching++;
           this.fiveDays = t;
-          if (this.fiveDays[-1].recap.conf_j1 === 0) { 
+          if (this.fiveDays[0].recap.conf_j1 === 0) { 
             console.log("yes");
             this.fiveDays.pop(); 
           }
+
+          if (this.fiveDays[0].recap.r > 2) {
+            this.confinement_Risque += 1;
+          } 
+          if (this.fiveDays[0].recap.rea > this.nb_litDeRea_dispo) {
+            this.confinement_Risque += 5; 
+          }
+
+          console.log("Confinement risque : "+this.confinement_Risque);
+
+          if (this.fiveDays[0].recap.rea - this.fiveDays[-1].recap.rea > 10) { 
+            this.croissance_rea += 1;
+          }
+          console.log("Croissance de réa dans les 2 dernières semaines : "+this.croissance_rea);
         });
   }
 
