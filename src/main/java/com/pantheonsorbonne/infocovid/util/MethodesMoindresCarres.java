@@ -6,14 +6,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.pantheonsorbonne.infocovid.domain.model.Prevision;
+import com.pantheonsorbonne.infocovid.domain.model.PrevisionImmunite;
+
 @Builder
 public class MethodesMoindresCarres {
 
-	private ArrayList<Integer> nbVaccinationsList;
+	private List<Integer> nbVaccinationsList;
 
 
 	private List<Integer> jourList;
-	private double a, b;
+	private int a, b;
 	boolean immunite = false;
 
 	// a et b vont servir à construire la droite de prévision, pour l'année n+1 on fait a*(n+1) +b
@@ -49,8 +52,8 @@ public class MethodesMoindresCarres {
 	}
 	
 	// somme des jours * nombre de vaccinations
-	public Double sumJourVacc() {
-		Double sum = (Double) 0.0;
+	public Integer sumJourVacc() {
+		int sum = 0;
 		for (int i = 0; i < jourList.size(); i++) {
 			sum = sum + (jourList.get(i) * nbVaccinationsList.get(i));
 		}
@@ -58,61 +61,85 @@ public class MethodesMoindresCarres {
 	}
 	
 	// calculer a de y=ax+b
-	public Double calculA() {
+	public Integer calculA() {
 		this.a = (sumJourVacc()- ((jourList.size())*moyenneJour()*moyenneNBvacc()))/ (sumCarre(jourList)*(jourList.size()));
 		return a;
 	}
 	
 	// calculer b de y=ax+b
-	public Double calculB() {
+	public Integer calculB() {
 		this.b = moyenneNBvacc() - a*moyenneJour();
 		return b;
 	}
 	
 	// retourne une prévision du nombre de vaccinations sur 14 jours
 	/** et ça va changer en fonction du nombre de vaccinations à chaque fois qu'on avance dans le temps
-	 * pour la prévision de l'immunité collective, ya un boolééen qui va servir à dire si on l'a atteint ou pas.
-	 * utilise y = ax+b pour prédire les prochains nombre de vaccinations sur 2 semaines
+	 * pour la prévision de l'immunité collective, on retourne aussi un boolééen qui va servir à dire si on l'a atteint ou pas.
+	 * et pour finir on retourne le nombre de vaccinations du jour où l'immunité est atteinte
+	 * 
+	 * on utilise y = ax+b pour prédire les prochains nombres de vaccinations sur 2 semaines, sela créé une droite
 	 * @return
 	 */
-	
-	public HashMap<Double, Double> prevision() {
-		HashMap<Double, Double> donnes=new HashMap<Double, Double>();
-		Double nbVaccinations =0.0;
-
+	public PrevisionImmunite previsionImmunite() {
+		
+		// utilisé pour calculter y=ax+b (nombre de vaccinations pour un jour), connaitre si on atteint le nombre de
+		//vaccinations nécessaire pour l'immunité, et pour récupérer le jour où l'immunité est atteinte.
+		int nbVaccinations =0; 
+		
+		// utilisé pour récupérer sur le chart le jour où l'immunité a été atteinte (contient le nombre de vaccinations ce jour là).
+		// valeur à retourner
+		int nbVaccinAtteint=0;
+		
+		// Liste qui récupère le nombre de vaccins prévisionnel pour 14 jours
+		// valeurs à retourner
+		ArrayList<Integer> nbVaccinQuotidien = null;
+		
+		// Le nombre minimum de vaccinés à atteindre pour l'immunité collective
 		int tauxImmunite = 67000000*60/100;
-
+		
+		// sert à enregistrer la première valeur seulement du nombre de vaccins quand on atteint l'immunité
+		boolean arretCalcul=false;
+		
+		// Le nombre de vaccinations en entrée, on les utilise pour définir les paramètres a et b de la méthode des
+		// moindres carrés
 		int n = 0;
+
+		
+		// L'objet à retourner à la fin, regroupe immunite, nbVaccinAtteint et nbVaccinQuotidien
+		PrevisionImmunite previsionImmunite=null;
+
+		// à utiliser ensuite pour avoir un nombre de jour mis à jour
 		for (Integer ignored : this.nbVaccinationsList) {
 			jourList.add(n);
 			n++;
 		}
 
-		for (Double i = (double) jourList.size(); i < jourList.size() +14; i++) {
+		// Calcul prévisions du nombre de vaccinations sur les prochains 14 jours 
+		// Pour chaque jour :
+		for (int i = jourList.size(); i < jourList.size() +14; i++) {
+			// calcul du nombre de vaccinations prévisionnel
 			nbVaccinations = a*i+b;
-			donnes.put(i, nbVaccinations);
+
+			nbVaccinQuotidien.add(nbVaccinations);
+			
+			// si le nombre de vaccinations prévisionnel a atteint le taux d'immunité collective
+			// le booléen sera à true et on enregistre ce nombre là
 			if (nbVaccinations >= tauxImmunite) {
 				this.immunite = true;
+				if (arretCalcul==false) {
+					arretCalcul=true;
+					nbVaccinAtteint= nbVaccinations;
+				}
 			}
 		}
-		return donnes;
+		return PrevisionImmunite.builder()
+				.immunite(immunite)
+				.nbVaccinAtteint(nbVaccinAtteint)
+				.nbVaccinQuotidien(nbVaccinQuotidien)
+				.build();
 	}
 	
-/*	public static void  main(String args[]) {
-		ArrayList<Integer> anneesArrayList=new ArrayList<Integer>();
-		ArrayList<Integer> chiffresDaffaireArrayList=new ArrayList<Integer>();
-		Random random=new Random();
-		for(Integer i=(Integer) 1000;i<2000;i++) {
-			anneesArrayList.add(i);
-			chiffresDaffaireArrayList.add((Integer) (0.001+random.nextFloat()*1000));
-		}
-		
-		MethodesMoindresCarres m=new MethodesMoindresCarres(anneesArrayList,chiffresDaffaireArrayList);
-		System.out.println(m.a+" "+m.b);
-		HashMap<Double, Double> donnees=m.prevision();
-		System.out.println(donnees);
-	}
-*/	
+
 }
 
 

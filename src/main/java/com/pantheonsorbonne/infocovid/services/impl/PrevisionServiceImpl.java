@@ -2,6 +2,7 @@ package com.pantheonsorbonne.infocovid.services.impl;
 
 import com.pantheonsorbonne.infocovid.domain.model.Metrics;
 import com.pantheonsorbonne.infocovid.domain.model.Prevision;
+import com.pantheonsorbonne.infocovid.domain.model.PrevisionImmunite;
 import com.pantheonsorbonne.infocovid.services.MetricsService;
 import com.pantheonsorbonne.infocovid.services.PrevisionService;
 import com.pantheonsorbonne.infocovid.util.MethodesMoindresCarres;
@@ -55,8 +56,22 @@ public class PrevisionServiceImpl implements PrevisionService {
     }
 
     @Override
-    public String getMethodeMoindreCarres() {
-        return "";
+    public PrevisionImmunite getMethodeMoindreCarres() {
+        List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(2));
+
+  
+
+        List<Integer> nbVaccins = metrics
+                .stream()
+                .map(m -> m.getRecap().getEsms_dc() + m.getRecap().getDchosp())
+                .collect(Collectors.toList());
+
+        mmc = PrevisionImmunite
+                .builder()
+                .nbVaccinationsList(nbVaccins)
+                .build();
+
+        return mmc.previsionImmunite();
     }
 
 
