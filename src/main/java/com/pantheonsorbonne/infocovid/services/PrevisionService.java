@@ -6,4 +6,6 @@ public interface PrevisionService {
 
     Prevision getPrevision();
 
+    String getMethodeMoindreCarres();
+
 }

@@ -1,32 +1,27 @@
 package com.pantheonsorbonne.infocovid.util;
 
+import lombok.Builder;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-
+@Builder
 public class MethodesMoindresCarres {
 
-	private ArrayList<Long> jourList;
-	private ArrayList<Long> nbVaccinationsList;
+	private ArrayList<Integer> nbVaccinationsList;
+
+
+	private List<Integer> jourList;
 	private double a, b;
 	boolean immunite = false;
-	
+
 	// a et b vont servir à construire la droite de prévision, pour l'année n+1 on fait a*(n+1) +b
-	
-	
-	public MethodesMoindresCarres(ArrayList<Long> jourList, ArrayList<Long> nbVaccinationsList) {
-		
-		this.jourList = jourList;
-		this.nbVaccinationsList = nbVaccinationsList;
-		this.calculA();
 
-		this.calculB();
-
-	}
 	
 	// juste pr faire la somme des elements de la liste
-	public Long sum(ArrayList<Long> chiffre) {
-		Long sum=(long) 0;
+	public Integer sum(List<Integer> chiffre) {
+		Integer sum=(Integer) 0;
 		for (int i = 0; i < chiffre.size(); i++) {
 			sum = sum + chiffre.get(i);
 		}
@@ -34,8 +29,8 @@ public class MethodesMoindresCarres {
 	}
 	
 	// juste pr faire la somme au carré des elements de la liste
-	public Long sumCarre(ArrayList<Long> chiffre) {
-		Long sum=(long) 0;
+	public Integer sumCarre(List<Integer> chiffre) {
+		Integer sum = 0;
 		for (int i = 0; i < chiffre.size(); i++) {
 			sum += chiffre.get(i)*chiffre.get(i);
 		}
@@ -43,13 +38,13 @@ public class MethodesMoindresCarres {
 	}
 	
 	// moyenne nombre de vaccinations en tout
-	public Long moyenneNBvacc() {
+	public Integer moyenneNBvacc() {
 		return (sum(nbVaccinationsList) / nbVaccinationsList.size());
 		
 	}
 	
 	//moyenne des jours
-	public Long moyenneJour() {
+	public Integer moyenneJour() {
 		return (sum(jourList) / jourList.size());
 	}
 	
@@ -87,6 +82,12 @@ public class MethodesMoindresCarres {
 
 		int tauxImmunite = 67000000*60/100;
 
+		int n = 0;
+		for (Integer ignored : this.nbVaccinationsList) {
+			jourList.add(n);
+			n++;
+		}
+
 		for (Double i = (double) jourList.size(); i < jourList.size() +14; i++) {
 			nbVaccinations = a*i+b;
 			donnes.put(i, nbVaccinations);
@@ -98,12 +99,12 @@ public class MethodesMoindresCarres {
 	}
 	
 /*	public static void  main(String args[]) {
-		ArrayList<Long> anneesArrayList=new ArrayList<Long>();
-		ArrayList<Long> chiffresDaffaireArrayList=new ArrayList<Long>();
+		ArrayList<Integer> anneesArrayList=new ArrayList<Integer>();
+		ArrayList<Integer> chiffresDaffaireArrayList=new ArrayList<Integer>();
 		Random random=new Random();
-		for(Long i=(long) 1000;i<2000;i++) {
+		for(Integer i=(Integer) 1000;i<2000;i++) {
 			anneesArrayList.add(i);
-			chiffresDaffaireArrayList.add((long) (0.001+random.nextFloat()*1000));
+			chiffresDaffaireArrayList.add((Integer) (0.001+random.nextFloat()*1000));
 		}
 		
 		MethodesMoindresCarres m=new MethodesMoindresCarres(anneesArrayList,chiffresDaffaireArrayList);

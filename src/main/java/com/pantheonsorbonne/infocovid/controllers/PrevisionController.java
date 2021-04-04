@@ -17,8 +17,14 @@ public class PrevisionController {
 
     private final PrevisionService previsionService;
 
-    @GetMapping(BASE_URL + "/prevision")
+    @GetMapping(BASE_URL + "/previsions/confinement")
     public ResponseEntity<Prevision> getPrevision() {
         return ResponseEntity.ok(previsionService.getPrevision());
     }
+
+    @GetMapping(BASE_URL + "/previsions/immunite")
+    public ResponseEntity<String> getMMC() {
+        return ResponseEntity.ok(previsionService.getMethodeMoindreCarres());
+    }
+
 }

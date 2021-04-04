@@ -4,6 +4,7 @@ import com.pantheonsorbonne.infocovid.domain.model.Metrics;
 import com.pantheonsorbonne.infocovid.domain.model.Prevision;
 import com.pantheonsorbonne.infocovid.services.MetricsService;
 import com.pantheonsorbonne.infocovid.services.PrevisionService;
+import com.pantheonsorbonne.infocovid.util.MethodesMoindresCarres;
 import com.pantheonsorbonne.infocovid.util.PrevisionConfinement;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,8 @@ public class PrevisionServiceImpl implements PrevisionService {
     private final MetricsService metricsService;
 
     PrevisionConfinement p;
+
+    MethodesMoindresCarres mmc;
 
     @Override
     public Prevision getPrevision() {
@@ -48,8 +51,13 @@ public class PrevisionServiceImpl implements PrevisionService {
                 .nbDeces(nbDc)
                 .build();
 
-
         return p.previsionConfinement();
     }
+
+    @Override
+    public String getMethodeMoindreCarres() {
+        return "";
+    }
+
 
 }
