@@ -86,7 +86,7 @@ public class MethodesMoindresCarres {
 		
 		// utilisé pour récupérer sur le chart le jour où l'immunité a été atteinte (contient le nombre de vaccinations ce jour là).
 		// valeur à retourner
-		int nbVaccinAtteint=0;
+		int nbVaccinAtteint=-1;
 		
 		// Liste qui récupère le nombre de vaccins prévisionnel pour 14 jours
 		// valeurs à retourner

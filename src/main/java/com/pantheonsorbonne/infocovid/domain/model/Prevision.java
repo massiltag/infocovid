@@ -27,5 +27,11 @@ public class Prevision {
      */
     @JsonProperty("nombre_cas")
     private int nombreCas;
+    
+    /**
+    *
+    */
+   @JsonProperty("type_cas")
+   private String typeCas;
 
 }
