@@ -30,4 +30,8 @@ public class Metrics {
         return getDate().isEqual(metrics.getDate()) && Objects.equals(getRecap(), metrics.getRecap()) && Objects.equals(getVaccineStats(), metrics.getVaccineStats());
     }
 
+    public boolean hasNulls() {
+        return recap.hasNulls() || vaccineStats.hasNulls();
+    }
+
 }

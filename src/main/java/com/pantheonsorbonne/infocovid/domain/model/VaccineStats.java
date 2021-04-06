@@ -43,4 +43,10 @@ public class VaccineStats {
         }
     }
 
+    public boolean hasNulls() {
+        return n_dose1 == 0
+                || n_dose2 == 0
+                || n_cum_dose1 == 0;
+    }
+
 }

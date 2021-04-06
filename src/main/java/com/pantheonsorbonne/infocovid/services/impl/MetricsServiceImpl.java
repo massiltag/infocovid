@@ -31,7 +31,7 @@ public class MetricsServiceImpl implements MetricsService {
     public Metrics getForDay(LocalDate day) {
         Metrics result = metricsRepository.findFirstByDate(day);
 
-        if (result == null || result.getRecap().getConf_j1() == 0) {
+        if (result == null || result.hasNulls()) {
             result = Metrics.builder()
                     .id(Integer.parseInt(String.valueOf(day.getYear())
                             .concat(day.getMonthValue() < 10 ? "0" + day.getMonthValue() : String.valueOf(day.getMonthValue()))

@@ -80,4 +80,17 @@ public class StatsRecap {
         }
     }
 
+    public boolean hasNulls() {
+        return dchosp == 0
+                || esms_dc == 0
+                || conf == 0
+                || conf_j1 == 0
+                || to == 0
+                || tx_pos == 0
+                || tx_incid == 0
+                || r == 0
+                || hosp == 0
+                || rea == 0;
+    }
+
 }

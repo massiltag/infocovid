@@ -45,7 +45,13 @@
     }
 }
 
-@media (max-height:700px) {
+@media (max-width:400px) {
+    #map {
+        width: 75vw;
+    }
+}
+
+@media (max-height:850px) {
     #map {
         height: 69vh;
     }
