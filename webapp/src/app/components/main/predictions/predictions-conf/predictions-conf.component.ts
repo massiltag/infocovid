@@ -4,18 +4,15 @@ import {Prevision_confinement} from '../../../../models/prevision_confinement.mo
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-line-chart',
-  templateUrl: './predictions-chart.component.html',
-  styleUrls: ['./predictions-chart.component.scss']
+  selector: 'app-predictions-conf',
+  templateUrl: './predictions-conf.component.html',
+  styleUrls: ['./predictions-conf.component.scss']
 })
 
-export class PredictionsChartComponent implements OnInit {
+export class PredictionsConfComponent implements OnInit {
   multi: any[];
   @Input() data: any[];
-  @Input() prevision: any = {};
   @Input() view: any[];
-  @Input() nombre_cas: number;
-  prevision_date_confinement:string;
 
   // option
   legend = true;
@@ -29,8 +26,10 @@ export class PredictionsChartComponent implements OnInit {
   yAxisLabel = 'Nb cas';
   timeline = true;
 
+
   colorScheme = {
-     domain: ['#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+     //domain: ['#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+     domain: ['#7aa3e5', '#a8385d', '#aae3f5']
   };
 
   // line, area
@@ -41,9 +40,15 @@ export class PredictionsChartComponent implements OnInit {
 
   ngOnInit(): void {
     Object.assign(this, {multi: this.cleanForChart(this.data)});
+    //this.prediction_function(this.prevision);
     console.log(this.multi);
   }
-
+  /*
+  prediction_function(p_confinement: Prevision_confinement): void {
+    this.predictions_confinement = p_confinement.confinement;
+    console.log("Prediction : "+p_confinement.nombre_cas);
+  }
+  */
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
@@ -56,37 +61,20 @@ export class PredictionsChartComponent implements OnInit {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
-  date_confinement_notfind: boolean = true;
   cleanForChart(metrics: Metrics[]): any[] {
-    const dchosp = []; // Total cumulé des morts
-    const hosp = []; // Nombre de cas total
+    const conf = [];
 
     metrics.forEach(m => {
-      dchosp.push({
+      conf.push({
         name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
-        value: m.recap.dchosp
+        value: m.recap.conf
       });
-      
-      hosp.push({
-        name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
-        value: m.recap.hosp
-      });
-
-      if(m.recap.hosp >= this.nombre_cas && this.date_confinement_notfind) {
-            console.log("Date de confinement possible : "+moment(m.date, 'YYYY-MM-DD').format('DD MMM'));
-            this.prevision_date_confinement = moment(m.date, 'YYYY-MM-DD').format('DD MMM')
-            this.date_confinement_notfind = false;
-      }
     });
  
     return [
       {
-        name: 'Deces total',
-        series: dchosp
-      },
-      {
-        name: 'Hospitalisations total',
-        series: hosp
+        name: 'Conf',
+        series: conf
       }
     ];
   }

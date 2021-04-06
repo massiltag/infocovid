@@ -8,12 +8,30 @@
                     [headerIcon]="'show_chart'"
             >
                 <div style="height: 75vh" #containerRef>
-              
-                    <app-line-chart 
-                            [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" 
-                            [data]="fiveDays">
-                    </app-line-chart>
-                  
+                    <mat-tab-group mat-align-tabs="start" style="max-height: 100%; max-width: 100%; overflow: hidden">
+                        <mat-tab label="Deces & Hospitalisations">
+                            <app-line-chart 
+                                    [view]="[containerRef.offsetWidth - 50, containerRef.offsetHeight - 50]" 
+                                    [data]="fiveDays"
+                                    [prevision]="prevision"
+                                    [nombre_cas]="nombre_cas">
+                            </app-line-chart>
+                        </mat-tab>
+                        <mat-tab label="Cas positif ">
+                            <app-predictions-conf
+                                    [view]="[containerRef.offsetWidth - 50, containerRef.offsetHeight - 50]" 
+                                    [data]="fiveDays"
+                                    [prevision]="prevision">
+                            </app-predictions-conf>
+                        </mat-tab>
+                        <mat-tab label="Vaccination dose 1">
+                            <app-predictions-vaccination
+                                    [view]="[containerRef.offsetWidth - 50, containerRef.offsetHeight - 20]" 
+                                    [data]="fiveDays"
+                                    [prevision_immunite]="prevision_immunite">
+                            </app-predictions-vaccination>
+                        </mat-tab>
+                    </mat-tab-group>
                 </div>
             </app-card>
         </mat-grid-tile> 
@@ -25,21 +43,23 @@
                     [headerIcon]="'show_chart'"
             >
                 <br>
-                <h2>Quand confiner ? </h2>
+                <h2>Risque de confinement ?</h2>
+                <p>Resultat : <b>{{result_prevision_confinement}}</b></p>
                 <p>Contraintes selon les criteres suivants :</p> 
                 <ul> 
-                    <li>1) La saturation des lits de reanimations</li>
-                    <li>2) Un nombre important de deces</li>
-                    <li>3) Un nombre important de cas positive</li>
+                    <li> La saturation des lits de reanimations</li>
+                    <li> Un nombre important de deces</li>
+                    <li> Un nombre important de cas positive</li>
                 </ul><br><hr>
 
-                <h2>Immunite collectif ? </h2>
+                <h2>Immunite collectif atteinte ? </h2>
                 <!--<p>Informations : La théorie épidémiologique nous enseigne qu’un agent microbien introduit en population s’arrête de circuler 
                 quand la fraction de la population immunisée contre cet agent microbien est supérieure ou égale à : 1-1/R0, 
                 où R0 est ce fameux nombre de reproduction, soit le nombre de cas secondaires par personne infectée dans une population 
                 non immunisée et en l’absence de mesure de contrôle.  En France, où le R0 a été estimé à 3 avant le confinement 
                 (Salje et al., Science, 2020) , cela veut dire qu’il faudrait que 67% de la population française soit immunisée 
                 contre ce nouveau coronavirus pour que le virus cesse de circuler de façon épidémique.</p>-->
+                <p>Resultat : {{result_prevision_immunite}}</p>
                 <p>Informations :</p>
                 <p>La theorie epidemiologique nous enseigne qu’un agent microbien introduit en population s’arrete de circuler 
                 quand la fraction de la population immunisee contre cet agent microbien est superieure ou egale e : 1-1/R0, 

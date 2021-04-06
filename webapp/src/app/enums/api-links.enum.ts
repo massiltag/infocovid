@@ -5,7 +5,9 @@ export enum ApiLinksEnum {
   VAC_CENTRES = 'http://localhost:8080/api/vaccins/centres',
   SUBSCRIBE = 'http://localhost:8080/api/subscribe',
   METRICS = 'http://localhost:8080/api/metrics',
-  METRICS_RANGE = 'http://localhost:8080/api/metrics/range'
+  METRICS_RANGE = 'http://localhost:8080/api/metrics/range',
+  PREVISION_CONFINEMENT = 'http://localhost:8080/api/previsions/confinement',
+  PREVISION_IMMUNITE = 'http://localhost:8080/api/previsions/immunite'
 }
 
 // tslint:disable-next-line:no-namespace
