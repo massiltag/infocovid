@@ -60,7 +60,7 @@ public class PrevisionServiceImpl implements PrevisionService {
 
     @Override  
     public PrevisionImmunite getRegressionLineaireImmunite() {
-        List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(41), LocalDate.now().minusDays(1));
+        List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(40), LocalDate.now().minusDays(1));
  //       List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(2));
   
 

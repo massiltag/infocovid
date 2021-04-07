@@ -111,7 +111,7 @@ public class RegressionLineaire {
 		System.out.println(jourList.size());
 	
 
-		for (int i = jourList.size()  ; i <= jourList.size() + 15; i++) {
+		for (int i = jourList.size() +1 ; i <= jourList.size() + 15; i++) {
 
 			System.out.println(i);
 			// calcul du nombre de vaccinations prévisionnel
