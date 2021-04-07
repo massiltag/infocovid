@@ -5,8 +5,9 @@ import com.pantheonsorbonne.infocovid.domain.model.Prevision;
 import com.pantheonsorbonne.infocovid.domain.model.PrevisionImmunite;
 import com.pantheonsorbonne.infocovid.services.MetricsService;
 import com.pantheonsorbonne.infocovid.services.PrevisionService;
-import com.pantheonsorbonne.infocovid.util.MethodesMoindresCarres;
 import com.pantheonsorbonne.infocovid.util.PrevisionConfinement;
+import com.pantheonsorbonne.infocovid.util.RegressionLineaire;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class PrevisionServiceImpl implements PrevisionService {
 
     PrevisionConfinement p;
 
-    MethodesMoindresCarres mmc;
+    RegressionLineaire mmc;
 
     @Override
     public Prevision getPrevision() {
@@ -56,10 +57,11 @@ public class PrevisionServiceImpl implements PrevisionService {
         return p.previsionConfinement();
     }
 
-    @Override
-    public PrevisionImmunite getMethodeMoindreCarres() {
-        List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(2));
 
+    @Override  
+    public PrevisionImmunite getRegressionLineaireImmunite() {
+        List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(41), LocalDate.now().minusDays(1));
+ //       List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(2));
   
 
         List<Integer> nbVaccins = metrics
@@ -67,14 +69,14 @@ public class PrevisionServiceImpl implements PrevisionService {
                 .map(m -> m.getVaccineStats().getN_cum_dose1())
                 .collect(Collectors.toList());
 
-        mmc = MethodesMoindresCarres
+        mmc = RegressionLineaire
                 .builder()
                 .nbVaccinationsList(nbVaccins)
                 .jourList(new ArrayList<Integer>())
                 .build();
-
+        System.out.println(nbVaccins);
+       
         return mmc.previsionImmunite();
     }
-
 
 }

@@ -6,7 +6,7 @@ import com.pantheonsorbonne.infocovid.domain.model.PrevisionImmunite;
 public interface PrevisionService {
 
     Prevision getPrevision();
-
-    PrevisionImmunite getMethodeMoindreCarres();
+    
+    PrevisionImmunite getRegressionLineaireImmunite();
 
 }

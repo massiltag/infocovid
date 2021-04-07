@@ -25,7 +25,7 @@ public class PrevisionController {
 
     @GetMapping(BASE_URL + "/previsions/immunite")
     public ResponseEntity<PrevisionImmunite> getMMC() {
-        return ResponseEntity.ok(previsionService.getMethodeMoindreCarres());
+        return ResponseEntity.ok(previsionService.getRegressionLineaireImmunite());
     }
 
 }

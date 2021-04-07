@@ -34,7 +34,7 @@ public class PrevisionImmunite {
 	     *
 	     */
 	    @JsonProperty("nbVaccinQuotidien")
-	    private ArrayList<Integer> nbVaccinQuotidien;
+	    private ArrayList<Double> nbVaccinQuotidien;
 	
 
 }
