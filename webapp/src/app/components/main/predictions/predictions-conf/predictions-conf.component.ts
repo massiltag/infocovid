@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Metrics} from '../../../../models/metrics.model';
-import {Prevision_confinement} from '../../../../models/prevision_confinement.model';
 import * as moment from 'moment';
 
 @Component({
@@ -39,7 +38,7 @@ export class PredictionsConfComponent implements OnInit {
 
   ngOnInit(): void {
     Object.assign(this, {multi: this.cleanForChart(this.data)});
-    //this.prediction_function(this.prevision);
+    // this.prediction_function(this.prevision);
     console.log(this.multi);
   }
   /*
@@ -69,7 +68,7 @@ export class PredictionsConfComponent implements OnInit {
         value: m.recap.conf
       });
     });
- 
+
     return [
       {
         name: 'Total Cas positif',

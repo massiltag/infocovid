@@ -22,11 +22,16 @@
     }
   }
 
-  .map-card {
+  .text-card {
+    margin-left: 10px;
     ::ng-deep {
       .mat-card-content {
         height: 100%;
-        .card-content { height: 95% }
+        .card-content {
+          overflow: scroll;
+          overflow-x: hidden;
+          height: 95%;
+        }
       }
 
     }
@@ -39,6 +44,10 @@
   ::ng-deep {
     .ngx-charts-outer {
       width: 100px;
+    }
+    .ngx-charts {
+      margin-left: 15px;
+      height: 61vh;
     }
   }
 }

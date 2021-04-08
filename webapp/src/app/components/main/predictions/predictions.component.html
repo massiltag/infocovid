@@ -10,6 +10,13 @@
             >
                 <div style="height: 78vh" #containerRef>
                     <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+                        <mat-tab label="Vaccination (Dose 1)">
+                            <app-predictions-vaccination
+                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight - 50]"
+                                    [data]="fiveDays"
+                                    [prevision_immunite]="prevision_immunite">
+                            </app-predictions-vaccination>
+                        </mat-tab>
                         <mat-tab label="Deces & Hospitalisations">
                             <app-line-chart 
                                     [view]="[containerRef.offsetWidth, containerRef.offsetHeight -50]" 
@@ -21,16 +28,8 @@
                         <mat-tab label="Cas positif">
                             <app-predictions-conf
                                     [view]="[containerRef.offsetWidth, containerRef.offsetHeight - 50]" 
-                                    [data]="fiveDays"
-                                    [prevision]="prevision">
+                                    [data]="fiveDays">
                             </app-predictions-conf>
-                        </mat-tab>
-                        <mat-tab label="Vaccination (Dose 1)">
-                            <app-predictions-vaccination
-                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight - 50]" 
-                                    [data]="fiveDays"
-                                    [prevision_immunite]="prevision_immunite">
-                            </app-predictions-vaccination>
                         </mat-tab>
                     </mat-tab-group>
                 </div>
@@ -39,7 +38,7 @@
         
        <mat-grid-tile>
             <app-card
-                    class="grid-card-fill map-card"
+                    class="grid-card-fill text-card"
                     [headerTitle]="'Informations'"
                     [headerIcon]="'show_chart'"
             >

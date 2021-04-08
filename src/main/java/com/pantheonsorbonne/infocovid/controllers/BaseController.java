@@ -68,7 +68,7 @@ public class BaseController {
     @GetMapping(BASE_URL + "/test")
     public ResponseEntity<String> test() {
         emailService.SendDailyReport();
-        return ResponseEntity.ok("yih");
+        return ResponseEntity.ok("MAIL SENT");
     }
 
 
