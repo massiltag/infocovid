@@ -1,32 +1,33 @@
-<div class="main-container"  *ngIf="searching === 3; else spinner">
-    <h1 class="big-title">Predictions</h1>
-    <mat-grid-list cols="2" rowHeight="82vh">
-        <mat-grid-tile>
+<meta charset="UTF-8">
+<div class="main-container" *ngIf="searching === 3; else spinner">
+    <h1 class="big-title">Prédictions</h1>
+    <mat-grid-list cols="3" rowHeight="82vh">
+        <mat-grid-tile [colspan]="2">
             <app-card
                     class="grid-card-fill"
                     [headerTitle]="'Historique'"
                     [headerIcon]="'show_chart'"
             >
-                <div style="height: 75vh" #containerRef>
-                    <mat-tab-group mat-align-tabs="start" style="max-height: 100%; max-width: 100%; overflow: hidden">
+                <div style="height: 78vh" #containerRef>
+                    <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
                         <mat-tab label="Deces & Hospitalisations">
                             <app-line-chart 
-                                    [view]="[containerRef.offsetWidth - 50, containerRef.offsetHeight - 50]" 
+                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight -50]" 
                                     [data]="fiveDays"
                                     [prevision]="prevision"
                                     [nombre_cas]="nombre_cas">
                             </app-line-chart>
                         </mat-tab>
-                        <mat-tab label="Cas positif ">
+                        <mat-tab label="Cas positif">
                             <app-predictions-conf
-                                    [view]="[containerRef.offsetWidth - 50, containerRef.offsetHeight - 50]" 
+                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight - 50]" 
                                     [data]="fiveDays"
                                     [prevision]="prevision">
                             </app-predictions-conf>
                         </mat-tab>
-                        <mat-tab label="Vaccination dose 1">
+                        <mat-tab label="Vaccination (Dose 1)">
                             <app-predictions-vaccination
-                                    [view]="[containerRef.offsetWidth - 50, containerRef.offsetHeight - 20]" 
+                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight - 50]" 
                                     [data]="fiveDays"
                                     [prevision_immunite]="prevision_immunite">
                             </app-predictions-vaccination>

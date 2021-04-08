@@ -12,7 +12,8 @@
         [results]="multi"
         (select)="onSelect($event)"
         (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)">
+        (deactivate)="onDeactivate($event)"
+        [roundDomains]="roundDomains">
 </ngx-charts-line-chart><br>
 
-<div> Risque de confinement a partir du {{prevision_date_confinement}} </div>
+<div> {{prevision_date_confinement}} </div>

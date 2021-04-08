@@ -77,7 +77,7 @@ export class PredictionsComponent implements OnInit {
           this.twoWeeksAgo = m;
         });
 
-    this.metricsService.getMetricsForRange(new Date(Date.now() - (31 * 24 * 60 * 60 * 1000)), new Date(Date.now()))
+    this.metricsService.getMetricsForRange(new Date(Date.now() - (15 * 24 * 60 * 60 * 1000)), new Date(Date.now()))
         .subscribe(t => { // 5 DAYS
           this.searching++;
           this.fiveDays = t;

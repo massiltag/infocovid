@@ -23,12 +23,11 @@ export class PredictionsConfComponent implements OnInit {
   showYAxisLabel = true;
   showXAxisLabel = true;
   xAxisLabel = 'Jour';
-  yAxisLabel = 'Nb cas';
+  yAxisLabel = 'Nombre';
   timeline = true;
-
+  roundDomains = true;
 
   colorScheme = {
-     //domain: ['#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
      domain: ['#7aa3e5', '#a8385d', '#aae3f5']
   };
 
@@ -73,7 +72,7 @@ export class PredictionsConfComponent implements OnInit {
  
     return [
       {
-        name: 'Conf',
+        name: 'Total Cas positif',
         series: conf
       }
     ];

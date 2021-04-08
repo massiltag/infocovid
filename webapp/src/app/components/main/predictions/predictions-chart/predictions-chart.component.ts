@@ -26,8 +26,9 @@ export class PredictionsChartComponent implements OnInit {
   showYAxisLabel = true;
   showXAxisLabel = true;
   xAxisLabel = 'Jour';
-  yAxisLabel = 'Nb cas';
+  yAxisLabel = 'Nombre';
   timeline = true;
+  roundDomains = true;
 
   colorScheme = {
      domain: ['#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
@@ -74,18 +75,22 @@ export class PredictionsChartComponent implements OnInit {
 
       if(m.recap.hosp >= this.nombre_cas && this.date_confinement_notfind) {
             console.log("Date de confinement possible : "+moment(m.date, 'YYYY-MM-DD').format('DD MMM'));
-            this.prevision_date_confinement = moment(m.date, 'YYYY-MM-DD').format('DD MMM')
+            this.prevision_date_confinement = "Prevision : Risque de confinement a partir de "+moment(m.date, 'YYYY-MM-DD').format('DD MMM');
             this.date_confinement_notfind = false;
-      }
+      } 
     });
- 
+
+    if (this.date_confinement_notfind) {
+            this.prevision_date_confinement = "Prevision : Actuellement pas de risque de confinement";
+    }
+
     return [
       {
-        name: 'Deces total',
+        name: 'Total Deces',
         series: dchosp
       },
       {
-        name: 'Hospitalisations total',
+        name: 'Total Hospitalisations',
         series: hosp
       }
     ];

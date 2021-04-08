@@ -12,7 +12,7 @@ import * as moment from 'moment';
 export class PredictionsVaccinationComponent implements OnInit {
   multi: any[];
   @Input() data: any[];
-  @Input() view: any[] = [500, 200];
+  @Input() view: any[];
   @Input() prevision_immunite: any = {};
   
   // Chart option
@@ -24,8 +24,9 @@ export class PredictionsVaccinationComponent implements OnInit {
   showYAxisLabel = true;
   showXAxisLabel = true;
   xAxisLabel = 'Jour';
-  yAxisLabel = 'Nb cas';
+  yAxisLabel = 'Nombre';
   timeline = true;
+  roundDomains = true;
 
   // Line color
   colorScheme = {
@@ -33,7 +34,7 @@ export class PredictionsVaccinationComponent implements OnInit {
   };
 
   // line, area
-  autoScale = true;
+  autoScale = false;
 
   constructor() {
   }
@@ -111,11 +112,11 @@ export class PredictionsVaccinationComponent implements OnInit {
  
     return [
       {
-        name: 'Vaccination dose1',
+        name: 'Total vaccin dose 1',
         series: cum_dose1
       },
       {
-        name: 'Prevision',
+        name: 'Prevision dose 1',
         series: cum_dose1_prev
       }
     ];
