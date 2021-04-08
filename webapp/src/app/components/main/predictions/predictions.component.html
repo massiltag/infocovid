@@ -1,0 +1,79 @@
+<meta charset="UTF-8">
+<div class="main-container" *ngIf="searching === 3; else spinner">
+    <h1 class="big-title">Prédictions</h1>
+    <mat-grid-list cols="3" rowHeight="82vh">
+        <mat-grid-tile [colspan]="2">
+            <app-card
+                    class="grid-card-fill"
+                    [headerTitle]="'Historique'"
+                    [headerIcon]="'show_chart'"
+            >
+                <div style="height: 78vh" #containerRef>
+                    <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+                        <mat-tab label="Deces & Hospitalisations">
+                            <app-line-chart 
+                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight -50]" 
+                                    [data]="fiveDays"
+                                    [prevision]="prevision"
+                                    [nombre_cas]="nombre_cas">
+                            </app-line-chart>
+                        </mat-tab>
+                        <mat-tab label="Cas positif">
+                            <app-predictions-conf
+                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight - 50]" 
+                                    [data]="fiveDays"
+                                    [prevision]="prevision">
+                            </app-predictions-conf>
+                        </mat-tab>
+                        <mat-tab label="Vaccination (Dose 1)">
+                            <app-predictions-vaccination
+                                    [view]="[containerRef.offsetWidth, containerRef.offsetHeight - 50]" 
+                                    [data]="fiveDays"
+                                    [prevision_immunite]="prevision_immunite">
+                            </app-predictions-vaccination>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </app-card>
+        </mat-grid-tile> 
+        
+       <mat-grid-tile>
+            <app-card
+                    class="grid-card-fill map-card"
+                    [headerTitle]="'Informations'"
+                    [headerIcon]="'show_chart'"
+            >
+                <br>
+                <h2>Risque de confinement ?</h2>
+                <p>Résultat : <b>{{result_prevision_confinement}}</b></p>
+                <p>Contraintes selon les critères suivants :</p> 
+                <ul> 
+                    <li> La saturation des lits de réanimations</li>
+                    <li> Un nombre important de décès</li>
+                    <li> Un nombre important de cas positifs</li>
+                </ul><br><hr>
+
+                <h2>Immunité collective atteinte ? </h2>
+                <p>Résultat : {{result_prevision_immunite}}</p>
+                <p>Informations :</p>
+                <p>La théorie épidemiologique nous enseigne qu'un agent microbien introduit en population s'arrête de circuler 
+                quand la fraction de la population immunisée contre cet agent microbien est supérieure ou égale e : 1-1/R0, 
+                ou R0 est ce fameux nombre de reproduction, soit le nombre de cas secondaires par personne infectée dans une population 
+                non immunisée et en l'absence de mesure de contrôle.  En France, ou le R0 a été estimé à 3 avant le confinement 
+                (Salje et al., Science, 2020) , cela veut dire qu'<b>il faudrait que 67% de la population française soit immunisée</b>
+                contre ce nouveau coronavirus pour que le virus cesse de circuler de facon épidemique.</p>
+                
+                <!--<div #containerRef> Immunite collectif : {{tx_progress_immunite_collectif}} </div>
+                <div #containerRef>Niveau risque de confinement : {{confinement_Risque}} </div> -->
+            </app-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<ng-template #spinner>
+    <app-progress-spinner></app-progress-spinner>
+</ng-template>
+        
+
+
+

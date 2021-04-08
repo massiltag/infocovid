@@ -1,0 +1,44 @@
+@import 'src/styles.scss';
+
+.main-container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+
+  .grid-card-fill {
+ 
+    width: 100%;
+    height: 100%;
+    ::ng-deep {
+      .app-card-component {
+        height: 100%;
+        .card-container {
+          height: 100%;
+          .mat-card {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .map-card {
+    ::ng-deep {
+      .mat-card-content {
+        height: 100%;
+        .card-content { height: 95% }
+      }
+
+    }
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  ::ng-deep {
+    .ngx-charts-outer {
+      width: 100px;
+    }
+  }
+}

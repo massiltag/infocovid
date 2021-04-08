@@ -4,6 +4,8 @@ import {RoutePathEnum} from './enums/route-path.enum';
 import {DashboardComponent} from './components/main/dashboard/dashboard.component';
 import {NewsComponent} from './components/main/news/news.component';
 import {VaccinsComponent} from './components/main/vaccins/vaccins.component';
+import { PredictionsComponent } from './components/main/predictions/predictions.component';
+
 
 const routes: Routes = [
   {
@@ -23,6 +25,10 @@ const routes: Routes = [
     path: RoutePathEnum.ACTU,
     component: NewsComponent
   },
+  {
+    path: RoutePathEnum.PREDICTIONS,
+    component: PredictionsComponent
+  }
 ];
 
 @NgModule({

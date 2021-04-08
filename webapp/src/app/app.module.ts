@@ -69,6 +69,10 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {ToChartComponent} from './components/main/dashboard/charts/to-chart/to-chart.component';
 import localeFr from '@angular/common/locales/fr';
 import {HospChartComponent} from './components/main/dashboard/charts/hosp-chart/hosp-chart.component';
+import { PredictionsComponent } from './components/main/predictions/predictions.component';
+import { PredictionsChartComponent } from './components/main/predictions/predictions-chart/predictions-chart.component';
+import { PredictionsConfComponent } from './components/main/predictions/predictions-conf/predictions-conf.component';
+import { PredictionsVaccinationComponent } from './components/main/predictions/predictions-vaccination/predictions-vaccination.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -108,7 +112,11 @@ registerLocaleData(localeFr, 'fr');
     VaccinNewsComponent,
     MailDialogComponent,
     ToChartComponent,
-    HospChartComponent
+    HospChartComponent,
+    PredictionsComponent,
+    PredictionsChartComponent,
+    PredictionsConfComponent,
+    PredictionsVaccinationComponent
   ],
   imports: [
     BrowserModule,
