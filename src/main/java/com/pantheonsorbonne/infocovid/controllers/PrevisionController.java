@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import static com.pantheonsorbonne.infocovid.controllers.BaseController.BASE_URL;
 
+/**
+ * Contrôleur qui expose les traitements liés aux prévisions
+ */
 @Slf4j
 @Controller
 @CrossOrigin

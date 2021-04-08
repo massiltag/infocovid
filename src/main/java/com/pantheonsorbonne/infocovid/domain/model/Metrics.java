@@ -8,6 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * Regroupement d'indicateurs à une date concernée (synthèse du jour + stats de vaccination)
+ */
 @Data
 @Builder
 @Document(collection = "metrics")

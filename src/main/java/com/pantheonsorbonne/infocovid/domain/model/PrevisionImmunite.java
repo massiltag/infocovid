@@ -1,14 +1,16 @@
 package com.pantheonsorbonne.infocovid.domain.model;
 
-import java.util.ArrayList;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
+
+/**
+ *
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -18,7 +20,7 @@ import lombok.Data;
         setterVisibility = JsonAutoDetect.Visibility.NONE
 )
 public class PrevisionImmunite {
-		  /**
+		/**
 	     *
 	     */
 	    @JsonProperty("immunite")

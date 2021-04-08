@@ -2,13 +2,14 @@ package com.pantheonsorbonne.infocovid.domain.model;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
+/**
+ * Indicateurs concernant la vaccination
+ */
 @Data
 @Builder
-@Document(collection = "indicateursVaccins")
 public class VaccineStats {
 
     /**

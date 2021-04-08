@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 import static com.pantheonsorbonne.infocovid.util.StringUtil.*;
 
+/**
+ * Sert à convertir une ligne d'informations de synthèse de format CSV en entité {@link StatsRecap}
+ */
 @Mapper
 public abstract class StatsRecapMapper {
 

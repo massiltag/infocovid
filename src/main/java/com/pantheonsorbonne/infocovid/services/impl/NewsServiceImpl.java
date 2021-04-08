@@ -14,6 +14,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service de récupération, traitement et stockage des actualités relatives à la COVID-19
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

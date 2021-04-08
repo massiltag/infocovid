@@ -20,6 +20,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Client qui sert à récupérer des informations depuis les APIs du gouvernement
+ * <ul>
+ *     <li>@see <a href="https://www.data.gouv.fr/fr/datasets/synthese-des-indicateurs-de-suivi-de-lepidemie-covid-19/">Synthèse des incidateurs</a></li>
+ *     <li>@see <a href="https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-personnes-vaccinees-contre-la-covid-19-1/">Personnes vaccinées</a></li>
+ * </ul>
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor

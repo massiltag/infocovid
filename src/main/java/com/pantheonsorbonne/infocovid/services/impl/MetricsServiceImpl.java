@@ -18,6 +18,9 @@ import java.util.List;
 
 import static com.pantheonsorbonne.infocovid.util.StringUtil.getDateRange;
 
+/**
+ * Service de statistiques COVID-19
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -27,6 +30,11 @@ public class MetricsServiceImpl implements MetricsService {
 
     private final GouvClient gouvClient;
 
+    /**
+     * Récupération des statistiques pour le jour 'day'
+     * @param day   Jour concerné
+     * @return      {@link Metrics} du jour
+     */
     @Override
     public Metrics getForDay(LocalDate day) {
         Metrics result = metricsRepository.findFirstByDate(day);
@@ -46,21 +54,17 @@ public class MetricsServiceImpl implements MetricsService {
         return result;
     }
 
+    /**
+     * Récupération des statistiques pour la période entre 'from' et 'to'
+     * @param from  date début
+     * @param to    date fin
+     * @return      {@link Metrics} du jour
+     */
     @Override
     public List<Metrics> getForRange(LocalDate from, LocalDate to) {
         List<Metrics> result = new ArrayList<>();
         getDateRange(from, to).forEach(d -> result.add(getForDay(d)));
         return result;
-    }
-
-    @Override
-    public StatsRecap getStatsForDay(LocalDate day) {
-        return getForDay(day).getRecap();
-    }
-
-    @Override
-    public VaccineStats getVaccineStatsForDay(LocalDate day) {
-        return getForDay(day).getVaccineStats();
     }
 
     /**
@@ -69,9 +73,9 @@ public class MetricsServiceImpl implements MetricsService {
      *     en effectuant des appels aux APIs du gouvernement (pour d'éventuels changements)
      *     Car certaines informations ne sont pas disponibles de suite.
      *     ex : taux de positivité disponible 3 jours après.
+     *     S'exécute à 2h du matin
      * </p>
      */
-    @Scheduled(cron = "0 0 1 * * *")
     @Scheduled(cron = "0 0 2 * * *")
     public void updateLast10days() {
         getDateRange(LocalDate.now(), LocalDate.now().minus(10, ChronoUnit.DAYS)).forEach(this::updateDay);
@@ -92,5 +96,15 @@ public class MetricsServiceImpl implements MetricsService {
             result = apiResult;
             metricsRepository.save(result);
         }
+    }
+
+    @Override
+    public StatsRecap getStatsForDay(LocalDate day) {
+        return getForDay(day).getRecap();
+    }
+
+    @Override
+    public VaccineStats getVaccineStatsForDay(LocalDate day) {
+        return getForDay(day).getVaccineStats();
     }
 }

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
+ * Indicateurs contenant une synthèse des informations connues à la date indiquée
  * https://www.data.gouv.fr/fr/datasets/synthese-des-indicateurs-de-suivi-de-lepidemie-covid-19/
  */
 @Data

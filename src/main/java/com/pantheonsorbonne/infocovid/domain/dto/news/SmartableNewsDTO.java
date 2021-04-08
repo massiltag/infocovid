@@ -6,9 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "news")
+/**
+ * Actualités récupérées depuis l'API Smartable, doit être converti en {@link NewsDTO} par @{@link com.pantheonsorbonne.infocovid.domain.mappers.NewsMapper}
+ */
 @Data
 @Builder
 @AllArgsConstructor

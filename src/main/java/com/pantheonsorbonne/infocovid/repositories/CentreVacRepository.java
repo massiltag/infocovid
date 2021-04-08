@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Sert à stocker les centres de vaccination (importer le JSON en base Mongo en amont)
+ */
 @Repository
 public interface CentreVacRepository extends MongoRepository<CentreVaccinationDTO, String> {
 

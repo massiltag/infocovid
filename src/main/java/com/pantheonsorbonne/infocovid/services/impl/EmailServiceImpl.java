@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Service d'envoi de mail
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -41,7 +44,6 @@ public class EmailServiceImpl implements EmailService {
     /**
      * <p>
      *     S'exécute tous les jours à 21h, envoie un rapport journalier par mail aux inscrits.
-     *     TODO remplacer le "content"
      * </p>
      */
     @Override

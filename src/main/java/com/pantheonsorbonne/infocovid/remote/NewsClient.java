@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 /**
  * <p>
- *     Client qui permet de récupérer les actualités depuis les sources ;
+ *     Client qui permet de récupérer les actualités depuis différentes sources ;
  * </p>
  */
 @Slf4j

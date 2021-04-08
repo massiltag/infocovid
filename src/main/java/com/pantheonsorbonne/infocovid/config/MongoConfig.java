@@ -11,6 +11,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Configuration MongoDB
+ */
 @Configuration
 @EnableMongoRepositories(basePackages = "com.pantheonsorbonne.infocovid.repositories")
 public class MongoConfig extends AbstractMongoClientConfiguration {

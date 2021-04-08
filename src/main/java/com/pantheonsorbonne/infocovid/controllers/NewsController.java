@@ -13,6 +13,9 @@ import java.util.List;
 
 import static com.pantheonsorbonne.infocovid.controllers.BaseController.BASE_URL;
 
+/**
+ * Contrôleur servant à récupérer les actualités depuis le front
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor

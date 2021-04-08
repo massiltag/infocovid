@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Décrit un centre de vaccination, est utilisé pour l'affichage de la carte des centres.
+ * @see <a href="https://www.data.gouv.fr/fr/datasets/lieux-de-vaccination-contre-la-covid-19/">Voir source</a>
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -25,12 +29,24 @@ public class CentreVaccinationDTO {
     @JsonIgnore
     private String _id;
 
+    /**
+     * Nom
+     */
     private String nom;
 
+    /**
+     * Longitude
+     */
     private String lon;
 
+    /**
+     * Latitude
+     */
     private String lat;
 
+    /**
+     * Adresse
+     */
     private String addr;
 
 }

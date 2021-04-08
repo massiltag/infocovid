@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Sert à stocker les adresses mail des abonnés, pour l'envoi du rapport journalier
+ */
 @Document(collection = "emails")
 @Data
 @Builder

@@ -5,9 +5,7 @@ import com.pantheonsorbonne.infocovid.domain.dto.news.SmartableNewsDTO;
 import org.mapstruct.Mapper;
 
 /**
- * <p>
- *     Mapper pour convertir les actualités reçues de l'API Smartable vers notre modèle de données.
- * </p>
+ * Mapper pour convertir les actualités reçues de l'API Smartable vers notre modèle de données.
  */
 @Mapper
 public abstract class NewsMapper {

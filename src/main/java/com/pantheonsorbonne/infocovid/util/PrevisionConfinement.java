@@ -1,11 +1,14 @@
 package com.pantheonsorbonne.infocovid.util;
+
 import com.pantheonsorbonne.infocovid.domain.model.Prevision;
 import lombok.Builder;
 
-import java.awt.print.Printable;
 import java.util.List;
 
 
+/**
+ *
+ */
 @Builder
 public class PrevisionConfinement {
 

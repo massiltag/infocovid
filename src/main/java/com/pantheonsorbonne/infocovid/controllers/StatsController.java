@@ -15,6 +15,9 @@ import java.util.List;
 import static com.pantheonsorbonne.infocovid.controllers.BaseController.BASE_URL;
 import static com.pantheonsorbonne.infocovid.util.StringUtil.stringToLocalDate;
 
+/**
+ * Contrôleur qui expose les données relatives à la COVID-19 (BDD/APIs publiques)
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor

@@ -7,7 +7,6 @@ import com.pantheonsorbonne.infocovid.services.MetricsService;
 import com.pantheonsorbonne.infocovid.services.PrevisionService;
 import com.pantheonsorbonne.infocovid.util.PrevisionConfinement;
 import com.pantheonsorbonne.infocovid.util.RegressionLineaire;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service de calcul des prévisions relatives à la COVID-19
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -28,6 +30,10 @@ public class PrevisionServiceImpl implements PrevisionService {
 
 	RegressionLineaire mmc;
 
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public Prevision getPrevision() {
 		List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(2));
@@ -44,6 +50,10 @@ public class PrevisionServiceImpl implements PrevisionService {
 		return p.previsionConfinement();
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public PrevisionImmunite getRegressionLineaireImmunite() {
 		List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(2));

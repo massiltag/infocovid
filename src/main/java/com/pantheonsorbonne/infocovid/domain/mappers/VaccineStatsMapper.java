@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 import static com.pantheonsorbonne.infocovid.util.StringUtil.*;
 
+/**
+ * Sert à convertir une ligne d'informations de vaccination de format CSV en entité {@link VaccineStats}
+ */
 @Mapper
 public abstract class VaccineStatsMapper {
 

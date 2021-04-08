@@ -2,12 +2,9 @@ package com.pantheonsorbonne.infocovid.controllers;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.pantheonsorbonne.infocovid.domain.dto.ApiResponseDTO;
 import com.pantheonsorbonne.infocovid.domain.dto.CentreVaccinationDTO;
 import com.pantheonsorbonne.infocovid.domain.dto.EmailAddressDTO;
 import com.pantheonsorbonne.infocovid.exceptions.EmailException;
-import com.pantheonsorbonne.infocovid.remote.APIClient;
-import com.pantheonsorbonne.infocovid.remote.GouvClient;
 import com.pantheonsorbonne.infocovid.services.CentreVacService;
 import com.pantheonsorbonne.infocovid.services.EmailService;
 import lombok.Builder;
@@ -19,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Contrôleur de base
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -27,18 +27,9 @@ public class BaseController {
 
     protected static final String BASE_URL = "/api/";
 
-    private final APIClient apiClient;
-
-    private final GouvClient gouvClient;
-
     private final CentreVacService centreVacService;
 
     private final EmailService emailService;
-
-    @GetMapping(BASE_URL + "/getLiveData")
-    public ResponseEntity<ApiResponseDTO> getData() {
-        return ResponseEntity.ok(this.apiClient.getLiveData());
-    }
 
     @GetMapping(BASE_URL + "/vaccins/centres")
     public ResponseEntity<List<CentreVaccinationDTO>> getCentres() {
