@@ -59,7 +59,7 @@ export class PredictionsChartComponent implements OnInit {
 
   date_confinement_notfind: boolean = true;
   cleanForChart(metrics: Metrics[]): any[] {
-    const dchosp = []; // Total cumulÈ des morts
+    const dchosp = []; // Total cumulÔøΩ des morts
     const hosp = []; // Nombre de cas total
 
     metrics.forEach(m => {
@@ -81,7 +81,7 @@ export class PredictionsChartComponent implements OnInit {
     });
 
     if (this.date_confinement_notfind) {
-            this.prevision_date_confinement = "Prevision : Actuellement pas de risque de confinement";
+            this.prevision_date_confinement = "Pr√©vision : Actuellement pas de risque de confinement";
     }
 
     return [
