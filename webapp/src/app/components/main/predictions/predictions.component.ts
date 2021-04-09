@@ -19,7 +19,7 @@ export class PredictionsComponent implements OnInit {
   date_confinement: string;  
   temp_number: number;
 
-  // Affichage des rÈsultats dans la partie de droite
+  // Affichage des rÔøΩsultats dans la partie de droite
   result_prevision_confinement: string;
   result_prevision_immunite: string;
 
@@ -33,16 +33,16 @@ export class PredictionsComponent implements OnInit {
     this.searching = 0;
     this.prevision = this.prevision_service.prevision_confinement();
     
-    // Affichage des rÈsultats des prÈvisions dans la partie de droite 
+    // Affichage des rÔøΩsultats des prÔøΩvisions dans la partie de droite 
     this.prevision_service.prevision_confinement().subscribe(statData => {
         this.prevision = statData;
         //this.searching++;
         console.log("Result this.prevision.confinenement : "+this.prevision.confinement);
         this.nombre_cas = this.prevision.nombre_cas;
         if (this.prevision.confinement) {
-            this.result_prevision_confinement = "Risque eleve de confinement, lorsque le nombre de "+this.prevision.type_cas+" est sup a "+this.nombre_cas;
+            this.result_prevision_confinement = "Risque √©lev√© de confinement, lorsque le nombre de "+this.prevision.type_cas+" est sup a "+this.nombre_cas;
         } else {
-            this.result_prevision_confinement = "Actuellement, risque peu eleve de confinement";
+            this.result_prevision_confinement = "Actuellement, risque peu √©lev√© de confinement";
         }
     });
 
