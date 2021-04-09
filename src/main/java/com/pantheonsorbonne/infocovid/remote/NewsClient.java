@@ -38,6 +38,10 @@ public class NewsClient {
         this.restTemplate = restTemplate;
     }
 
+    /**
+     * Recupère les actualités générales sur le covid
+     * @return Liste de News
+     */
     public List<NewsDTO> getGeneralNews() {
         List<NewsDTO> result = getMediastackNews("covid");
         result.addAll(getSmartableNews());
@@ -47,6 +51,10 @@ public class NewsClient {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Récupère les actualités sur les vaccins
+     * @return Liste de News
+     */
     public List<NewsDTO> getVaccineNews() {
         return getMediastackNews("vaccin")
                 .stream()
@@ -55,6 +63,11 @@ public class NewsClient {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Renvoi une liste d'actualité selon le sujet demandé
+     * @param keyword sujet d'actualité recherché
+     * @return Liste de News
+     */
     public List<NewsDTO> getMediastackNews(String keyword) {
         // Build URL
         String mediastackUrl = "http://api.mediastack.com/v1/news";
@@ -79,6 +92,10 @@ public class NewsClient {
                 .orElse(new ArrayList<>());
     }
 
+    /**
+     * Récupère des actualités sur le coronavirus grâce à une API Rapid
+     * @return Liste d'actualité
+     */
     private List<NewsDTO> getSmartableNews() {
         // Build URL
         String smartableUrl = "https://coronavirus-smartable.p.rapidapi.com/news/v1/FR/";

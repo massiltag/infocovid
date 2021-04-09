@@ -21,21 +21,39 @@ import lombok.NoArgsConstructor;
 )
 public class SmartableNewsDTO {
 
+	/**
+	 * Titre de l'article
+	 */
     @JsonProperty("title")
     private String title;
 
+    /**
+     * Description
+     */
     @JsonProperty("excerpt")
     private String excerpt;
 
+    /**
+     * Lien URL
+     */
     @JsonProperty("webUrl")
     private String webUrl;
 
+    /**
+     * Nom officiel du journal auteur
+     */
     @JsonProperty("provider")
     private Provider provider;
 
+    /**
+     * Image de l'article
+     */
     @JsonProperty("images")
     private Image[] images;
 
+    /**
+     * Date de publication
+     */
     @JsonProperty("publishedDateTime")
     private String publishedDateTime;
 

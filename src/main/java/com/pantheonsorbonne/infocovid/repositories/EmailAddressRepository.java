@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Sert à stcoker les adresses e-mail des abonnés
+ * Sert à stocker les adresses e-mail des abonnés
  */
 @Repository
 public interface EmailAddressRepository extends MongoRepository<EmailAddressDTO, String> {

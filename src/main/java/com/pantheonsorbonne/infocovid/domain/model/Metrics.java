@@ -19,10 +19,19 @@ public class Metrics {
     @Id
     int id;
 
+    /**
+     * Date du jour
+     */
     LocalDate date;
 
+    /**
+     * Synthèse du jour avec les données principales
+     */
     StatsRecap recap;
 
+    /**
+     * Statistiques des vaccinnations (doses et cumul)
+     */
     VaccineStats vaccineStats;
 
     @Override

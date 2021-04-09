@@ -30,22 +30,40 @@ import java.util.Objects;
 )
 public class NewsDTO {
 
+	/**
+	 * Titre de l'article
+	 */
     @Id
     @JsonProperty("title")
     private String title;
-
+    
+    /**
+     * Description
+     */
     @JsonProperty("description")
     private String description;
 
+    /**
+     * Lien URL
+     */
     @JsonProperty("url")
     private String url;
 
+    /**
+     * Nom officiel du journal auteur
+     */
     @JsonProperty("source")
     private String source;
 
+    /**
+     * Image à la une de l'article
+     */
     @JsonProperty("image")
     private String image;
 
+    /**
+     * Date de publication
+     */
     @JsonProperty("published_at")
     private String published_at;
 

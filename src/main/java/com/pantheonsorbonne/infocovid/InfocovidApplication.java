@@ -21,7 +21,9 @@ public class InfocovidApplication {
 		SpringApplication.run(InfocovidApplication.class, args);
 	}
 
-	// Bean for performing REST queries to remote APIs
+	/**
+	 *  Bean for performing REST queries to remote APIs
+	 */
 	@Bean
 	public RestTemplate restTemplate() {
 		try {
@@ -33,8 +35,10 @@ public class InfocovidApplication {
         }
 		return new RestTemplate();
 	}
-
-	// Bean for sending e-mails with GMail
+	
+	/**
+	 * Bean for sending e-mails with Gmail
+	 */
 	@Bean
 	public JavaMailSender getJavaMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

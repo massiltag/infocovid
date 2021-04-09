@@ -33,6 +33,9 @@ public class EmailServiceImpl implements EmailService {
 
     private static final String SUBJECT = "[INFCOVID] Daily Report";
 
+    /**
+     * Sauvegarde l'adresse en base si elle n'existe pas
+     */
     @Override
     public void save(EmailAddressDTO emailAddressDTO) throws EmailException {
         if (emailAddressRepository.findByAddress(emailAddressDTO.getAddress()) != null) {
@@ -42,9 +45,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     /**
-     * <p>
-     *     S'exécute tous les jours à 21h, envoie un rapport journalier par mail aux inscrits.
-     * </p>
+     * S'exécute tous les jours à 21h, envoie un rapport journalier par mail aux inscrits.
      */
     @Override
     @Scheduled(cron = "0 0 21 * * *")

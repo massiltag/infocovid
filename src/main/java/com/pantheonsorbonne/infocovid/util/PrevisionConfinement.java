@@ -16,6 +16,9 @@ public class PrevisionConfinement {
 	
 
 	/**
+	 * Algorithme de prédiction d'un confinement 
+	 * En prenant en compte le nombre de cas et la vitesse de montée chaque jour
+	 * 
 	 * @return un tableau où le premier champ correspond à un booléen qui dit si ya possibilité de confinement,
 	 * et le 2eme champ qui donne le jour à partir duquel le confinement devrait commencer
 	 */

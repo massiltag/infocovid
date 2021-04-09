@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 
 /**
- * Configuration d'envoi de mails
+ * Configuration for SSL certificate
  */
 public class SSLValidation {
  
@@ -22,16 +22,25 @@ public class SSLValidation {
                 public void checkServerTrusted( X509Certificate[] certs, String authType ){}
             }
     };
- 
-    public static void turnOffSslChecking() throws NoSuchAlgorithmException, KeyManagementException {
-        // Install the all-trusting trust manager
+    
+ /**
+  * Install the all-trusting trust manager
+  * @throws NoSuchAlgorithmException
+  * @throws KeyManagementException
+  */
+    public static void turnOffSslChecking() throws NoSuchAlgorithmException, KeyManagementException { 
         final SSLContext sc = SSLContext.getInstance("SSL");
         sc.init( null, UNQUESTIONING_TRUST_MANAGER, null );
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
     }
+    
+    /**
+     * Return it to the initial state (discovered by reflection, now hardcoded)
+     * @throws KeyManagementException
+     * @throws NoSuchAlgorithmException
+     */
  
     public static void turnOnSslChecking() throws KeyManagementException, NoSuchAlgorithmException {
-        // Return it to the initial state (discovered by reflection, now hardcoded)
         SSLContext.getInstance("SSL").init( null, null, null );
     }
  

@@ -24,6 +24,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 )
 public class EmailAddressDTO {
 
+	/**
+	 * Adresse mail
+	 */
     @Id
     @JsonProperty("address")
     String address;
