@@ -57,7 +57,7 @@ export class PredictionsVaccinationComponent implements OnInit {
   }
 
   /* Comparer les variables pour recup le nombre de vaccination du dernier jour qui se trouve en bdd
-  *  Afin de pouvoir relier la ligne de vaccination réelle avec la ligne de vaccination prédit 
+  *  Afin de pouvoir relier la ligne de vaccination rï¿½elle avec la ligne de vaccination prï¿½dit 
   *  yesterday = la date d'hier
   *  m_day = date en bdd 
   *  Lorsque yesterday = m_day, on recup la valeur et on la stocke dans cum_dose1_prev
@@ -73,7 +73,7 @@ export class PredictionsVaccinationComponent implements OnInit {
     const cum_dose1_prev = [];
     
     metrics.forEach(m => {
-      // Ligne de vaccination réelle 
+      // Ligne de vaccination rï¿½elle 
       cum_dose1.push({
         name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
         value: m.vaccineStats.n_cum_dose1
@@ -87,7 +87,7 @@ export class PredictionsVaccinationComponent implements OnInit {
       if (this.yesterday == this.m_day) {
         //console.log("Is equal");
 
-        // Ligne de vaccination prédit, ajout de la valeur du dernier jour réelle 
+        // Ligne de vaccination prï¿½dit, ajout de la valeur du dernier jour rï¿½elle 
         cum_dose1_prev.push({
             //name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
             name: this.m_day,
@@ -102,7 +102,7 @@ export class PredictionsVaccinationComponent implements OnInit {
         this.buff = this.prevision_immunite.nbVaccinQuotidien[this.i];
         //console.log("TEST 2 : "+this.buff);
 
-        // Ligne de vaccination prédit, ajout des valeurs prédit 
+        // Ligne de vaccination prï¿½dit, ajout des valeurs prï¿½dit 
         cum_dose1_prev.push({
             name: moment(new Date(Date.now()), 'YYYY-MM-DD').add(this.cpt, "days").format('DD MMM'),
             value: this.buff
@@ -116,7 +116,7 @@ export class PredictionsVaccinationComponent implements OnInit {
         series: cum_dose1
       },
       {
-        name: 'Prevision dose 1',
+        name: 'PrÃ©vision dose 1',
         series: cum_dose1_prev
       }
     ];

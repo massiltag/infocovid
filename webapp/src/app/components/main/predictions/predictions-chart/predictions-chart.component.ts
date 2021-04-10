@@ -86,7 +86,7 @@ export class PredictionsChartComponent implements OnInit {
 
     return [
       {
-        name: 'Total Deces',
+        name: 'Total Décès',
         series: dchosp
       },
       {
