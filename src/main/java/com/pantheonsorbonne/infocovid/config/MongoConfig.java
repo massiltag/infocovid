@@ -25,7 +25,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     public MongoClient mongoClient() {
-        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://app:app@scoovidoo.9hkfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
