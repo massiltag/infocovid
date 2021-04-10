@@ -15,7 +15,7 @@ import java.util.Objects;
 public class StatsRecap {
 
     /**
-     * Date de la synthèse TODO utiliser {@link java.time.LocalDateTime}
+     * Date de la synthèse
      */
     private LocalDate date;
 

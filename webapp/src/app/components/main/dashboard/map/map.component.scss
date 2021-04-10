@@ -7,6 +7,14 @@
     border-radius: 7px;
 }
 
+.spinner {
+    position: absolute;
+    display: block;
+    z-index: 1001;
+    left: 17%;
+    top: 10%;
+}
+
 @media (max-width:1700px) {
     #map {
         width: 26vw;

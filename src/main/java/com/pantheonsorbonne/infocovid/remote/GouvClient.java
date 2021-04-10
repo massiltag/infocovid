@@ -1,5 +1,7 @@
 package com.pantheonsorbonne.infocovid.remote;
 
+import com.pantheonsorbonne.infocovid.domain.dto.StatsDepartementDTO;
+import com.pantheonsorbonne.infocovid.domain.mappers.StatsDepartementMapper;
 import com.pantheonsorbonne.infocovid.domain.mappers.StatsRecapMapper;
 import com.pantheonsorbonne.infocovid.domain.mappers.VaccineStatsMapper;
 import com.pantheonsorbonne.infocovid.domain.model.StatsRecap;
@@ -38,6 +40,8 @@ public class GouvClient {
 
     private static String VACC_URL = "https://www.data.gouv.fr/fr/datasets/r/efe23314-67c4-45d3-89a2-3faef82fae90";
 
+    private static String STATS_DEP_URL = "https://www.data.gouv.fr/fr/datasets/r/5c4e1452-3850-4b59-b11c-3dd51d7fb8b5";
+
     public StatsRecap getStatsRecap(LocalDate date) {
         try {
             return getStatsRecap().stream().filter(o -> o.getDate().equals(date)).collect(Collectors.toList()).get(0);
@@ -67,6 +71,8 @@ public class GouvClient {
         return StatsRecapMapper.csvToList(response);
     }
 
+
+
     public VaccineStats getVaccStats(LocalDate date) {
         try {
             return getVaccStats().stream().filter(o -> o.getDate().equals(date)).collect(Collectors.toList()).get(0);
@@ -93,6 +99,22 @@ public class GouvClient {
         String response = Optional.ofNullable(responseEntity.getBody()).orElse("");
 
         return VaccineStatsMapper.csvToList(response);
+    }
+
+    public List<StatsDepartementDTO> getStatsDep() {
+        // Get URL
+        String httpUrl = STATS_DEP_URL;
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+                UriComponentsBuilder.fromHttpUrl(httpUrl).build(false).toUriString(),
+                HttpMethod.GET,
+                new HttpEntity<>(null, new HttpHeaders()),
+                new ParameterizedTypeReference<>() {}
+        );
+
+        String response = Optional.ofNullable(responseEntity.getBody()).orElse("");
+
+        return StatsDepartementMapper.csvToList(response);
     }
 
 

@@ -1,5 +1,6 @@
 package com.pantheonsorbonne.infocovid.controllers;
 
+import com.pantheonsorbonne.infocovid.domain.dto.StatsDepartementDTO;
 import com.pantheonsorbonne.infocovid.domain.model.Metrics;
 import com.pantheonsorbonne.infocovid.services.MetricsService;
 import lombok.RequiredArgsConstructor;
@@ -36,20 +37,9 @@ public class StatsController {
         return ResponseEntity.ok(metricsService.getForRange(stringToLocalDate(from), stringToLocalDate(to)));
     }
 
-//    @GetMapping(BASE_URL + "/stats/recap")  // Date au format yyyy-MM-dd
-//    public ResponseEntity<List<StatsRecap>> getStatsRecap(@RequestParam(required = false) String date) {
-//        if (date != null)
-//            return ResponseEntity.ok(List.of(gouvClient.getStatsRecap(date)));
-//        else
-//            return ResponseEntity.ok(gouvClient.getStatsRecap());
-//    }
-//
-//    @GetMapping(BASE_URL + "/stats/vaccins") // Date au format yyyy-MM-dd
-//    public ResponseEntity<List<VaccineStats>> getVaccineStats(@RequestParam(required = false) String date) {
-//        if (date != null)
-//            return ResponseEntity.ok(List.of(gouvClient.getVaccStats(date)));
-//        else
-//            return ResponseEntity.ok(gouvClient.getVaccStats());
-//    }
+    @GetMapping(BASE_URL + "/metrics/departments") // Positivité par département
+    public ResponseEntity<List<StatsDepartementDTO>> getByDepartments() {
+        return ResponseEntity.ok(metricsService.getStatsByDep());
+    }
 
 }

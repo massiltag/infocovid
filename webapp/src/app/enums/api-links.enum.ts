@@ -6,6 +6,7 @@ export enum ApiLinksEnum {
   SUBSCRIBE = 'http://localhost:8080/api/subscribe',
   METRICS = 'http://localhost:8080/api/metrics',
   METRICS_RANGE = 'http://localhost:8080/api/metrics/range',
+  CAS_DEPARTEMENT = 'http://localhost:8080/api/metrics/departments',
   PREVISION_CONFINEMENT = 'http://localhost:8080/api/previsions/confinement',
   PREVISION_IMMUNITE = 'http://localhost:8080/api/previsions/immunite'
 }

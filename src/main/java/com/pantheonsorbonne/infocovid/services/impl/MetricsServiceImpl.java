@@ -1,5 +1,6 @@
 package com.pantheonsorbonne.infocovid.services.impl;
 
+import com.pantheonsorbonne.infocovid.domain.dto.StatsDepartementDTO;
 import com.pantheonsorbonne.infocovid.domain.model.Metrics;
 import com.pantheonsorbonne.infocovid.domain.model.StatsRecap;
 import com.pantheonsorbonne.infocovid.domain.model.VaccineStats;
@@ -106,5 +107,10 @@ public class MetricsServiceImpl implements MetricsService {
     @Override
     public VaccineStats getVaccineStatsForDay(LocalDate day) {
         return getForDay(day).getVaccineStats();
+    }
+
+    @Override
+    public List<StatsDepartementDTO> getStatsByDep() {
+        return gouvClient.getStatsDep();
     }
 }

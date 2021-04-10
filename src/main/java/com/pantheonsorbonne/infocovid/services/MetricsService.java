@@ -1,5 +1,6 @@
 package com.pantheonsorbonne.infocovid.services;
 
+import com.pantheonsorbonne.infocovid.domain.dto.StatsDepartementDTO;
 import com.pantheonsorbonne.infocovid.domain.model.Metrics;
 import com.pantheonsorbonne.infocovid.domain.model.StatsRecap;
 import com.pantheonsorbonne.infocovid.domain.model.VaccineStats;
@@ -8,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface MetricsService {
-
 
     /**
      * Récupération des statistiques pour le jour 'day'
@@ -39,5 +39,11 @@ public interface MetricsService {
      * @return Indicateurs contenant une synthèse des informations connues à la date indiquée
      */
     VaccineStats getVaccineStatsForDay(LocalDate day);
+
+    /**
+     * Récupère le nombre de cas par départements depuis le CSV du gouvernement
+     * @return Liste des départements avec leurs cas à J-4
+     */
+    List<StatsDepartementDTO> getStatsByDep();
 
 }
