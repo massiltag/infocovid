@@ -41,8 +41,6 @@ import {CheckboxComponent} from './components/basic/checkbox/checkbox.component'
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {FrenchDateAdapter} from './util/french-date-adapter';
-import {LoginComponent} from './components/main/login/login.component';
-import {LoginFormComponent} from './components/main/login/login-form/login-form.component';
 import {InputComponent} from './components/basic/input/input.component';
 import {AgGridModule} from 'ag-grid-angular';
 import {SoonComponent} from './components/basic/soon/soon.component';
@@ -69,10 +67,10 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {ToChartComponent} from './components/main/dashboard/charts/to-chart/to-chart.component';
 import localeFr from '@angular/common/locales/fr';
 import {HospChartComponent} from './components/main/dashboard/charts/hosp-chart/hosp-chart.component';
-import { PredictionsComponent } from './components/main/predictions/predictions.component';
-import { PredictionsChartComponent } from './components/main/predictions/predictions-chart/predictions-chart.component';
-import { PredictionsConfComponent } from './components/main/predictions/predictions-conf/predictions-conf.component';
-import { PredictionsVaccinationComponent } from './components/main/predictions/predictions-vaccination/predictions-vaccination.component';
+import {PredictionsComponent} from './components/main/predictions/predictions.component';
+import {PredictionsChartComponent} from './components/main/predictions/predictions-chart/predictions-chart.component';
+import {PredictionsConfComponent} from './components/main/predictions/predictions-conf/predictions-conf.component';
+import {PredictionsVaccinationComponent} from './components/main/predictions/predictions-vaccination/predictions-vaccination.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -95,8 +93,6 @@ registerLocaleData(localeFr, 'fr');
     SelectCheckboxComponent,
     LabelComponent,
     CheckboxComponent,
-    LoginComponent,
-    LoginFormComponent,
     InputComponent,
     SoonComponent,
     BreadcrumbComponent,

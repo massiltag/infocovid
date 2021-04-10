@@ -31,6 +31,11 @@ public class BaseController {
 
     private final EmailService emailService;
 
+    @GetMapping(BASE_URL + "/health")
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("OK");
+    }
+
     @GetMapping(BASE_URL + "/vaccins/centres")
     public ResponseEntity<List<CentreVaccinationDTO>> getCentres() {
         return ResponseEntity.ok(centreVacService.getAllCentres());

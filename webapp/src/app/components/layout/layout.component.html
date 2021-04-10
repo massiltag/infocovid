@@ -4,7 +4,7 @@
                (buttonClicked)="auth.isAuthenticated() ? sidenav.toggle() : undefined">
   </app-toolbar>
 
-  <app-sidenav #sidenav [opened]="true">
+  <app-sidenav #sidenav [opened]="!isXs()">
     <div class="router-outlet">
       <ng-content></ng-content>
     </div>

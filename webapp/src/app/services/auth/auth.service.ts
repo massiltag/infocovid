@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RoutePathEnum} from '../../enums/route-path.enum';
-import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,39 +11,11 @@ export class AuthService {
   public username: string;
 
   constructor(private http: HttpClient,
-              private router: Router,
-              private cookies: CookieService) {
-    /*
-    if (this.cookies.check(Properties.TOKEN_COOKIE)) {
-      this.authenticated = true;
-      this.username = this.cookies.get(Properties.USERNAME_COOKIE);
-    } else {
-      this.authenticated = false;
-    }
-     */
+              private router: Router,) {
   }
 
   login(login: string, password: string, ifValid: (o: AuthResponse) => any, orElse: (o: AuthResponse) => any): void {
-    const url = ''; // ApiLinksEnum.LOGIN;
-
-    const headers = new HttpHeaders(); const params = new HttpParams();
-    headers.append('Content-Type', 'application/json');
-
-    this.http.post<any>(url, { login, password }).subscribe(r => {
-      this.authenticated = true;
-      if (r.access_token !== 'INVALID') {
-        ifValid(r);
-        this.authenticated = true;
-        this.username = r.username;
-        // this.cookies.set(Properties.TOKEN_COOKIE, r.access_token);
-        // this.cookies.set(Properties.USERNAME_COOKIE, r.username);
-        // this.router.navigate([RoutePathEnum.GROUPS]);
-      } else {
-        orElse(r);
-        this.authenticated = false;
-        this.username = null;
-      }
-    });
+    // login code (après)
   }
 
   isAuthenticated(): boolean {
