@@ -1,5 +1,6 @@
 package com.pantheonsorbonne.infocovid;
 
+import com.pantheonsorbonne.infocovid.config.SSLValidation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -7,7 +8,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
-import com.pantheonsorbonne.infocovid.config.SSLValidation;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -28,9 +28,7 @@ public class InfocovidApplication {
 	public RestTemplate restTemplate() {
 		try {
             SSLValidation.turnOffSslChecking();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
+        } catch (NoSuchAlgorithmException | KeyManagementException e) {
             e.printStackTrace();
         }
 		return new RestTemplate();
