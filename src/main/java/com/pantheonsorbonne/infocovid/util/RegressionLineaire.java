@@ -87,7 +87,7 @@ public class RegressionLineaire {
 	 *  <p>
 	 * Calcul du nombre de vaccinations prévisionnel
 	 * 
-	 * Pour atteinre l'immunité collective en France, 70% de la population doit etre
+	 * Pour atteindre l'immunité collective en France, 70% de la population doit etre
 	 * vaccinée.
 	 * </p>
 	 * 
