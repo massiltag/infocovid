@@ -19,7 +19,7 @@ export class PredictionsComponent implements OnInit {
   date_confinement: string;  
   temp_number: number;
 
-  // Affichage des r�sultats dans la partie de droite
+  //Affichage des résultats dans la partie de droite
   result_prevision_confinement: string;
   result_prevision_immunite: string;
 
@@ -33,14 +33,24 @@ export class PredictionsComponent implements OnInit {
     this.searching = 0;
     this.prevision = this.prevision_service.prevision_confinement();
     
-    // Affichage des r�sultats des pr�visions dans la partie de droite 
+    // Affichage des résultats des prévisions dans la partie de droite  
     this.prevision_service.prevision_confinement().subscribe(statData => {
         this.prevision = statData;
-        //this.searching++;
-        console.log("Result this.prevision.confinenement : "+this.prevision.confinement);
         this.nombre_cas = this.prevision.nombre_cas;
-        if (this.prevision.confinement) {
-            this.result_prevision_confinement = "Risque élevé de confinement, lorsque le nombre de "+this.prevision.type_cas+" est sup a "+this.nombre_cas;
+        	
+        		// VÃ©rification du type des cas
+                if (this.prevision.type_cas == "hospi") {
+                    this.prevision.type_cas = "d'hospitalisation";
+                } else if (this.prevision.type_cas == "casCovid") {
+                    this.prevision.type_cas = "de cas covid-19";
+                } else if (this.prevision.type_cas == "décès") {
+                    this.prevision.type_cas = "de décès";
+                } else {
+                    throw new Error("Aucun des types de cas n'a été détecté");
+                }
+        
+                if (this.prevision.confinement && this.prevision.type_cas != "") {
+                    this.result_prevision_confinement = "Risque élevé de confinement sur cette période à partir d'un nombre "+this.prevision.type_cas+" supérieur à "+this.nombre_cas;
         } else {
             this.result_prevision_confinement = "Actuellement, risque peu élevé de confinement";
         }
@@ -60,7 +70,7 @@ export class PredictionsComponent implements OnInit {
             if (this.prevision_immunite.nbVaccinAtteint == -1) {
                 this.result_prevision_immunite += " Et ne sera potentiellement pas atteinte dans les 2 prochaines semaines.";
             } else {
-                this.result_prevision_immunite += " Et sera potentiellement atteinte dans les 2 prochaines semaines, lorsque le nombre de vaccination aura atteint : "+this.prevision_immunite.nbVaccinAtteint;
+                this.result_prevision_immunite += " Et sera potentiellement atteinte dans les 2 prochaines semaines, lorsque le nombre de vaccination nécessaire sera atteint : "+this.prevision_immunite.nbVaccinAtteint;
             }
         }
     });
