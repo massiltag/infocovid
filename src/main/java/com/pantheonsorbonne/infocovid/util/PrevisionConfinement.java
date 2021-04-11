@@ -7,7 +7,13 @@ import java.util.List;
 
 
 /**
- *
+ * <p>
+ * confinement dans les jours à venir, en tenant compte de plusieurs critères: -
+ * Le nombre et l'augmentation de cas de covid en France Le nombre et -
+ * l'augmentation de décès liés au covid en France - Le nombre et l'augmentation
+ * des hospitalisations liées au covid en France
+ * </p>
+ * @author Scoovidoo
  */
 @Builder
 public class PrevisionConfinement {

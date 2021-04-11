@@ -21,19 +21,19 @@ import java.util.ArrayList;
 )
 public class PrevisionImmunite {
 		/**
-	     *
+	     *Booléen en cas d'immunité collective ou pas
 	     */
 	    @JsonProperty("immunite")
 	    private boolean immunite;
 
 	    /**
-	     *
+	     * Le nombre de vaccination total le jour où l'immunité collective est atteinte
 	     */
 	    @JsonProperty("nbVaccinAtteint")
 	    private int nbVaccinAtteint;
 	    
 	    /**
-	     *
+	     *Liste des prévisions du nombre de vaccinations sur les prochains jours
 	     */
 	    @JsonProperty("nbVaccinQuotidien")
 	    private ArrayList<Double> nbVaccinQuotidien;

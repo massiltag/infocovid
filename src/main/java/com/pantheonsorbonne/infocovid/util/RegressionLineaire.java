@@ -2,15 +2,17 @@ package com.pantheonsorbonne.infocovid.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 
 import com.pantheonsorbonne.infocovid.domain.model.PrevisionImmunite;
 
 import lombok.Builder;
 
 /**
- * La régression linéaire simple est utilisée dans notre projet pour prédire l'immunité
- * collective en établissant une relation linéaire entre les valeurs du nombre
- * de vaccination
+ * La régression linéaire simple est utilisée dans notre projet pour prédire
+ * l'immunité collective en établissant une relation linéaire entre les valeurs
+ * du nombre de vaccination
  * 
  * On affichera donc sur le graphique le nombre de vaccinations sur les 30
  * derniers jours ainsi que la prévisionsur 14 jours. Si l'immunité est
@@ -28,9 +30,6 @@ public class RegressionLineaire {
 
 	private int b;
 	private int a;
-	private int r2;
-	private int svar0;
-	private int svar1;
 
 	boolean immunite = false;
 
@@ -40,21 +39,17 @@ public class RegressionLineaire {
 	 */
 	public void linearRegression() {
 
-		int nb = 0;
-		for (Integer ignored : this.nbVaccinationsList) {
-			jourList.add((int) nb);
-			nb++;
-		}
-		int n = this.jourList.size();
-
-		// 1er pass
 		int sumJour = 0, sumNbVacc = 0, sumJour2 = 0;
 
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < nbVaccinationsList.size(); i++) {
+			jourList.add(i);
 			sumJour += this.jourList.get(i);
 			sumJour2 += this.jourList.get(i) * this.jourList.get(i);
 			sumNbVacc += this.nbVaccinationsList.get(i);
+
 		}
+
+		int n = this.jourList.size();
 		int jourBar = sumJour / n;
 		int nbVaccBar = sumNbVacc / n;
 
@@ -69,25 +64,9 @@ public class RegressionLineaire {
 		this.a = jourNbVaccBar / jour2bar;
 		this.b = nbVaccBar - a * jourBar;
 
-		// d'autres analyses statistiques
-		int rss = 0;
-		int ssr = 0;
-
-		for (int i = 0; i < n; i++) {
-			int fit = a * this.jourList.get(i) + b;
-			rss += (fit - this.nbVaccinationsList.get(i)) * (fit - this.nbVaccinationsList.get(i));
-			ssr += (fit - nbVaccBar) * (fit - nbVaccBar);
-		}
-
-		int degre = n - 2;
-		this.r2 = ssr / nbVacc2bar;
-
-		int svar = rss / degre;
-		this.svar1 = svar / jour2bar;
-		this.svar0 = svar / n + jourBar * jourBar * svar1;
-
+		
 		if (this.jourList.size() != this.nbVaccinationsList.size()) {
-			throw new IllegalArgumentException("la longueur des tableaux n'dst pas la meme");
+			throw new IllegalArgumentException("la longueur des tableaux n'est pas la même");
 		}
 
 	}
@@ -100,20 +79,17 @@ public class RegressionLineaire {
 		return a;
 	}
 
-	public int R2() {
-		return r2;
-	}
-
-	public double aStdErr() {
-		return Math.sqrt(svar1);
-	}
-
 	public int prediction(int x) {
 		return a * x + b;
 	}
 
 	/**
-	 * calcul du nombre de vaccinations prévisionnel
+	 *  <p>
+	 * Calcul du nombre de vaccinations prévisionnel
+	 * 
+	 * Pour atteinre l'immunité collective en France, 70% de la population doit etre
+	 * vaccinée.
+	 * </p>
 	 * 
 	 * @return un objet PrevisionImmunite contenant une liste du nombre de
 	 *         vaccination prévisionnel sur les 14 jours suivants , un booléen
@@ -126,14 +102,12 @@ public class RegressionLineaire {
 		int nbVaccinAtteint = -1;
 
 		ArrayList<Double> nbVaccinQuotidien = new ArrayList<Double>();
-		float tauxImmunite = (float) (67000000 * 0.6);
+		float tauxImmunite = (float) (67000000 * 0.67);
 
 		this.linearRegression();
-		System.out.println(jourList.size());
 
 		for (int i = jourList.size() + 1; i <= jourList.size() + 15; i++) {
 
-			System.out.println(i);
 
 			nbVaccinations = prediction(i);
 
