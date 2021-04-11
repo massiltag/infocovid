@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Metrics} from '../../../../models/metrics.model';
-import {Prevision_immunite} from '../../../../models/prevision_immunite.model';
 import * as moment from 'moment';
 
 @Component({
@@ -71,27 +70,30 @@ export class PredictionsVaccinationComponent implements OnInit {
   cleanForChart(metrics: Metrics[]): any[] {
     const cum_dose1 = [];
     const cum_dose1_prev = [];
-    
+
     metrics.forEach(m => {
-      // Ligne de vaccination r�elle 
-      cum_dose1.push({
-        name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
-        value: m.vaccineStats.n_cum_dose1
-      });
-      
+      if (m.vaccineStats.n_cum_dose1 != 0) {
+        // Ligne de vaccination réelle
+        cum_dose1.push({
+          name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
+          value: m.vaccineStats.n_cum_dose1
+        });
+      } else {
+        cum_dose1.push({
+          name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
+          value: cum_dose1.slice(-1).pop().value
+        });
+      }
+
       this.yesterday = moment(new Date(Date.now()), 'YYYY-MM-DD').subtract(1, "days").format('DD MMM');
       this.m_day = moment(m.date, 'YYYY-MM-DD').format('DD MMM');
-      //console.log("YESTERDAY : "+this.yesterday);
-      //console.log("M_DAY : "+this.m_day);
-   
-      if (this.yesterday == this.m_day) {
-        //console.log("Is equal");
 
-        // Ligne de vaccination pr�dit, ajout de la valeur du dernier jour r�elle 
+      if (this.yesterday === this.m_day) {
+
+        // Ligne de vaccination prédit, ajout de la valeur du dernier jour réelle
         cum_dose1_prev.push({
-            //name: moment(m.date, 'YYYY-MM-DD').format('DD MMM'),
-            name: this.m_day,
-            value: m.vaccineStats.n_cum_dose1
+          name: this.m_day,
+          value: cum_dose1.slice(-1).pop().value
         });
       }
     });
