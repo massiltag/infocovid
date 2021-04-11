@@ -31,8 +31,8 @@ public class PrevisionServiceImpl implements PrevisionService {
 	RegressionLineaire mmc;
 
 	/**
-	 *
-	 * @return
+	 * Permet de récupérer la prévision pour un confinement
+	 * @return un objet contenant la prévision sur le confinement
 	 */
 	@Override
 	public Prevision getPrevision() {
@@ -51,8 +51,8 @@ public class PrevisionServiceImpl implements PrevisionService {
 	}
 
 	/**
-	 *
-	 * @return
+	 * Permet de récupérer les prévisions pour l'immunité collective
+	 * @return un objet contenant les prévisions sur l'immunité
 	 */
 	@Override
 	public PrevisionImmunite getRegressionLineaireImmunite() {
