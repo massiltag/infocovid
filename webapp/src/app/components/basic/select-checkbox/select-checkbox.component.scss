@@ -1,0 +1,18 @@
+.form-select {
+  .arrow-disable {
+    .mat-select-arrow {
+      visibility: hidden;
+    }
+  }
+
+  *:focus {
+    outline: none;
+  }
+  letter-spacing: 0;
+}
+
+::ng-deep {
+  .mat-active, .mat-selected, .cdk-focused {
+    color: white! important;
+  }
+}

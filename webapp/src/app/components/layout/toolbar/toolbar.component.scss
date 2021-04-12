@@ -1,0 +1,40 @@
+.toolbar-container {
+  .toolbar {
+    z-index: 10;
+    position: relative;
+    color: #ffffff;
+    box-shadow: 0 -4px 18px 8px rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    height: 60px;
+
+    .toolbar-left-icon {
+      cursor: pointer;
+    }
+
+    .logo {
+      margin-left: auto;
+      height: 65px;
+    }
+  }
+
+  .toolbar-text {
+    margin-left: 1vw;
+    font-weight: lighter;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+  }
+
+  .search-icon {
+    margin-right: 2.3vw;
+    margin-left: auto;
+    display: inline;
+
+    &-icon {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+
+}

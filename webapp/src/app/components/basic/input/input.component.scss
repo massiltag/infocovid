@@ -1,0 +1,21 @@
+.form-input-text {
+  input[type="text"]::-webkit-inner-spin-button,
+  input[type="text"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  mat-form-field {
+    letter-spacing: 0.5px!important;
+
+    ::ng-deep .mat-focused .mat-form-field-label {
+      color: unset !important;
+    }
+  }
+
+}
+

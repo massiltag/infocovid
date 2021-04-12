@@ -1,0 +1,52 @@
+@import 'src/styles.scss';
+
+.app-card-component {
+  height: 100%!important;
+  .card-container {
+    height: 100%!important;
+    padding-bottom: 1vh;
+
+    .app-card {
+      height: 100%;
+      margin: 0 0 1.3vh 0;
+      border-radius: 5px;
+
+    }
+
+    .mat-card-content {
+      margin-top: 7px;
+    }
+
+    .app-card-title {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.15px;
+
+    }
+
+    .app-card-header {
+      margin-top: 0 !important;
+
+      .icon-link {
+        text-decoration: none;
+        color: $app-primary-color;
+      }
+
+      .mat-card-header-text {
+        width: fit-content;
+      }
+
+      .app-card-header-icon {
+        position: absolute;
+        width: auto!important;
+        margin: -3px 8px 6px -34px!important;
+      }
+
+      .no-icon-template {
+        margin-left: -33px;
+        font-size: 18px;
+      }
+
+    }
+  }
+}

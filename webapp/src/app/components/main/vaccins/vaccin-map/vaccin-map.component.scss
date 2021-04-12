@@ -1,0 +1,80 @@
+// Leaflet has a rendering problem when height and width are set to 100%
+// So we have to deal with media queries...
+
+#map {
+    height: 73vh;
+    width: 59vw;
+    border-radius: 7px;
+    z-index: 0;
+}
+
+.text-spinner {
+    z-index: 1;
+    position: absolute;
+    top: 8vh;
+    left: 7vh;
+    color: dimgray;
+    font-weight: bolder;
+}
+
+@media (max-width:1900px) {
+    #map {
+        width: 58vw;
+    }
+}
+
+@media (max-width:1700px) {
+    #map {
+        width: 56vw;
+    }
+}
+
+@media (max-width:1420px) {
+    #map {
+        width: 53vw;
+    }
+}
+
+@media (max-width:1200px) {
+    #map {
+        width: 50vw;
+    }
+}
+
+@media (max-width:800px) {
+    #map {
+        width: 49vw;
+    }
+}
+
+@media (max-width:600px) {
+    #map {
+        width: 75vw;
+    }
+}
+
+
+@media (max-height:830px) {
+    #map {
+        height: 69vh;
+    }
+}
+
+
+@media (max-height:730px) {
+    #map {
+        height: 66vh;
+    }
+}
+
+@media (max-height:630px){
+    #map {
+        height: 58vh;
+    }
+}
+
+@media (max-height:520px){
+    #map {
+        height: 53vh;
+    }
+}

@@ -1,0 +1,25 @@
+.vac-article {
+  border-bottom: 1px solid;
+  padding: 1px 0 3px 0;
+
+  .img {
+    border-radius: 3px
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .title {
+    margin-bottom: 0;
+    font-weight: bolder;
+  }
+
+  p {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+
+}

@@ -1,0 +1,47 @@
+<label class="mat-body-2">{{ placeholder }}</label>
+<mat-form-field
+  [class.mat-form-field-invalid]="!formControl.control.valid && formControl.control.touched"
+  [color]="'primary'"
+  [appearance]="'outline'"
+  fxLayout="column"
+  fxFill
+>
+  <div class="multiple" fxLayout="row" fxLayoutAlign="space-between" fxFill>
+    <div fxFlex="45">
+      <input
+        class="start"
+        matInput
+        [value]="value?.start"
+        [min]="min"
+        [matDatepicker]="pickerStart"
+        placeholder="JJ/MM/AAAA"
+        (dateChange)="onStartChange($event)"
+        [disabled]="formControl.control.disabled"
+      />
+      <mat-datepicker-toggle class="start" [disableRipple]="true" matSuffix [for]="pickerStart">
+        <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #pickerStart></mat-datepicker>
+    </div>
+    <mat-divider fxFlex="1" [vertical]="true"></mat-divider>
+    <div fxFlex="45">
+      <input
+        matInput
+        [value]="value?.end"
+        [min]="value?.start"
+        [max]="max"
+        [matDatepicker]="pickerEnd"
+        placeholder="JJ/MM/AAAA"
+        (dateChange)="onEndChange($event)"
+        [disabled]="formControl.control.disabled"
+      />
+      <mat-datepicker-toggle [disableRipple]="true" matSuffix [for]="pickerEnd">
+        <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd></mat-datepicker>
+    </div>
+  </div>
+  <mat-hint class="mat-error" *ngIf="!formControl.control.valid && formControl.control.touched">
+    <ng-content></ng-content>
+  </mat-hint>
+</mat-form-field>

@@ -1,0 +1,93 @@
+<div class="main-container" *ngIf="searching == 2; else spinner">
+    <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+        <mat-tab label="Informations" class="flex-container">
+            <div class="flex-container"
+                 fxLayout="row"
+                 fxLayout.xs="column"
+                 fxLayoutAlign="start center"
+                 fxLayoutGap="10px">
+
+                <div fxFlex="70"
+                     fxFlex.xs="100"
+                     fxFlex.sm="100"
+                     fxFlexAlign="stretch">
+                    <app-card
+                            class="grid-card-fill map-card"
+                            [headerTitle]="'Carte des centres de vaccination'"
+                            [headerIcon]="'map'">
+                        <app-map-vaccin></app-map-vaccin>
+                    </app-card>
+                </div>
+                <div class="info-card-container"
+                     fxFlex="30"
+                     fxFlex.xs="100"
+                     fxFlex.sm="100"
+                     fxFlexAlign="stretch">
+                    <app-card
+                            class="grid-card-fill map-card"
+                            [headerTitle]="'Informations relatives à la vaccination'"
+                            [headerIcon]="'info'">
+                        <div *ngIf="!searchingNews; else spinner">
+                            <app-vaccin-news *ngFor="let article of news" [article]="article"></app-vaccin-news>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Chiffres clés">
+            <div *ngIf="false; else tab2"></div>
+        </mat-tab>
+    </mat-tab-group>
+
+
+
+
+
+</div>
+
+
+<ng-template #tab2>
+    <div class="chiffres-cles-container"
+         ngStyle.gt-xs="height: 85vh;"
+         fxLayout="row wrap"
+         fxLayout.xs="column"
+         fxLayoutAlign="center center"
+         fxLayoutGap="10px">
+
+        <div fxFlex="60"
+             fxFlex.xs="120"
+             fxFlex.sm="48"
+             fxFlex.md="30">
+            <app-card class="chiffre-card"
+                      matTooltip="Informations en date du {{ vstats.date | date: 'dd/MM/yyyy'}}">
+                <app-key-number
+                        [number]="cleanForView(vstats.n_dose1)"
+                        [unity]="getUnity(vstats.n_dose1)"
+                        [description]="'Nombre de vaccinations (dose 1)'">
+                </app-key-number>
+            </app-card>
+            <app-card class="chiffre-card"
+                      matTooltip="Informations en date du {{ vstats.date | date: 'dd/MM/yyyy'}}">
+                <app-key-number
+                        [number]="cleanForView(vstats.n_dose2)"
+                        [unity]="getUnity(vstats.n_dose2)"
+                        [description]="'Nombre de vaccinations (dose 2)'">
+                </app-key-number>
+            </app-card>
+            <app-card class="chiffre-card"
+                      matTooltip="Informations en date du {{ vstats.date | date: 'dd/MM/yyyy'}}">
+                <app-key-number
+                        [number]="cleanForView(vstats.n_cum_dose1)"
+                        [unity]="getUnity(vstats.n_cum_dose1)"
+                        [description]="'Cumul des vaccinations'">
+                </app-key-number>
+            </app-card>
+        </div>
+
+    </div>
+</ng-template>
+
+
+<ng-template #spinner>
+    <app-progress-spinner></app-progress-spinner>
+</ng-template>

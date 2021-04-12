@@ -1,0 +1,106 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-material.css";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$webapp-primary: mat-palette($mat-purple, 900, 600, 900);
+$webapp-accent: mat-palette($mat-light-blue, A200, A100, A400);
+
+$webapp-yellow: mat-palette($mat-indigo, A400, A200, A700);
+
+// The warn palette is optional (defaults to red).
+$webapp-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$webapp-theme: mat-dark-theme((
+  color: (
+    primary: $webapp-primary,
+    accent: $webapp-accent,
+    warn: $webapp-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($webapp-theme);
+
+
+// GET Colors
+$app-primary: map-get($webapp-theme, primary);
+$app-accent: map-get($webapp-theme, accent);
+
+$app-yellow: map-get($webapp-yellow, appyellow);
+
+$app-primary-color: mat-color(mat-palette($webapp-primary, A200));
+$app-accent-color: mat-color(mat-palette($webapp-accent));
+
+// STYLES
+@import 'colors.scss';
+
+html, body{
+  margin:0;
+  padding:0;
+  font-family:Montserrat, Helvetica;
+  color:$grey;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+.dialog-title {
+  color: whitesmoke;
+  font-weight: bolder;
+}
+
+body {
+  background:$bg-grey;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+body {  }
+
+::ng-deep {
+  * { // DISABLE SELECTION
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  // ROUNDED SCROLLBAR
+  ::-webkit-scrollbar {
+    width: 0.95em;
+    height: 1em;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.32);
+    border-radius: 50px;
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    border-radius: 50px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 50px;
+    background-color: #f5f5f5;
+  }
+
+  // NO RIPPLE
+  .no-ripple .mat-ripple { display: none; }
+}

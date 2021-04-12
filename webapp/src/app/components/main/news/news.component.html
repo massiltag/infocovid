@@ -1,0 +1,29 @@
+<div class="main-container">
+    <h1 class="big-title">Actualités relatives à la COVID-19</h1>
+    <div *ngIf="!searching; else spinner"></div>
+
+    <div class="flex-container"
+         fxLayout="row wrap"
+         fxLayout.xs="column"
+         fxLayoutAlign="start center"
+         fxLayoutGap="10px">
+        <div *ngFor="let article of news"
+             fxFlex="24"
+             fxFlex.xs="100"
+             fxFlex.sm="48"
+             fxFlex.md="30"> <!-- USEFUL -->
+            <app-news-card
+                    [title]="article.title"
+                    [subtitle]="article.source + ', le ' + isoToFrenchDate(article.published_at)"
+                    [imgLink]="article.image"
+                    [content]="article.description"
+                    [url]="article.url"
+            ></app-news-card>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #spinner>
+    <app-progress-spinner></app-progress-spinner>
+</ng-template>

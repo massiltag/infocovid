@@ -1,0 +1,51 @@
+@import 'src/styles.scss';
+
+.sidenav {
+  width: 200px;
+  min-width: fit-content;
+  max-width: 18%;
+
+  .icon {
+    margin-right: 8px;
+  }
+
+  .active {
+    .icon {
+      color: $app-primary-color;
+    }
+  }
+
+  mat-nav-list .mat-list-item {
+    //border: 3px solid;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .no-ripple {
+    border-radius: 0px 0px 15px 0px;
+    border-bottom: 2px inset white;
+    border-color: gray;
+
+    &:hover {
+      cursor: auto;
+      background: unset!important;
+    }
+
+  }
+
+}
+
+::ng-deep {
+  .mat-focus-indicator {
+    //border-radius: 0px 20px 20px 0px;
+  }
+
+  .mat-list-item-disabled {
+    background: unset!important;
+    color: gray!important;
+  }
+}

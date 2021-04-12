@@ -1,0 +1,26 @@
+.info-card {
+  height: 450px;
+  margin-bottom: 10px;
+
+  .p-overflow-hidden {
+    height: 120px;
+  }
+
+  .no-link {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: #d1d3fc;
+    }
+  }
+
+  ::ng-deep .mat-card-header-text {
+    margin: 0!important;
+  }
+}
+
+.card-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

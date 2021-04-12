@@ -1,0 +1,24 @@
+.key-number {
+  text-align: center;
+  font-family: "Helvetica Neue", sans-serif;
+  margin: 0 5px 0 5px;
+
+  .number {
+    display: block;
+    font-size: 7vh;
+    font-weight: bold;
+    margin-bottom: 3vh;
+    color: #eae0fc;
+  }
+
+  .unity {
+    font-size: 5vh;
+    color: #bebebe;
+  }
+
+  .description {
+    display: block;
+    font-weight: bold;
+    font-size: 1.5vh;
+  }
+}

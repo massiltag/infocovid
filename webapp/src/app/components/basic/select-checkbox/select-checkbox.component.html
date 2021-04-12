@@ -1,0 +1,18 @@
+<mat-form-field [color]="'primary'" [appearance]="'outline'" flexLayout="column" fxFill class="form-select">
+  <mat-label>{{ placeholder }}</mat-label>
+  <mat-select multiple
+              [ngClass]="{ 'arrow-disable': value }"
+              [formControl]="formControl.control"
+              placeholder="{{ placeholder }}"
+              [value]="value"
+              (selectionChange)="onOptionSelected($event)"
+  >
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      <span style="font-family: 'Inconsolata', 'Monaco', 'Consolas', monospace; font-weight: bold">{{ option.text }}</span>
+    </mat-option>
+  </mat-select>
+  <mat-icon *ngIf="value" (click)="onClickClearAll($event)" matSuffix>close</mat-icon>
+  <mat-error>
+    <ng-content></ng-content>
+  </mat-error>
+</mat-form-field>

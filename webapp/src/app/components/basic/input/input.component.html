@@ -1,0 +1,14 @@
+<mat-form-field [appearance]="'standard'" class="form-input-text" [color]="'primary'" flexLayout="column" fxFill>
+  <mat-label>{{ placeholder }}</mat-label>
+  <input matInput
+         [value]="value"
+         [formControl]="formControl.control"
+         (input)="onInputChange($event)"
+         placeholder="{{ placeholder }}"
+         type="{{ type }}"
+  />
+  <mat-icon matSuffix *ngIf="showClearAll" (click)="onClickClearAll()">close</mat-icon>
+  <mat-error>
+    <ng-content></ng-content>
+  </mat-error>
+</mat-form-field>

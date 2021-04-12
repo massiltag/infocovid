@@ -1,0 +1,260 @@
+<div class="main-container" *ngIf="searching === 3; else spinner">
+    <h1 class="big-title">Dashboard</h1>
+    <mat-grid-list cols="3" rowHeight="42vh" *ngIf="!isXs(); else mobile">
+        <mat-grid-tile [colspan]="2">
+            <app-card
+                    class="grid-card-fill"
+                    [headerTitle]="'En quelques chiffres'"
+                    [headerIcon]="'query_stats'"
+            >
+                <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+                    <mat-tab label="Chiffres du jour">
+                        <div class="vertical-center" fxLayout="row" fxLayoutAlign="space-around center">
+                            <app-key-number [number]="cleanForView(today.recap.conf_j1)"
+                                            [unity]="getUnity(today.recap.conf_j1)"
+                                            [description]="'Cas confirmés'"
+                                            matTooltip="Nombre de nouveaux cas confirmés, le {{ today.date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                            <app-key-number [number]="cleanForView(today.recap.dchosp + today.recap.esms_dc - fiveDays[4].recap.dchosp - fiveDays[4].recap.esms_dc)"
+                                            [unity]="getUnity(today.recap.dchosp + today.recap.esms_dc - fiveDays[4].recap.dchosp - fiveDays[4].recap.esms_dc)"
+                                            [description]="'Décès'"
+                                            matTooltip="Nombre de nouveaux décès reportés, le {{ today.date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                            <app-key-number [number]="cleanForView(today.recap.hosp)"
+                                            [unity]="getUnity(today.recap.hosp)"
+                                            [description]="'Hospitalisations'"
+                                            matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19.
+                                            Données du {{ today.date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                            <app-key-number [number]="cleanForView(today.recap.rea)"
+                                            [unity]="getUnity(today.recap.rea)"
+                                            [description]="'Patients en réanimation'"
+                                            matTooltip="Nombre de patients actuellement en réanimation ou en soins intensifs.
+                                            Données du {{ today.date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Autres indicateurs">
+                        <div class="vertical-center" fxLayout="row" fxLayoutAlign="space-around center">
+                            <app-key-number [number]="cleanForView(today.recap.to)"
+                                            [unity]="'%'"
+                                            [description]="'Tension réanimation'"
+                                            matTooltip="Proportion de patients atteints de COVID-19 actuellement en réanimation,
+                                            en soins intensifs, ou en unité de surveillance continue rapportée au total des lits
+                                            en capacité initiale. Données du {{ today.date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                            <app-key-number [number]="cleanForView(fiveDays[1].recap.tx_pos)"
+                                            [unity]="'%'"
+                                            [description]="'Taux de positivité'"
+                                            matTooltip="Nombre de personnes testées positives (RT-PCR et test antigénique)
+                                            pour la première fois depuis plus de 60 jours rapporté au nombre total de personnes
+                                            testées positives ou négatives sur une période donnée.
+                                            Données du {{ fiveDays[1].date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                            <app-key-number [number]="cleanForView(fiveDays[2].recap.tx_incid)"
+                                            [unity]="'%'"
+                                            [description]="'Taux d\'incidence'"
+                                            matTooltip="Le taux d'incidence correspond au nombre de personnes testées
+                                            positives (RT-PCR et test antigénique) pour la première fois depuis plus de
+                                            60 jours rapporté à la taille de la population. Il est exprimé pour 100 000
+                                            habitants). Information en date du {{ fiveDays[2].date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                            <app-key-number [number]="cleanForView(twoWeeksAgo.recap.r)"
+                                            [unity]="''"
+                                            [description]="'Facteur de reproduction'"
+                                            matTooltip="Nombre moyen de personnes qu’une personne infectée peut contaminer.
+                                            Si le R effectif est supérieur à 1, l’épidémie se développe ; s’il est inférieur à 1, l’épidémie
+                                            régresse). Information en date du {{ twoWeeksAgo.date | date: 'dd/MM/yyyy' }}.">
+                            </app-key-number>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+
+            </app-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile [rowspan]="2">
+            <app-card
+                    class="grid-card-fill map-card"
+                    [headerTitle]="'Carte des cas par département'"
+                    [headerIcon]="'map'"
+            >
+                <app-map></app-map>
+            </app-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-card
+                    class="grid-card-fill"
+                    [headerTitle]="'Nombre de cas par jour'"
+                    [headerIcon]="'bar_chart'"
+            >
+                <div style="height: 35vh" #containerRef>
+                    <app-cas-chart
+                            [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+                            [data]="fiveDays">
+                    </app-cas-chart>
+                </div>
+            </app-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-card
+                    class="grid-card-fill graph-card-no-height"
+                    [headerTitle]="'Évolution des indicateurs'"
+                    [headerIcon]="'show_chart'"
+            >
+                <div style="height: 35vh" #containerRef2>
+                    <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+                        <mat-tab label="Taux d'occupation">
+                            <app-to-chart
+                                    [view]="[containerRef2.offsetWidth - 20, containerRef2.offsetHeight + 10]"
+                                    [data]="fiveDays">
+                            </app-to-chart>
+                        </mat-tab>
+                        <mat-tab label="Hospitalisations">
+                            <app-hosp-chart
+                                    [view]="[containerRef2.offsetWidth - 20, containerRef2.offsetHeight + 10]"
+                                    [data]="fiveDays">
+                            </app-hosp-chart>
+                        </mat-tab>
+                    </mat-tab-group>
+
+                </div>
+            </app-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+
+
+<ng-template #spinner>
+    <app-progress-spinner></app-progress-spinner>
+</ng-template>
+
+
+
+<ng-template #mobile>
+    <div class="mobile-container"
+         fxLayout="column"
+         fxLayoutAlign="start center"
+         fxLayoutGap="1px">
+
+        <app-card
+                class="grid-card-fill"
+                [headerTitle]="'En quelques chiffres'"
+                [headerIcon]="'query_stats'"
+        >
+            <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+                <mat-tab label="Chiffres du jour">
+                    <div fxLayout="column" fxLayoutAlign="space-around center">
+                        <app-key-number [number]="cleanForView(today.recap.conf_j1)"
+                                        [unity]="getUnity(today.recap.conf_j1)"
+                                        [description]="'Cas confirmés'"
+                                        matTooltip="Nombre de nouveaux cas confirmés, le {{ today.date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                        <app-key-number [number]="cleanForView(today.recap.dchosp + today.recap.esms_dc - fiveDays[4].recap.dchosp - fiveDays[4].recap.esms_dc)"
+                                        [unity]="getUnity(today.recap.dchosp + today.recap.esms_dc - fiveDays[4].recap.dchosp - fiveDays[4].recap.esms_dc)"
+                                        [description]="'Décès'"
+                                        matTooltip="Nombre de nouveaux décès reportés, le {{ today.date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                        <app-key-number [number]="cleanForView(today.recap.hosp)"
+                                        [unity]="getUnity(today.recap.hosp)"
+                                        [description]="'Hospitalisations'"
+                                        matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19.
+                                            Données du {{ today.date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                        <app-key-number [number]="cleanForView(today.recap.rea)"
+                                        [unity]="getUnity(today.recap.rea)"
+                                        [description]="'Patients en réanimation'"
+                                        matTooltip="Nombre de patients actuellement en réanimation ou en soins intensifs.
+                                            Données du {{ today.date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Autres indicateurs">
+                    <div fxLayout="column" fxLayoutAlign="space-around center">
+                        <app-key-number [number]="cleanForView(today.recap.to)"
+                                        [unity]="'%'"
+                                        [description]="'Tension réanimation'"
+                                        matTooltip="Proportion de patients atteints de COVID-19 actuellement en réanimation,
+                                            en soins intensifs, ou en unité de surveillance continue rapportée au total des lits
+                                            en capacité initiale. Données du {{ today.date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                        <app-key-number [number]="cleanForView(fiveDays[1].recap.tx_pos)"
+                                        [unity]="'%'"
+                                        [description]="'Taux de positivité'"
+                                        matTooltip="Nombre de personnes testées positives (RT-PCR et test antigénique)
+                                            pour la première fois depuis plus de 60 jours rapporté au nombre total de personnes
+                                            testées positives ou négatives sur une période donnée.
+                                            Données du {{ fiveDays[1].date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                        <app-key-number [number]="cleanForView(fiveDays[2].recap.tx_incid)"
+                                        [unity]="'%'"
+                                        [description]="'Taux d\'incidence'"
+                                        matTooltip="Le taux d'incidence correspond au nombre de personnes testées
+                                            positives (RT-PCR et test antigénique) pour la première fois depuis plus de
+                                            60 jours rapporté à la taille de la population. Il est exprimé pour 100 000
+                                            habitants). Information en date du {{ fiveDays[2].date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                        <app-key-number [number]="cleanForView(twoWeeksAgo.recap.r)"
+                                        [unity]="''"
+                                        [description]="'Facteur de reproduction'"
+                                        matTooltip="Nombre moyen de personnes qu’une personne infectée peut contaminer.
+                                            Si le R effectif est supérieur à 1, l’épidémie se développe ; s’il est inférieur à 1, l’épidémie
+                                            régresse). Information en date du {{ twoWeeksAgo.date | date: 'dd/MM/yyyy' }}.">
+                        </app-key-number>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </app-card>
+
+        <app-card
+                class="grid-card-fill"
+                [headerTitle]="'Nombre de cas par jour'"
+                [headerIcon]="'bar_chart'"
+        >
+            <div style="height: 35vh" #containerRef>
+                <app-cas-chart
+                        [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+                        [data]="fiveDays">
+                </app-cas-chart>
+            </div>
+        </app-card>
+
+
+        <app-card
+                class="grid-card-fill graph-card-no-height"
+                [headerTitle]="'Évolution des indicateurs'"
+                [headerIcon]="'show_chart'"
+        >
+            <div style="height: 35vh" #containerRef2>
+                <mat-tab-group mat-align-tabs="start" style="max-height: 100%; overflow: hidden">
+                    <mat-tab label="Taux d'occupation">
+                        <app-to-chart
+                                [view]="[containerRef2.offsetWidth - 20, containerRef2.offsetHeight + 10]"
+                                [data]="fiveDays">
+                        </app-to-chart>
+                    </mat-tab>
+                    <mat-tab label="Hospitalisations">
+                        <app-hosp-chart
+                                [view]="[containerRef2.offsetWidth - 20, containerRef2.offsetHeight + 10]"
+                                [data]="fiveDays">
+                        </app-hosp-chart>
+                    </mat-tab>
+                </mat-tab-group>
+
+            </div>
+        </app-card>
+
+        <app-card
+                class="grid-card-fill map-card"
+                [headerTitle]="'Carte des cas par département'"
+                [headerIcon]="'map'"
+        >
+            <app-map></app-map>
+        </app-card>
+
+
+    </div>
+</ng-template>
