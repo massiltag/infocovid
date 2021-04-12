@@ -25,6 +25,12 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     public MongoClient mongoClient() {
+        // Décommenter la ligne voulue
+
+        // Base MongoDB locale :
+        // ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
+
+        // Cluster MongoDB Atlas (Cloud) :
         ConnectionString connectionString = new ConnectionString("mongodb+srv://app:app@scoovidoo.9hkfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
