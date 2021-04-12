@@ -4,7 +4,7 @@
 
 ### What's here ? ###
 
-This is our development project. Supervised by Maxime Lhoumeau in Paris I PanthÃ©on Sorbonne University.
+This is our development project. Supervised by Maxime Lhoumeau in Paris I Panthéon Sorbonne University.
 
 ### Technical stack ###
 
@@ -15,6 +15,7 @@ Our frontend was made using the Angular Framework (HTML/SCSS/TS), and our backen
 #### Tools and libraries ####
 
 We used :
+
 * [Angular Material](https://material.angular.io/) component library.  
 * [Leaflet.js](https://leafletjs.com/), with GeoJSON structures to display data as layers on a map in our frontend.  
 * [ngx-charts](https://github.com/swimlane/ngx-charts) Library, for graphical data visualization.  
@@ -42,6 +43,7 @@ Our WEB application gathers data from multiple APIs, maps it to a defined format
 
 We had to map the retrieved data with mapper classes (inside `mappers` package) to our defined format in order to return
 it and store it properly.  
+
 * Mapping **indicators** from **CSV** to **Java** objects  
   Before :  
     ![Stats-recap-before](files/img/data/stats-recap-before.png) ![Stats-vacc-before](files/img/data/stats-vacc-before.png)  
@@ -57,6 +59,7 @@ it and store it properly.
 #### Database structure ###
 
 We keep four collections in our Mongo database :  
+
 * `metrics` COVID-19 related data as mapped from the CSV files, one new document per day,
    older documents are updated (see 'Scheduled actions' section).  
 * `news` COVID-19 related news, the APIs' free plans being limited to 500 calls per month, we had to persist them
@@ -86,12 +89,14 @@ Some actions needed scheduling, to do so, we used Spring `@Scheduled` annotation
 
 ## How to install ##
 
+
 1. Clone this repository.  
 2. `cd` into `infocovid`, `mvn install` and run the Spring Boot project.  
 3. `cd` into `infocovid/webapp`, `npm install` and run the Angular application with `ng serve`.  
 
 NB : The database link in our Spring Mongo configuration class points to a cloud-stored database on MongoDB Atlas,
 if you want to view the database live on your machine, follow these steps before step 2. :  
+
 * Uncomment the local database link in the configuration class (`com.pantheonsorbonne.infocovid.config.MongoConfig`)  
 * Run `mongod` on your machine, by using MongoDB Compass, create a database named `scoovidoo`, add four collections :
   `news`, `metrics`, `mails` and `centres`.  
