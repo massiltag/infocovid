@@ -104,7 +104,7 @@ if you want to view the database live on your machine, follow these steps before
 
 
 ## Deployment ##
-Application is deployed and accessible on [infcovid.herokuapp.com](infocovid.herokuapp.com)
+Application is deployed and accessible on [infcovid.herokuapp.com](https://infcovid.herokuapp.com)
 
 
 ## Authors ##
