@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 /**
  * Indicateurs concernant la vaccination
+ * https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-personnes-vaccinees-contre-la-covid-19-1/
  */
 @Data
 @Builder
