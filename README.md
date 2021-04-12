@@ -4,7 +4,7 @@
 
 ### What's here ? ###
 
-This is our development project. Supervised by Maxime Lhoumeau in Paris I Panthéon Sorbonne University.
+This is our development project. Supervised by Maxime Lhoumeau in Paris I Panthï¿½on Sorbonne University.
 
 ### Technical stack ###
 
@@ -41,10 +41,10 @@ Our WEB application gathers data from multiple APIs, maps it to a defined format
 
 #### Mapping ###
 
-We had to map the retrieved data with mapper classes (inside `mappers` package) to our defined format in order to return
-it and store it properly.  
+We had to map the retrieved data with mapper classes (inside `mappers` package) to our defined format in order to return 
+and store them properly.  
 
-* Mapping **indicators** from **CSV** to **Java** objects  
+* Mapping **indicators** from **CSV** to **Java** objects and returning them as JSON from the API  
   Before :  
     ![Stats-recap-before](files/img/data/stats-recap-before.png) ![Stats-vacc-before](files/img/data/stats-vacc-before.png)  
   After:  
