@@ -51,12 +51,12 @@ public class PrevisionServiceImpl implements PrevisionService {
 	}
 
 	/**
-	 * Permet de récupérer les prévisions pour l'immunité collective
+	 *Permet de récupérer les prévisions pour l'immunité collective
 	 * @return un objet contenant les prévisions sur l'immunité
 	 */
 	@Override
 	public PrevisionImmunite getRegressionLineaireImmunite() {
-		List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(0));
+		List<Metrics> metrics = metricsService.getForRange(LocalDate.now().minusDays(30), LocalDate.now().minusDays(2));
 
 		List<Integer> nbVaccins = metrics.stream().map(m -> m.getVaccineStats().getN_cum_dose1())
 				.collect(Collectors.toList());
